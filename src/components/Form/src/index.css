@@ -1,0 +1,8 @@
+.ant-form-item .ant-form-item-label {
+    text-align: left;
+}
+
+.ant-form-item {
+    width: 60%;
+    /* margin-left: 150px; */
+}

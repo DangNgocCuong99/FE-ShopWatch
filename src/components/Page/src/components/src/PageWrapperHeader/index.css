@@ -1,0 +1,14 @@
+.page-wrapper-header {
+    display: flex;
+    justify-content: flex-start;
+    text-align: left;
+    align-items: center;
+    height: 60px;
+    font-size: 24px;
+    font-weight: bold;
+    padding: 16px;
+}
+
+.ant-card-body {
+    padding-left: unset !important;
+}

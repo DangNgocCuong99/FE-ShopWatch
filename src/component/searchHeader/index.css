@@ -1,0 +1,86 @@
+
+.search-smart {
+    position: relative
+}
+
+header.header .header-control .search-header {
+    display: inline-block
+}
+
+
+.search-smart .header-search-form {
+    position: initial;
+    border-radius: 30px;
+    overflow: hidden;
+    border: 2px solid #000;
+    height: 50px
+}
+
+.search-smart .header-search-form input {
+    width: 100%;
+    display: block;
+    height: 100%;
+    padding-right: 80px;
+    padding-left: 10px;
+    border: 0
+}
+
+.search-smart .header-search-form input {
+    width: 100%;
+    display: block;
+    height: 100%;
+    padding-right: 80px;
+    padding-left: 10px;
+    border: 0
+}
+
+.search-smart .header-search-form button {
+    position: absolute;
+    right: 5px;
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border: 0;
+    border-radius: 5px;
+    top: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
+
+
+.search-suggest {
+    position: absolute;
+    top: 40px;
+    right: 0;
+    width: 100%;
+    z-index: 99999;
+    background: #fff;
+    border: solid 1px #dfe3e8;
+    display: none;
+    position: absolute;
+    top: 100%;
+    border-radius: 5px;
+    overflow-y: auto;
+    box-shadow: 0 0px 2px 0 rgba(60,64,67,0.1),0 0px 6px 0px rgba(60,64,67,0.25)
+}
+
+@media (min-width: 991px) {
+    .search-suggest {
+        width:500px
+    }
+}
+
+.search-suggest .smart-search-title {
+    margin-bottom: 10px
+}
+
+.list-search-style.active {
+    display: block
+}
+
+.list-search-style {
+    text-align: center;
+    margin-bottom: 10px;
+    display: none
+}

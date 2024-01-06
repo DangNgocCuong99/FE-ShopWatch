@@ -1,0 +1,41 @@
+.layout-style {
+    min-height: 100vh;
+
+}
+
+.layout-style .sider-logo-style {
+    text-align: center;
+    margin: 16px;
+}
+
+.layout-style .sider-style {
+    z-index: 100;
+}
+
+.sider-style {
+    height: 100v;
+}
+
+.layout-style .layout-content-style {
+    background-color: #f0f2f5;
+}
+
+.layout-style .sider-style .sider-logout-btn {
+    color: rgba(255, 255, 255, 0.65);
+    background: #001529;
+    border: none;
+    position: absolute;
+    bottom: 3%;
+    left: 7%;
+}
+
+.layout-header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    background-color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    width: 100%;
+}
