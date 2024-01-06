@@ -9,30 +9,30 @@ import { useRedirect } from "../useRedirect";
 const LayoutHeader = () => {
   const { goAvatar, goChangePassword, goProfile, logout } = useRedirect();
   const items: MenuProps["items"] = [
-    {
-      key: "1",
-      label: (
-        <div onClick={() => goProfile()}>{t("layout.header.profile")}</div>
-      ),
-    },
-    {
-      key: "2",
-      label: <div onClick={() => goAvatar()}>{t("layout.header.avatar")}</div>,
-    },
-    {
-      key: "3",
-      label: (
-        <div onClick={() => goChangePassword()}>
-          {t("layout.header.change_password")}
-        </div>
-      ),
-    },
-    {
-      type: "divider",
-    },
+    // {
+    //   key: "1",
+    //   label: (
+    //     <div onClick={() => goProfile()}>{t("layout.header.profile")}</div>
+    //   ),
+    // },
+    // {
+    //   key: "2",
+    //   label: <div onClick={() => goAvatar()}>{t("layout.header.avatar")}</div>,
+    // },
+    // {
+    //   key: "3",
+    //   label: (
+    //     <div onClick={() => goChangePassword()}>
+    //       {t("layout.header.change_password")}
+    //     </div>
+    //   ),
+    // },
+    // {
+    //   type: "divider",
+    // },
     {
       key: "4",
-      label: <div onClick={() => logout()}>{t("layout.header.logout")}</div>,
+      label: <div onClick={() => logout()}>quay lai trang mua hang</div>,
     },
   ];
 

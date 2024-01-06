@@ -15,7 +15,7 @@ const LienHe = ()=>{
               alt="title"
               src="//bizweb.dktcdn.net/100/487/743/themes/912230/assets/wristwatch.png?1696125396195"
             />
-            <span>Cửa hàng Dola Watch</span>
+            <span>Cửa hàng Dung Nam Watch</span>
           </h4>
           <div className="info-contact">
             <div className="group-address">
@@ -32,7 +32,7 @@ const LienHe = ()=>{
                   </div>
                   <div className="info">
                     <b>Địa chỉ</b>
-                    <span>70 Lữ Gia, Phường 15, Quận 11, TP.HCM</span>
+                    <span>Nghiêm Xuân Yêm - Đại Kim - Hoàng Mai - Hà Nội</span>
                   </div>
                 </li>
                 <li>
@@ -160,10 +160,9 @@ const LienHe = ()=>{
       </div>
       <div className="col-lg-6 col-12">
         <div id="contact_map" className="map block-background">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3723.904611732553!2d105.81388241542348!3d21.03650239288885!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab1946cc7e23%3A0x87ab3917166a0cd5!2zQ8O0bmcgdHkgY-G7lSBwaOG6p24gY8O0bmcgbmdo4buHIFNBUE8!5e0!3m2!1svi!2s!4v1555900531747!5m2!1svi!2s"
-            style={{ border: 0 }}
-          />
+        <iframe
+        style={{border:"0"}}
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3725.417979243411!2d105.81301857597686!3d20.975875880660272!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135acef8ad5350f%3A0x89435a3528118ff5!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBUaMSDbmcgTG9uZw!5e0!3m2!1svi!2s!4v1704295855169!5m2!1svi!2s"/>
         </div>
       </div>
     </div>

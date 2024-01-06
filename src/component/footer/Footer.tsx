@@ -35,7 +35,7 @@ const Footer = ()=>{
 						<ul>
 							<li><b>Địa chỉ: </b><span>
 								
-								70 Lữ Gia, Phường 15, Quận 11, TP.HCM
+								Nghiêm Xuân Yêm - Đại Kim - Hoàng Mai - Hà Nội
 								
 								</span></li>
 							<li>

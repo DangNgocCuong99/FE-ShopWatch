@@ -14,6 +14,9 @@ import DetailOrder from "/@/shopViews/detailOrder";
 import ChangePassword from "/@/shopViews/change-password";
 import DetailProduct from "/@/shopViews/detailProduct";
 import CheckOut from "/@/shopViews/check-out";
+import ChinhSachThanhVien from "/@/shopViews/chinh-sach-thanh-vien";
+import HuongDanMuaHang from "/@/shopViews/huon-dan-mua-hang";
+import BaoMatThongTinCaNhan from "/@/shopViews/bao-mat-thong-tin-ca-nhan";
 
 interface RouterShopType extends  RouteType {
     img?:{
@@ -423,9 +426,27 @@ export const headerMenuItems:RouterShopType[] = [
         hiddenMenu:true
     },
     {
-        path:'/chinh-sach',
-        displayText:"Chính Sách",
+        path:'/chinh-sach-thanh-toan',
+        displayText:"Chính Sách Thanh Toán",
         element:<ChinhSach/>,
+        hiddenMenu:true
+    },
+    {
+        path:'/chinh-sach-thanh-vien',
+        displayText:"Chính Sách Thanh Viên",
+        element:<ChinhSachThanhVien/>,
+        hiddenMenu:true
+    },
+    {
+        path:'/huong-dan-mua-hang',
+        displayText:"Hướng dẫn mua hàng",
+        element:<HuongDanMuaHang/>,
+        hiddenMenu:true
+    },
+    {
+        path:'/bao-mat-thong-tin-ca-nhan',
+        displayText:"Bảo mật thông tin cá nhân",
+        element:<BaoMatThongTinCaNhan/>,
         hiddenMenu:true
     },
     {

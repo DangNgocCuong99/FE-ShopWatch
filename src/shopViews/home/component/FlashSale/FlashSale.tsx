@@ -142,7 +142,7 @@ const FlashSale = ()=>{
             style={{ width: "418.667px", marginRight: 10 }}
             data-swiper-slide-index={2}
           >
-            <a href="/chinh-sach" title="1 đổi 1 nếu sản phẩm xảy ra lỗi">
+            <a href="/chinh-sach-thanh-thanh-toan" title="1 đổi 1 nếu sản phẩm xảy ra lỗi">
               1 đổi 1 nếu sản phẩm xảy ra lỗi
             </a>
           </div>
@@ -152,7 +152,7 @@ const FlashSale = ()=>{
             data-swiper-slide-index={3}
           >
             <a
-              href="/chinh-sach"
+              href="/chinh-sach-thanh-thanh-toan-thanh-thanh-toan"
               title="Tặng gói bảo hành 5 năm khi mua bất kỳ sản phẩm nào"
             >
               Tặng gói bảo hành 5 năm khi mua bất kỳ sản phẩm nào
@@ -164,7 +164,7 @@ const FlashSale = ()=>{
             data-swiper-slide-index={4}
           >
             <a
-              href="/chinh-sach"
+              href="/chinh-sach-thanh-thanh-toan"
               title="Miễn phí thay pin trọn đời cho tất cả sản phẩm"
             >
               Miễn phí thay pin trọn đời cho tất cả sản phẩm
@@ -176,7 +176,7 @@ const FlashSale = ()=>{
             data-swiper-slide-index={0}
           >
             <a
-              href="/chinh-sach"
+              href="/chinh-sach-thanh-thanh-toan"
               title="Giảm giá khi mua từ 3 sản phẩm trở lên"
             >
               Giảm giá khi mua từ 3 sản phẩm trở lên
@@ -188,7 +188,7 @@ const FlashSale = ()=>{
             data-swiper-slide-index={1}
           >
             <a
-              href="/chinh-sach"
+              href="/chinh-sach-thanh-thanh-toan"
               title="Nhận ngay ưu đãi khi đăng ký thành viên"
             >
               Nhận ngay ưu đãi khi đăng ký thành viên
@@ -199,7 +199,7 @@ const FlashSale = ()=>{
             style={{ width: "418.667px", marginRight: 10 }}
             data-swiper-slide-index={2}
           >
-            <a href="/chinh-sach" title="1 đổi 1 nếu sản phẩm xảy ra lỗi">
+            <a href="/chinh-sach-thanh-thanh-toan" title="1 đổi 1 nếu sản phẩm xảy ra lỗi">
               1 đổi 1 nếu sản phẩm xảy ra lỗi
             </a>
           </div>
@@ -209,7 +209,7 @@ const FlashSale = ()=>{
             data-swiper-slide-index={3}
           >
             <a
-              href="/chinh-sach"
+              href="/chinh-sach-thanh-thanh-toan"
               title="Tặng gói bảo hành 5 năm khi mua bất kỳ sản phẩm nào"
             >
               Tặng gói bảo hành 5 năm khi mua bất kỳ sản phẩm nào
@@ -221,7 +221,7 @@ const FlashSale = ()=>{
             data-swiper-slide-index={4}
           >
             <a
-              href="/chinh-sach"
+              href="/chinh-sach-thanh-thanh-toan"
               title="Miễn phí thay pin trọn đời cho tất cả sản phẩm"
             >
               Miễn phí thay pin trọn đời cho tất cả sản phẩm
@@ -233,7 +233,7 @@ const FlashSale = ()=>{
             data-swiper-slide-index={0}
           >
             <a
-              href="/chinh-sach"
+              href="/chinh-sach-thanh-thanh-toan"
               title="Giảm giá khi mua từ 3 sản phẩm trở lên"
             >
               Giảm giá khi mua từ 3 sản phẩm trở lên
@@ -245,7 +245,7 @@ const FlashSale = ()=>{
             data-swiper-slide-index={1}
           >
             <a
-              href="/chinh-sach"
+              href="/chinh-sach-thanh-thanh-toan"
               title="Nhận ngay ưu đãi khi đăng ký thành viên"
             >
               Nhận ngay ưu đãi khi đăng ký thành viên
@@ -256,7 +256,7 @@ const FlashSale = ()=>{
             style={{ width: "418.667px", marginRight: 10 }}
             data-swiper-slide-index={2}
           >
-            <a href="/chinh-sach" title="1 đổi 1 nếu sản phẩm xảy ra lỗi">
+            <a href="/chinh-sach-thanh-thanh-toan" title="1 đổi 1 nếu sản phẩm xảy ra lỗi">
               1 đổi 1 nếu sản phẩm xảy ra lỗi
             </a>
           </div>
