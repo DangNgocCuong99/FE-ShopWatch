@@ -21,8 +21,6 @@ function CreateProduct() {
             const dataForm = await form.getFieldsValue()
             const linkImages = dataForm.images.map((i: { url: string; response: string; })=> i.url ? i.url : i.response)
             const res = await productApi.create({...dataForm,images:linkImages}) as {data:{_id: string}}
-            console.log(res);
-            
             // const res = await statusApi.create<{ id: string, nameStatus: string }, { nameStatus: string }>(dataForm)
             goDetailStatus(res.data._id)
         } catch (error) {

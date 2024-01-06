@@ -26,6 +26,58 @@ export const dataConfig = (mode?: MODE): FormSchemaModel<IProduct>[] => [
         label: 'hinh anh ',
         component:"InputImg",
     },
+    {
+        field: 'soHieu',
+        label: 'soHieu',
+    },
+    {
+        field: 'xuatXu',
+        label: 'xuatXu',
+    },
+    {
+        field: 'gioiTinh',
+        label: 'gioiTinh',
+    },
+    {
+        field: 'kinh',
+        label: 'kinh',
+    },
+    {
+        field: 'may',
+        label: 'may',
+    },
+    {
+        field: 'baoHanhQuocTe',
+        label: 'baoHanhQuocTe',
+    },
+    {
+        field: 'baoHanhTrongNuoc',
+        label: 'baoHanhTrongNuoc',
+    },
+    {
+        field: 'duongKinhMatSo',
+        label: 'duongKinhMatSo',
+    },
+    {
+        field: 'beDayMatSo',
+        label: 'beDayMatSo',
+    },
+    {
+        field: 'nieng',
+        label: 'nieng',
+    },
+    {
+        field: 'dayDeo',
+        label: 'dayDeo',
+    },
+    {
+        field: 'mauMatSo',
+        label: 'mauMatSo',
+    },
+    {
+        field: 'chongNuoc',
+        label: 'chongNuoc',
+    },
     // {
     //     field: 'select',
     //     label: 'compoent custom',

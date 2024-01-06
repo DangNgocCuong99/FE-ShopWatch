@@ -40,7 +40,8 @@ function EditProduct() {
         try {
             await form.validateFields()
             const dataForm = await form.getFieldsValue()
-            await productApi.updateById(id, dataForm)
+            const linkImages = dataForm.images.map((i: { url: string; response: string; })=> i.url ? i.url : i.response)
+            await productApi.updateById(id, {...dataForm,images:linkImages})
             handleGoDetail()
         } catch (error) {
 
