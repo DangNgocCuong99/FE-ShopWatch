@@ -27,7 +27,24 @@ const Cart = () => {
       }
       return price
     }
+    const handleAddToCart = async(id:string)=>{
+          try {
+              await cartApi.create({productId:id})
+              handleGetDataCart()
+          } catch (error) {
+            
+          }
+    }
 
+    const handleRemoveCart = async(id:string)=>{
+      try {
+        await cartApi.deleteById(id)
+        handleGetDataCart()
+      
+      } catch (error) {
+        
+      }
+    }
   const handleMapCart = () => {
     // lay du lieu tu store
     const result = cartStore.listProduct?.map((i,key)=>{
@@ -74,6 +91,7 @@ const Cart = () => {
                       data-qty="0"
                       data-line="1"
                       aria-label="-"
+                      onClick={()=>handleRemoveCart(i._id)}
                     >
                       -
                     </button>
@@ -97,6 +115,7 @@ const Cart = () => {
                       data-line="1"
                       data-qty="2"
                       aria-label="+"
+                      onClick={()=>handleAddToCart(i._id)}
                     >
                       +
                     </button>
