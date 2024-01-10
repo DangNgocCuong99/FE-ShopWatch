@@ -8,6 +8,4 @@
   "i18n-ally.sourceLanguage": "vi-VN",
   "i18n-ally.displayLanguage": "vi-VN",
   "i18n-ally.enabledFrameworks": ["react"],
-  "terminal.integrated.fontFamily": "Meslo LG M DZ for Powerline",
-  "terminal.integrated.fontSize": 15
 }
