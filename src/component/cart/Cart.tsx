@@ -11,19 +11,11 @@ const Cart = () => {
   const cartStore = useSelector(selectCart)
   const {cartApi} = useCartApi()
 
-  useEffect(()=>{
-    console.log(cartStore)
-  },[cartStore]);
-
-
-    const [data, setData] = useState<Record<string,number>[]>([])
-
     useEffect(()=>{
       handleGetDataCart()
     },[])
 
     const handleGetDataCart =async () => {
-      setData(()=>[{a:1},{a:2}]);
       const res = await cartApi.getAll()
       dispatch(setListProduct(res.data as unknown as any[]))
     }

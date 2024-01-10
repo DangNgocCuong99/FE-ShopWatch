@@ -206,7 +206,7 @@
 .section_flashsale .text-banner-slider .swiper-wrapper {
     transition-timing-function: linear
 }
-.section_flashsale .swiper-wrapper {
+.section_flashsale  {
     animation: slide 30s infinite linear;
 }
 
@@ -253,3 +253,19 @@
   /* .swiper-wrapper {
     animation: slide 10s infinite linear;
   } */
+
+  .parent-flash{
+    width:300px;
+    border:5px solid red;
+    overflow-x: hidden; 
+    float:left;
+  }
+  .child-flash{
+    width:1000px;
+    float:left;
+    font-size:15px;
+    font-family:arial;
+    padding:10px;
+    cursor: pointer;
+    display: flex;
+  }

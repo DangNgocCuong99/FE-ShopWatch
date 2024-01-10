@@ -1,18 +1,35 @@
 import { useCartApi } from "/@/apis"
 import { IProduct } from "/@/apis/productApi/types"
 import { formattedNumber } from "/@/utils/stringUtil"
+import { selectCart, setListProduct } from "/@/stores/cart/cartReduce";
+import { useDispatch } from "react-redux";
 
 export const renderProductTest = (dataApi : IProduct[],column?:number) => {
+
+
+  
   const {cartApi} = useCartApi()
+  const dispatch = useDispatch();
  const columnR = column || 4
   const showSolded = true
   const handleAddToCart = async(id:string)=>{
         try {
-            const res = await cartApi.create({productId:id})
+            await cartApi.create({productId:id})
+            handleGetDataCart()
         } catch (error) {
           
         }
   }
+
+  const handleGetDataCart =async () => {
+    const res = await cartApi.getAll()
+    dispatch(setListProduct(res.data as unknown as any[]))
+  }
+
+  const handleFaverite = ()=>{
+    alert('bamvao yeu thich')
+  }
+
    return dataApi?.map((i)=>(
    <div className={columnR === 5 ? "col-xl-20 col-lg-3 col-sm-4 col-6 col-fix":"col-6 col-md-4 col-xl-3 col-fix"}>
    <div
@@ -83,7 +100,7 @@ export const renderProductTest = (dataApi : IProduct[],column?:number) => {
            </svg>
          </a>
          <a
-           href="javascript:void(0)"
+         onClick={()=>handleFaverite()}
            className="setWishlist btn-wishlist btn-views"
            data-wish="tissot-tradition-t063-617-36-037-00-nam-quartz-pin-mat-so-42-mm-chronograph-kinh-sapphire"
            tabIndex={0}

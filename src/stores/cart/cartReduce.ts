@@ -4,6 +4,7 @@ import { ICart } from "/@/apis/cartApi/types";
 type ICartState = {
     listProduct: ICart[]
 }
+
 const initialState:ICartState = {
     listProduct: [],
 };
@@ -22,6 +23,6 @@ export const {
     setListProduct
 } = cartStore.actions;
 
-export const selectCart= (state:any) => state.cartReduce as ICartState;
+export const selectCart = (state:any) => state.cartReduce as ICartState;
 
 export default cartStore.reducer;
