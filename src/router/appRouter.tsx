@@ -25,6 +25,10 @@ import ManageTrademark from "../views/trademark/danh-sach";
 import CreateTrademark from "../views/trademark/xu-ly/create";
 import EditTrademark from "../views/trademark/xu-ly/edit";
 import ViewTrademark from "../views/trademark/xu-ly/view";
+import ManageStudent from "../views/test/danh-sach";
+import EditStudent from "../views/test/xu-ly/edit";
+import ViewStudent from "../views/test/xu-ly/view";
+import CreateStudent from "../views/test/xu-ly/create";
 
 const appRoutes: RouteType[] = [
   {
@@ -206,6 +210,37 @@ const appRoutes: RouteType[] = [
         state: "trademark.view",
         element:<ViewTrademark/>,
         displayText:"chi tiet thuong hieu",
+        hiddenMenu:true
+      }
+    ]
+  },
+  //sua trademark thanh tét , module
+  {
+    path: "/manage/student",
+    state: "student",
+    element: <ManageStudent/>,
+    displayText:"Quan ly hoc sinh",
+    icon: <UserOutlined />,
+    child:[
+      {
+        path:"add",
+        state: "student.add",
+        element:<CreateStudent/>,
+        displayText:'them hoc sinh',
+        hiddenMenu:true
+      },
+      {
+        path:"edit/:id",
+        state: "student.edit",
+        element:<EditStudent/>,
+        displayText:'sua thong tin',
+        hiddenMenu:true
+      },
+      {
+        path:"view/:id",
+        state: "student.view",
+        element:<ViewStudent/>,
+        displayText:"thong tin chi tiet",
         hiddenMenu:true
       }
     ]

@@ -33,4 +33,5 @@ export enum EndPoint {
   trademark='trademark',
   product='product',
   cart='cart',
+  student='test'
 }

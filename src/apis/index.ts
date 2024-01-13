@@ -4,12 +4,14 @@ import {XuLyAuthApi} from './authApi'
 import { XuLyTrademarkApi } from './trademark';
 import { XuLyProductApi } from './product';
 import { XuLyCartApi } from './cart';
+import { XuLyStudentApi } from './trademark copy';
 let apiStatusInstance: InstanceType<typeof XuLyStatusApi>;
 let apiUserInstance: InstanceType<typeof XuLyUserApi>;
 let apiAuthInstance: InstanceType<typeof XuLyAuthApi>;
 let apiTrademarkInstance: InstanceType<typeof XuLyTrademarkApi>
 let apiProductInstance: InstanceType<typeof XuLyProductApi>
 let apiCartInstance: InstanceType<typeof XuLyCartApi>
+let apiStudentInstance: InstanceType<typeof XuLyStudentApi>
 
 export const useStatusApi = (): XuLyStatusApi => {
     if (!apiStatusInstance) {
@@ -54,3 +56,11 @@ export const useStatusApi = (): XuLyStatusApi => {
     }
     return apiCartInstance
   }
+
+//student
+  export const useStudentApi = (): XuLyStudentApi => {
+    if (!apiStudentInstance) {
+      apiStudentInstance = new XuLyStudentApi();
+    }
+    return apiStudentInstance;
+  };
