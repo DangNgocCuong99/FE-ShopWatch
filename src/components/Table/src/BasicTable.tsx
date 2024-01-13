@@ -13,7 +13,6 @@ import { ActionItem } from "./types/tableAction";
 import { BasicColumn } from "./types/table";
 import BasicForm from "../../Form/src/BasicForm";
 import "./index.css";
-import { log } from "console";
 
 function BasicTable({
   dataForm,
