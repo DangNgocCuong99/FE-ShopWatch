@@ -4,8 +4,9 @@ import SearchHeader from "../searchHeader/searchHeader";
 
 import SideBar from "../sideBar/sideBar";
 import { useNavigate } from "react-router-dom";
+import { Dispatch, SetStateAction } from "react";
 
-const Header = () => {
+const Header = ({isShowMenu , setIsShowMenu}:{isShowMenu : boolean, setIsShowMenu :Dispatch<SetStateAction<boolean>>}) => {
   const navigation = useNavigate();
   const token = localStorage.getItem('token');
 
@@ -16,7 +17,7 @@ const Header = () => {
       <header className="header" style={{ minHeight: "193px" }}>
         <div className="container">
           <div className="row row-header align-items-center">
-            <div className="menu-bar d-lg-none d-flex">
+            <div className="menu-bar d-lg-none d-flex" onClick={()=>setIsShowMenu(true)}>
               <svg
                 aria-hidden="true"
                 focusable="false"
@@ -192,10 +193,11 @@ const Header = () => {
             </div>
           </div>
         </div>
-        <div className="header-menu">
+        <div className="header-menu" >
+        {/* style={{display: isShowMenu ? "block" : "none"}} */}
           <div className="container" style={{ position: "relative" }}>
             <div className="header-menu-des">
-              <nav className="header-nav current">
+              <nav className="header-nav current" style={isShowMenu ? {transform: "translateX(0)"}: undefined}>
                 <ul className="item_big">
                   <li>
                     <a

@@ -582,6 +582,10 @@ header.header .header-control .ul-control-right li .icon > span {
     width: auto;
     padding: 0;
   }
+/* 
+  header.header .header-menu {
+    display: none;
+  } */
 
   header.header .logo {
     display: block;
@@ -607,6 +611,7 @@ header.header .header-control .ul-control-right li .icon > span {
     position: absolute;
     top: 25px;
     right: 30px;
+    
   }
 
   .header .menu-bar {
@@ -620,6 +625,7 @@ header.header .header-control .ul-control-right li .icon > span {
     width: 40px;
     height: 40px;
     background: #000;
+    
   }
 
   .header-nav {
@@ -639,7 +645,7 @@ header.header .header-control .ul-control-right li .icon > span {
 
   .header-nav.current {
     visibility: visible;
-    transform: translateX(0);
+    /* transform: translateX(0); */
   }
 
   .header-nav .item_big {
