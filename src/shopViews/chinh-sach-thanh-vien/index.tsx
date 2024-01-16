@@ -1,6 +1,3 @@
-import ComponentTest from "./test-component-con";
-import './test.css'
-
 const ChinhSachThanhVien = () => {
   return (
     <div className="container">
@@ -21,9 +18,6 @@ const ChinhSachThanhVien = () => {
                 Điều kiện cấp thẻ thành viên: Khi khách hàng mua hàng trên hệ
                 thống&nbsp;Dola sẽ được cấp thẻ thành viên.
               </p>
-
-<ComponentTest/>
-
               <p>
                 <strong>2. Thẻ VIP</strong>
               </p>
