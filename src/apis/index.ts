@@ -5,6 +5,8 @@ import { XuLyTrademarkApi } from './trademark';
 import { XuLyProductApi } from './product';
 import { XuLyCartApi } from './cart';
 import { XuLyStudentApi } from './trademark copy';
+import { XuLyStaffApi } from './staff';
+import { XuLyStaffApi2 } from './staff2.0';
 let apiStatusInstance: InstanceType<typeof XuLyStatusApi>;
 let apiUserInstance: InstanceType<typeof XuLyUserApi>;
 let apiAuthInstance: InstanceType<typeof XuLyAuthApi>;
@@ -12,7 +14,8 @@ let apiTrademarkInstance: InstanceType<typeof XuLyTrademarkApi>
 let apiProductInstance: InstanceType<typeof XuLyProductApi>
 let apiCartInstance: InstanceType<typeof XuLyCartApi>
 let apiStudentInstance: InstanceType<typeof XuLyStudentApi>
-
+let apiStaffInstance:InstanceType<typeof XuLyStaffApi>
+let apiStaff2Instance:InstanceType<typeof XuLyStaffApi2>
 export const useStatusApi = (): XuLyStatusApi => {
     if (!apiStatusInstance) {
         apiStatusInstance = new XuLyStatusApi();
@@ -64,3 +67,15 @@ export const useStatusApi = (): XuLyStatusApi => {
     }
     return apiStudentInstance;
   };
+  export const useStaffApi = (): XuLyStaffApi => {
+    if (!apiStudentInstance) {
+      apiStaffInstance = new XuLyStaffApi();
+    }
+    return apiStaffInstance;
+  };
+  export const useStaffApi2=():XuLyStaffApi2=>{
+    if(!apiStaff2Instance) {
+      apiStaff2Instance=new XuLyStaffApi2()
+    }
+    return apiStaff2Instance
+  }

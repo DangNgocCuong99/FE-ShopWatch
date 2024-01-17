@@ -109,7 +109,7 @@ function BasicTable({
       dataSearch = await api({ ...data, page: 1, pageSize: limit });
     }
     setDataTable(
-      dataSearch.items.map((item: any, i: any) => {
+      dataSearch.items.map((item: any, i: any) => { 
         return {
           ...item,
           key: i,
@@ -142,7 +142,7 @@ function BasicTable({
       ? handleSearch(1, pageSize)
       : handleSearch(page, pageSize);
   };
-
+  
   return (
     <div>
       {dataForm ? <PageWrapperBody
@@ -161,6 +161,7 @@ function BasicTable({
               </Space>
             </div>
           </div>
+          
         }
       /> : null}
       <PageWrapperBody
@@ -187,6 +188,7 @@ function BasicTable({
         }
       />
     </div>
+    
   );
 }
 

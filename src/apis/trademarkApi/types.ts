@@ -1,8 +1,7 @@
 import { BaseInfo } from "../types";
 
-export interface ITrademark {
+export interface IStaff {
     _id: string,
-    images: string[],
-    name: string,
-    moTa:string
+    name:string,
+    date_
 }

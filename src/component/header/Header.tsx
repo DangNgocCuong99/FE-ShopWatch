@@ -4,10 +4,12 @@ import SearchHeader from "../searchHeader/searchHeader";
 
 import SideBar from "../sideBar/sideBar";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 const Header = () => {
   const navigation = useNavigate();
   const token = localStorage.getItem('token');
+  const [isClose , setIsClose] = useState(false)
 
   return (
     <>
@@ -195,9 +197,14 @@ const Header = () => {
         <div className="header-menu">
           <div className="container" style={{ position: "relative" }}>
             <div className="header-menu-des">
-              <nav className="header-nav current">
+              <nav className="header-nav current" style={{display:isClose ? "none" :"block"}}>
                 <ul className="item_big">
                   <li>
+                    <div style={{textAlign:"right"}}>
+                     <div onClick={()=> setIsClose(true)} style={{fontSize:40}}>
+                     X
+                     </div>
+                    </div>
                     <a
                       className="logo-sitenav d-lg-none d-block"
                       href="/"
