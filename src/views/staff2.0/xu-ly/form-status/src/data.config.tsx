@@ -5,13 +5,18 @@ import { MODE } from "/@/utils";
 export const dataConfig = (mode?: MODE): FormSchemaModel<IStaff2>[] => [
     {
         field: 'name',
-        label: 'ten nhan vien',
+        label: 'Tên nhân viên',
     },
     {
         field: 'birthday',
-        label: 'Ngay sinh',
+        label: 'Ngày sinh',
         component: 'DatePicker'
         
+    },
+    {
+        field: 'age',
+        label: 'Tuổi',
+        disabled: mode !== 'VIEW'
     },
     {
         field: 'country',

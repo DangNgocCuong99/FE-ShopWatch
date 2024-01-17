@@ -1,8 +1,8 @@
 export interface IStaff2{
     _id: string,
-    name: String,
-    birthday: Number,
-    age: Number,
+    name: string,
+    birthday: number,
+    age: number,
     country: String,
     id_card: string,
     phone_number: string,

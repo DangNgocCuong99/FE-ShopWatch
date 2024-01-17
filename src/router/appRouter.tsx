@@ -284,28 +284,28 @@ const appRoutes: RouteType[] = [
   },
   {
     path: "/manage/staff2",
-    state: "staff",
+    state: "staff2",
     element: <ManageStaff2/>,
     displayText:"Quản lý nhân viên",
     icon: <UserOutlined />,
     child:[
       {
         path:"add",
-        state: "staff.add",
+        state: "staff2.add",
         element:<CreateStaff2/>,
         displayText:'Thêm nhân viên',
         hiddenMenu:true
       },
       {
         path:"edit/:id",
-        state: "staff.edit",
+        state: "staff2.edit",
         element:<EditStaff2/>,
         displayText:'Sửa thông tin',
         hiddenMenu:true
       },
       {
         path:"view/:id",
-        state: "staff.view",
+        state: "staff2.view",
         element:<ViewStaff2/>,
         displayText:"Thông tin chi tiết",
         hiddenMenu:true

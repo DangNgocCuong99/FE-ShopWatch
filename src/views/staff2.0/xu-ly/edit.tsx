@@ -10,7 +10,7 @@ import { ButtonClose } from "../../components/form-actions"
 import { MODE } from "/@/utils"
 
 function EditStaff2(){
-    const { goDetailStatus, goListStatus } = useRedirectdirect()
+    const { goDetailStatus, goListStatus } = useRedirect()
     const { id } = useParams() as { id: string }
     const { staffApi2 } = useStaffApi2()
 

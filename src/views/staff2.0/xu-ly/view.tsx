@@ -10,12 +10,13 @@ import { MODE } from "/@/utils";
 
 import { StatusForm } from './form-status'
 import { useRedirect } from "../useRedirect";
+import tinhTuoi from '../hook';
 
 function ViewStaff2() {
 
     const [form] = Form.useForm();
     const { goUpdateStatus, goListStatus } = useRedirect()
-    const { id } = useParams() as { id: string }
+    const { id } = useParams() as { id: string } //lấy id từ trên path url
     const { staffApi2 } = useStaffApi2()
 
     useEffect(() => {
@@ -24,12 +25,14 @@ function ViewStaff2() {
 
     const handleFetchDetail = async () => {
         try {
-            const res = await staffApi2.getDataSeclectStaff2()
-            form.setFieldsValue({
-                ...res.data
-            })
-            
-            form.setFieldValue("age" ,new Date().getFullYear() - res.data.dob)
+            const res = await staffApi2.getById(id)
+            console.log(res.data)
+            console.log(new Date(res.data.birthday))
+            // form.setFieldsValue({
+            //     ...res.data
+            // })
+            // form.getFieldValue("birthday",new Date(res.data.birthday))
+            form.setFieldValue("age" ,tinhTuoi(res.data.birthday))
         } catch (error) {
 
         }

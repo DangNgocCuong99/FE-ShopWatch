@@ -8,6 +8,7 @@ import { useTableActionsBuilder } from "/@/components/Table/src/tableActionsBuil
 import { t } from "i18next";
 import { columns } from "./table.data.config";
 import { BasicTable } from "/@/components/Table";
+import tinhTuoi from "../hook";
 
 interface IValue{
     birthday:number
@@ -42,18 +43,6 @@ function ManageStaff2(){
     const handleAdd = async ()=>{
         goCreateStatus();
     }
-    const tinhTuoi=(timestamp:number) =>{       
-        var dob = new Date(timestamp);
-        var today = new Date();
-        var age = today.getFullYear() - dob.getFullYear();
-        if (
-          today.getMonth() < dob.getMonth() ||
-          (today.getMonth() === dob.getMonth() && today.getDate() < dob.getDate())
-        ) {
-          age--;
-        }
-        return age;
-      }
     const handeApi =async(params:any)=>{
         const {data}=await staffApi2.getAll(params) as unknown as {data:{items:[IValue],total:number}}
         return{

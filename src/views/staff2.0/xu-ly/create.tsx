@@ -18,10 +18,9 @@ function CreateStaff2(){
             await form.validateFields()
             const dataForm=await form.getFieldsValue()
             console.log("🚀 ~ file: create.tsx:22 ~ handleAdd ~ dataForm:",dataForm )
-            // const res = await staffApi2.create({...dataForm}) as {data:{_id:string}}
-            // goDetailStatus(res.data._id)
-           
-        console.log({...dataForm,birthday:dataForm.birthday.unix()*1000})
+            const res = await staffApi2.create({...dataForm,birthday:dataForm.birthday.unix()*1000}) as {data:{_id:string} }
+            goDetailStatus(res.data._id)
+
         } catch (error) {
             
         }
