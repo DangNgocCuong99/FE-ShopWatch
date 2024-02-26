@@ -649,6 +649,7 @@ header.header .header-control .ul-control-right li .icon > span {
   }
 
   .header-nav .item_big {
+    width: 100%;
     overflow-y: auto;
     max-height: 100vh;
     height: 100vh;

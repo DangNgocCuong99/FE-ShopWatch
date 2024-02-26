@@ -109,7 +109,9 @@ const SideBar = () => {
       });
     
     return (
-        <>        {headerMenuElements}</>
+        <>        
+        {headerMenuElements}
+        </>
     )
 }
 export default SideBar

@@ -1,37 +1,23 @@
+import PhoneInput from "react-phone-input-2"
 import "./index.css"
+import { useState } from "react";
+import 'react-phone-input-2/lib/style.css';
 const CheckOut = ()=>{
+  const [phoneNumber, setPhoneNumber] = useState('');
+
+  const handleOnChange = (value, country) => {
+    console.log('Country:', country);
+    console.log('Phone number:', value);
+    setPhoneNumber(value);
+  };
     return (
 <div data-tg-refresh="checkout" id="checkout" className="content">
   <form
     id="checkoutForm"
-    method="post"
-    data-define="{
-				loadingShippingErrorMessage: 'Không thể load phí vận chuyển. Vui lòng thử lại',
-				loadingReductionCodeErrorMessage: 'Có lỗi xảy ra khi áp dụng khuyến mãi. Vui lòng thử lại',
-				submitingCheckoutErrorMessage: 'Có lỗi xảy ra khi xử lý. Vui lòng thử lại',
-				requireShipping: true,
-				requireDistrict: false,
-				requireWard: false,
-				shouldSaveCheckoutAbandon: false}"
-    action="/checkout/335405d30f2c4d3991260a4d61c05dff"
-    data-bind-event-submit="handleCheckoutSubmit(event)"
-    data-bind-event-keypress="handleCheckoutKeyPress(event)"
-    data-bind-event-change="handleCheckoutChange(event)"
   >
     <input type="hidden" name="_method" defaultValue="patch" />
     <div className="wrap">
       <main className="main">
-        <header className="main__header">
-          <div className="logo logo--center">
-            <a href="/">
-              <img
-                className="logo__image  logo__image--medium "
-                alt="Dola Watch"
-                src="//bizweb.dktcdn.net/100/487/743/themes/912230/assets/logo.png?1700207699794"
-              />
-            </a>
-          </div>
-        </header>
         <div className="main__content">
           <article className="animate-floating-labels row">
             <div className="col col--two">
@@ -42,10 +28,7 @@ const CheckOut = ()=>{
                       <i className="fa fa-id-card-o fa-lg section__title--icon hide-on-desktop" />
                       Thông tin nhận hàng
                     </h2>
-                    <a href="/account/logout?returnUrl=/checkout/335405d30f2c4d3991260a4d61c05dff">
-                      <i className="fa fa-sign-out fa-lg" />
-                      <span>Đăng xuất</span>
-                    </a>
+                    
                   </div>
                 </div>
                 <div className="section__content">
@@ -132,6 +115,12 @@ const CheckOut = ()=>{
                         <label htmlFor="billingPhone" className="field__label">
                           Số điện thoại (tùy chọn)
                         </label>
+                        <PhoneInput
+                          country={'vn'}
+                          value={phoneNumber}
+                          onChange={(value, country) => handleOnChange(value, country)}
+      />
+                        {/* <div style={{display:"flex"}}>
                         <input
                           name="billingPhone"
                           id="billingPhone"
@@ -1407,6 +1396,8 @@ const CheckOut = ()=>{
                             />
                           </span>
                         </div>
+                        </div> */}
+
                       </div>
                     </div>
                     <div
@@ -1524,44 +1515,6 @@ const CheckOut = ()=>{
                           <option value={62}>Vĩnh Phúc</option>
                           <option value={63}>Yên Bái</option>
                         </select>
-                        <span
-                          className="select2 select2-container select2-container--default"
-                          dir="ltr"
-                          data-select2-id="select2-data-1-mtj0"
-                          style={{ width: "100%" }}
-                        >
-                          <span className="selection">
-                            <span
-                              className="select2-selection select2-selection--single"
-                              role="combobox"
-                              aria-haspopup="true"
-                              aria-expanded="false"
-                              tabIndex={0}
-                              aria-disabled="false"
-                              aria-labelledby="select2-billingProvince-container"
-                            >
-                              <span
-                                className="select2-selection__rendered"
-                                id="select2-billingProvince-container"
-                                role="textbox"
-                                aria-readonly="true"
-                                title="Hà Nội"
-                              >
-                                Hà Nội
-                              </span>
-                              <span
-                                className="select2-selection__arrow"
-                                role="presentation"
-                              >
-                                <b role="presentation" />
-                              </span>
-                            </span>
-                          </span>
-                          <span
-                            className="dropdown-wrapper"
-                            aria-hidden="true"
-                          />
-                        </span>
                       </div>
                     </div>
                     <div className="field field--show-floating-label ">
@@ -1625,44 +1578,6 @@ const CheckOut = ()=>{
                           <option value={29}>Huyện Ứng Hòa</option>
                           <option value={688}>Quận Nam Từ Liêm</option>
                         </select>
-                        <span
-                          className="select2 select2-container select2-container--default"
-                          dir="ltr"
-                          data-select2-id="select2-data-3-ozpd"
-                          style={{ width: "100%" }}
-                        >
-                          <span className="selection">
-                            <span
-                              className="select2-selection select2-selection--single"
-                              role="combobox"
-                              aria-haspopup="true"
-                              aria-expanded="false"
-                              tabIndex={0}
-                              aria-disabled="false"
-                              aria-labelledby="select2-billingDistrict-container"
-                            >
-                              <span
-                                className="select2-selection__rendered"
-                                id="select2-billingDistrict-container"
-                                role="textbox"
-                                aria-readonly="true"
-                                title="Thị xã Sơn Tây"
-                              >
-                                Thị xã Sơn Tây
-                              </span>
-                              <span
-                                className="select2-selection__arrow"
-                                role="presentation"
-                              >
-                                <b role="presentation" />
-                              </span>
-                            </span>
-                          </span>
-                          <span
-                            className="dropdown-wrapper"
-                            aria-hidden="true"
-                          />
-                        </span>
                       </div>
                     </div>
                     <div className="field field--show-floating-label ">
@@ -1708,44 +1623,6 @@ const CheckOut = ()=>{
                           <option value={3303}>Xã Sơn Đông</option>
                           <option value={3304}>Xã Cổ Đông</option>
                         </select>
-                        <span
-                          className="select2 select2-container select2-container--default"
-                          dir="ltr"
-                          data-select2-id="select2-data-5-27oq"
-                          style={{ width: "100%" }}
-                        >
-                          <span className="selection">
-                            <span
-                              className="select2-selection select2-selection--single"
-                              role="combobox"
-                              aria-haspopup="true"
-                              aria-expanded="false"
-                              tabIndex={0}
-                              aria-disabled="false"
-                              aria-labelledby="select2-billingWard-container"
-                            >
-                              <span
-                                className="select2-selection__rendered"
-                                id="select2-billingWard-container"
-                                role="textbox"
-                                aria-readonly="true"
-                                title="Phường Phú Thịnh"
-                              >
-                                Phường Phú Thịnh
-                              </span>
-                              <span
-                                className="select2-selection__arrow"
-                                role="presentation"
-                              >
-                                <b role="presentation" />
-                              </span>
-                            </span>
-                          </span>
-                          <span
-                            className="dropdown-wrapper"
-                            aria-hidden="true"
-                          />
-                        </span>
                       </div>
                     </div>
                   </div>
@@ -1906,7 +1783,50 @@ const CheckOut = ()=>{
                     </div>
                   </div>
                 </div>
+                <div className="section__content" style={{marginTop:"1em"}}>
+                  <div
+                    className="content-box"
+                    data-define="{paymentMethod: undefined}"
+                  >
+                    <div className="content-box__row">
+                      <div className="radio-wrapper">
+                        <div className="radio__input">
+                          <input
+                            name="paymentMethod"
+                            id="paymentMethod-618857"
+                            type="radio"
+                            className="input-radio"
+                            data-bind="paymentMethod"
+                            defaultValue={618857}
+                            data-provider-id={4}
+                          />
+                        </div>
+                        <label
+                          htmlFor="paymentMethod-618857"
+                          className="radio__label"
+                        >
+                          <span className="radio__label__primary">
+                            Thanh toán qua Internet
+                          </span>
+                          <span className="radio__label__accessory">
+                            <span className="radio__label__icon">
+                              <i className="payment-icon payment-icon--4" />
+                            </span>
+                          </span>
+                        </label>
+                      </div>
+                      <div
+                        className="content-box__row__desc hide"
+                        data-bind-show="paymentMethod == 618857"
+                        data-provider-id={4}
+                      >
+                        <p>Bạn chỉ phải thanh toán khi nhận được hàng</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </section>
+              
             </div>
           </article>
           <div className="field__input-btn-wrapper field__input-btn-wrapper--vertical hide-on-desktop">
@@ -1974,7 +1894,7 @@ const CheckOut = ()=>{
                   <tbody>
                     <tr className="product">
                       <td className="product__image">
-                        <div className="product-thumbnail">
+                        <div className="product-thumbnail-check-out">
                           <div
                             className="product-thumbnail__wrapper"
                             data-tg-static=""
@@ -2002,7 +1922,7 @@ const CheckOut = ()=>{
                     </tr>
                     <tr className="product">
                       <td className="product__image">
-                        <div className="product-thumbnail">
+                        <div className="product-thumbnail-check-out">
                           <div
                             className="product-thumbnail__wrapper"
                             data-tg-static=""
@@ -2029,7 +1949,7 @@ const CheckOut = ()=>{
                     </tr>
                     <tr className="product">
                       <td className="product__image">
-                        <div className="product-thumbnail">
+                        <div className="product-thumbnail-check-out">
                           <div
                             className="product-thumbnail__wrapper"
                             data-tg-static=""
@@ -2066,7 +1986,7 @@ const CheckOut = ()=>{
                 <div className="edit_checkout animate-floating-labels">
                   <div className="fieldset">
                     <div className="field ">
-                      <div className="field__input-btn-wrapper">
+                      <div >
                         <div className="field__input-wrapper">
                           <label
                             htmlFor="reductionCode"
@@ -2074,6 +1994,8 @@ const CheckOut = ()=>{
                           >
                             Nhập mã giảm giá
                           </label>
+                        </div>
+                        <div style={{display:"flex"}}>
                           <input
                             name="reductionCode"
                             id="reductionCode"
@@ -2085,8 +2007,7 @@ const CheckOut = ()=>{
                             data-define="{reductionCode: null}"
                             data-bind="reductionCode"
                           />
-                        </div>
-                        <button
+                                                  <button
                           className="field__input-btn btn spinner btn--disabled"
                           type="button"
                           data-bind-disabled="isLoadingReductionCode || !reductionCode"
@@ -2102,6 +2023,7 @@ const CheckOut = ()=>{
                             <use href="#spinner" />
                           </svg>
                         </button>
+                          </div>
                       </div>
                       <p
                         className="field__message field__message--error field__message--error-always-show hide"

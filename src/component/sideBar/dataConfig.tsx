@@ -17,6 +17,7 @@ import CheckOut from "/@/shopViews/check-out";
 import ChinhSachThanhVien from "/@/shopViews/chinh-sach-thanh-vien";
 import HuongDanMuaHang from "/@/shopViews/huon-dan-mua-hang";
 import BaoMatThongTinCaNhan from "/@/shopViews/bao-mat-thong-tin-ca-nhan";
+import CheckOutStatus from "/@/shopViews/check-out-status";
 
 interface RouterShopType extends  RouteType {
     img?:{
@@ -491,6 +492,12 @@ export const headerMenuItems:RouterShopType[] = [
         element:<CheckOut/>,
         hiddenMenu:true,
         displayText:"check out",
+    },
+    {
+        path:"/check-out-status",
+        element:<CheckOutStatus/>,
+        hiddenMenu:true,
+        displayText:"check-out-status",
     }
     
     

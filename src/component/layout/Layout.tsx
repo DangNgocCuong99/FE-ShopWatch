@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import Footer from "../footer/Footer";
 import { findContentBypath, headerMenuItems } from "../sideBar/dataConfig";
 import BreadCrumb from "../breadcumb";
+import PopupItem from "./popupItem";
 
 const Layout = () => {
   const location = useLocation();
@@ -21,8 +22,8 @@ const Layout = () => {
       {location.pathname!== '/'&& (<BreadCrumb content={findContentBypath(headerMenuItems,location.pathname)}/>) }
       <Outlet/>
       </div>
-    
       <Footer/>
+      <PopupItem/>
     </>
   );
 };

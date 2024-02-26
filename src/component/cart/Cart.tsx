@@ -38,7 +38,17 @@ const Cart = () => {
 
     const handleRemoveCart = async(id:string)=>{
       try {
-        await cartApi.deleteById(id)
+        await cartApi.removeOneProduct(id)
+        handleGetDataCart()
+      
+      } catch (error) {
+        
+      }
+    }
+
+    const handleRemoveAllCart = async(id:string)=>{
+      try {
+        await cartApi.removeAllProduct(id)
         handleGetDataCart()
       
       } catch (error) {
@@ -73,6 +83,7 @@ const Cart = () => {
                   {i.name}
                 </a>
                 <a
+                  onClick={()=>handleRemoveAllCart(i._id)}
                   className="cart__btn-remove remove-item-cart ajaxifyCart--remove"
                   href="javascript:;"
                   data-line="1"
@@ -151,7 +162,7 @@ const Cart = () => {
               ></path>
             </g>
           </svg>
-          <span className="count count_item_pr">{cartStore.listProduct?.length}</span>
+          <span className="count count_item_pr">{cartStore.listProduct?.length || 0}</span>
         </a>
         <div className="top-cart-content">
           <div className="CartHeaderContainer">

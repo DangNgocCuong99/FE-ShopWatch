@@ -3,6 +3,7 @@ import { IProduct } from "/@/apis/productApi/types"
 import { formattedNumber } from "/@/utils/stringUtil"
 import { selectCart, setListProduct } from "/@/stores/cart/cartReduce";
 import { useDispatch } from "react-redux";
+import { setProductPopup } from "/@/stores/popupItem/popupReduce";
 
 export const renderProductTest = (dataApi : IProduct[],column?:number) => {
 
@@ -12,9 +13,10 @@ export const renderProductTest = (dataApi : IProduct[],column?:number) => {
   const dispatch = useDispatch();
  const columnR = column || 4
   const showSolded = true
-  const handleAddToCart = async(id:string)=>{
+  const handleAddToCart = async(product:IProduct)=>{
         try {
-            await cartApi.create({productId:id})
+            await cartApi.create({productId:product._id})
+            dispatch(setProductPopup(product))
             handleGetDataCart()
         } catch (error) {
           
@@ -79,7 +81,7 @@ export const renderProductTest = (dataApi : IProduct[],column?:number) => {
          <button
            className="btn-cart btn-views add_to_cart "
            title="Mua ngay"
-           onClick={()=>handleAddToCart(i._id)}
+           onClick={()=>handleAddToCart(i)}
          >
            Mua ngay
          </button>
