@@ -1,7 +1,23 @@
+import { useEffect, useState } from "react";
 import { renderProduct } from "../product-template";
 import "./index.css";
+import { useProductApi } from "/@/apis";
+import { renderProductTest } from "../product-template/index_test";
 
 const Product = ()=>{
+  const { productApi } = useProductApi();
+  const [listProduct, setListProduct] = useState<any[]>();
+
+  const handleFetchProduct = async () => {
+    try {
+      const res = await productApi.getAll({ page: 1, pageSize: 10000 });
+      setListProduct(res.data.items);
+    } catch (error) {}
+  };
+
+  useEffect(() => {
+    handleFetchProduct();
+  }, []);
     return(
         <div className="container">
   <div className="row">
@@ -45,7 +61,7 @@ const Product = ()=>{
         </div>
         <div className="filter-container">
           <div className="col_title">
-            <div
+            {/* <div
               className="filter-container__selected-filter"
               style={{ display: "block" }}
             >
@@ -101,7 +117,7 @@ const Product = ()=>{
                   </li>
                 </ul>
               </div>
-            </div>
+            </div> */}
           </div>
           {/* Lọc giá */}
           <aside className="aside-item filter-price">
@@ -1081,7 +1097,7 @@ const Product = ()=>{
         </div>
         <section className="products-view products-view-grid list_hover_pro">
           <div className="row row-fix">
-          {renderProduct(4)}
+          {listProduct && renderProductTest(listProduct,4)}
           </div>
         </section>
       </div>

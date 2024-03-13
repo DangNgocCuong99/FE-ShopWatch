@@ -1,3 +1,12 @@
+body {
+  font-size: 14px;
+  font-family: 'Quicksand', sans-serif;
+  /* background: #f3f3f3; */
+  font-weight: 500;
+  overflow-x: hidden
+}
+
+
 header.header {
   padding: 20px 0 0px;
   min-height: inherit !important;
@@ -15,11 +24,11 @@ ul {
   padding-left: 0;
   margin-bottom: 0;
 }
-
+/* 
 svg {
   width: 20px;
   height: 20px;
-}
+} */
 
 a {
   transition: all 0.4s ease;
@@ -859,3 +868,4 @@ header.header .header-control .ul-control-right li .icon > span {
     padding-left: 5px;
   }
 }
+

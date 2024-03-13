@@ -6,6 +6,7 @@ export enum HTTP_METHOD {
   POST = "POST",
   PUT = "PUT",
   DELETE = "DELETE",
+  PATCH = "PATCH",
 }
 
 export const HTTP_HEADER = {
@@ -33,4 +34,7 @@ export enum EndPoint {
   trademark='trademark',
   product='product',
   cart='cart',
+  invoice='invoice',
+  payment='payment',
+  favorite='favorite'
 }

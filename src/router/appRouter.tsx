@@ -21,30 +21,30 @@ import ViewTrademark from "../views/trademark/xu-ly/view";
 
 const appRoutes: RouteType[] = [
   {
-    path: "/manage/home",
+    path: "home",
     element: <ManageProduct />,
     state: "Home",
     displayText: "HOME",
     icon: <DesktopOutlined />,
   },
   {
-    path: "/manage/avatar",
+    path: "avatar",
     element: <></>,
     state: "avatar",
     displayText: "Ảnh đại diện",
     hiddenMenu: true,
   },
   {
-    path: "/manage/change_password",
+    path: "change_password",
     element: <></>,
     state: "change_password",
     displayText: "Đổi mật khẩu",
     hiddenMenu: true,
   },
   {
-    path: "/manage/user",
+    path: "user",
     element: <User/>,
-    displayText:"quan ly user",
+    displayText:"User",
     icon: <UserOutlined />,
     child:[
       {
@@ -62,7 +62,7 @@ const appRoutes: RouteType[] = [
     ]
   },
   {
-    path: "/manage/product",
+    path: "product",
     element: <ManageProduct/>,
     state:"product",
     displayText:"quan ly san pham",
@@ -92,7 +92,7 @@ const appRoutes: RouteType[] = [
     ]
   },
   {
-    path: "/manage/trademark",
+    path: "trademark",
     state: "trademark",
     element: <ManageTrademark/>,
     displayText:"quan ly thuong hieu",

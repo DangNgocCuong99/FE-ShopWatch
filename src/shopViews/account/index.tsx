@@ -8,7 +8,7 @@ const Account = ()=>{
         <div className="block-account">
           <h5 className="title-account">Trang tài khoản</h5>
           <p>
-            Xin chào, <span style={{ color: "#ef4339" }}>dang ngoc cuong</span>
+            Xin chào, <span style={{ color: "#ef4339" }}>Nguyen Van Nam</span>
             &nbsp;!
           </p>
           <ul>
@@ -43,18 +43,18 @@ const Account = ()=>{
         <h1 className="title-head margin-top-0">Thông tin tài khoản</h1>
         <div className="form-signup name-account m992">
           <p>
-            <strong>Họ tên:</strong> dang ngoc cuong
+            <strong>Họ tên:</strong>{" "}<input value={"Nguyen Van Nam"}/>
           </p>
           <p>
             {" "}
-            <strong>Email:</strong> dangngoccuong99@gmail.com
+            <strong>Email:</strong>{" "}  <input value={"nguyenvannam@gmail.com"}/>
           </p>
           <p>
             {" "}
-            <strong>Điện thoại:</strong> +84389993293{" "}
+            <strong>Điện thoại:</strong> {" "}<input value={"+84389993293"}/>
           </p>
           <p>
-            <strong>Địa chỉ :</strong> Thị xã Sơn Tây, Vietnam
+            <strong>Địa chỉ :</strong>{" "}  <input value={"Thị xã Sơn Tây, Vietnam"}/>
           </p>
         </div>
       </div>

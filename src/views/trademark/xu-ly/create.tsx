@@ -33,7 +33,7 @@ function CreateTrademark() {
                 <StatusForm form={form} mode={MODE.ADD} />
             }
                 header={t('common.add_text', {
-                    domain: t('domain.status.main')
+                    domain: "thương hiệu"
                 })}
                 footer={
                     <Space>

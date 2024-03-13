@@ -10,7 +10,7 @@ const DetailOrder = ()=>{
           <p>
             Xin chào,{" "}
             <a href="javascript:;" style={{ color: "#000000" }}>
-              dang ngoc cuong
+              Nguyen Van Nam
             </a>
             &nbsp;!
           </p>
@@ -79,7 +79,7 @@ const DetailOrder = ()=>{
               <div className="address box-des">
                 <p>
                   {" "}
-                  <strong>dang ngoc cuong</strong>
+                  <strong>Nguyen Van Nam</strong>
                 </p>
                 <p>Địa chỉ: , Thị xã Sơn Tây, Hà Nội</p>
                 <p>Số điện thoại: +84389993293</p>

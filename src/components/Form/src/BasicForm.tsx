@@ -5,7 +5,7 @@ import { MODE } from '/@/utils';
 import { componentMap } from './componentMap';
 import { FormSchema } from './types/form';
 import { FormInstance } from 'antd/lib/form/Form';
-import "./index.css"
+import "./index.scss"
 
 function BasicForm({ dataForm, formSchema, mode }: { dataForm: FormSchema[], formSchema: FormInstance, mode?: MODE }) {
 
@@ -42,7 +42,7 @@ function BasicForm({ dataForm, formSchema, mode }: { dataForm: FormSchema[], for
   // TODO: bug gọi lại getDefault khi setState
 
   return (
-    <div>
+    <div id="scoped">
       <Form
         className='form-style'
         form={formSchema}

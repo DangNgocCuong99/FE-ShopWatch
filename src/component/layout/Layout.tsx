@@ -1,4 +1,4 @@
-import "./index.css";
+import "./index.scss";
 import TopBar from "../topbar/TopBar";
 import Header from "../header/Header";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
@@ -13,7 +13,7 @@ const Layout = () => {
   const [isShowMenu , setIsShowMenu] = useState(false)
 
   return (
-    <>
+    <div id="layout-shop">
       {/* topbar */}
       <div className="opacity_menu current" onClick={()=>setIsShowMenu(false)} style={{display: isShowMenu ? "block" :"none"}}/>
       <TopBar />
@@ -24,7 +24,7 @@ const Layout = () => {
       </div>
       <Footer/>
       <PopupItem/>
-    </>
+    </div>
   );
 };
 

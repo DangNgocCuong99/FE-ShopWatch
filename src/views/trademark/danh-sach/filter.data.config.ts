@@ -4,11 +4,11 @@ import { FormSchemaModel } from "/@/components/Form/src/types/form";
 export const dataConfig = (): FormSchemaModel<ITrademark>[] => [
         {
             field: "name",
-            label: "Tên san pham",
+            label: "Tên thương hiệu",
         },
         {
             field:"moTa",
-            label:"mo ta"
+            label:"mô tả"
         },
 
     ];

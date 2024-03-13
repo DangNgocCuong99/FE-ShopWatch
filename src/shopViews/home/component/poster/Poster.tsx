@@ -1,3 +1,4 @@
+import './index.css'
 const Poster = ()=>{
     return (
         <>
@@ -34,7 +35,7 @@ const Poster = ()=>{
               className="img-responsive"
             />
           </picture>
-          {/* <div className="image-child">
+          <div className="image-child">
             <picture>
               <source
                 media="(max-width: 567px)"
@@ -47,7 +48,7 @@ const Poster = ()=>{
                 title="Slider"
               />
             </picture>
-          </div> */}
+          </div>
         </a>
       </div>
             </div>

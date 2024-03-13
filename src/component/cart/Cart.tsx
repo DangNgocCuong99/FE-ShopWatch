@@ -10,10 +10,11 @@ const Cart = () => {
   const dispatch = useDispatch();
   const cartStore = useSelector(selectCart)
   const {cartApi} = useCartApi()
+  const token = localStorage.getItem("token");
 
     useEffect(()=>{
       handleGetDataCart()
-    },[])
+    },[token])
 
     const handleGetDataCart =async () => {
       const res = await cartApi.getAll()
@@ -23,7 +24,7 @@ const Cart = () => {
     const handleTinhTong = (data : ICart[])=>{
       let price = 0
       for (let index = 0; index < data?.length; index++) {
-        price += data[index].discountedPrice        
+        price += data[index].discountedPrice * data[index].quantity       
       }
       return price
     }
@@ -187,7 +188,7 @@ const Cart = () => {
                 </div>
                 <div className="cart__btn-proceed-checkout-dt">
                   <button
-                    onClick={() => {}}
+                    onClick={() => {window.location.href="/check-out"}}
                     type="button"
                     className="button btn btn-default cart__btn-proceed-checkout"
                     id="btn-proceed-checkout"

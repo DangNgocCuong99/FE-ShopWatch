@@ -6,9 +6,15 @@ import SideBar from "../sideBar/sideBar";
 import { useNavigate } from "react-router-dom";
 import { Dispatch, SetStateAction } from "react";
 
-const Header = ({isShowMenu , setIsShowMenu}:{isShowMenu : boolean, setIsShowMenu :Dispatch<SetStateAction<boolean>>}) => {
+const Header = ({
+  isShowMenu,
+  setIsShowMenu,
+}: {
+  isShowMenu: boolean;
+  setIsShowMenu: Dispatch<SetStateAction<boolean>>;
+}) => {
   const navigation = useNavigate();
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem("token");
 
   return (
     <>
@@ -17,7 +23,10 @@ const Header = ({isShowMenu , setIsShowMenu}:{isShowMenu : boolean, setIsShowMen
       <header className="header" style={{ minHeight: "193px" }}>
         <div className="container">
           <div className="row row-header align-items-center">
-            <div className="menu-bar d-lg-none d-flex" onClick={()=>setIsShowMenu(true)}>
+            <div
+              className="menu-bar d-lg-none d-flex"
+              onClick={() => setIsShowMenu(true)}
+            >
               <svg
                 aria-hidden="true"
                 focusable="false"
@@ -71,7 +80,7 @@ const Header = ({isShowMenu , setIsShowMenu}:{isShowMenu : boolean, setIsShowMen
                   <span>
                     <a
                       title="Hệ thống cửa hàng"
-                      onClick={()=>navigation("/he-thong-cua-hang")}
+                      onClick={() => navigation("/he-thong-cua-hang")}
                       className="button-wishlist icon"
                     >
                       Hệ thống cửa hàng
@@ -82,13 +91,8 @@ const Header = ({isShowMenu , setIsShowMenu}:{isShowMenu : boolean, setIsShowMen
             </div>
 
             <div className="col-lg-2 col-12">
-              <a  onClick={()=>navigation("/")} className="logo" title="Logo">
-                <img
-                  width="220"
-                  height="27"
-                  src="/logo.png"
-                  alt="Dola Watch"
-                />
+              <a onClick={() => navigation("/")} className="logo" title="Logo">
+                <img width="220" height="27" src="/logo.png" alt="Dola Watch" />
               </a>
             </div>
 
@@ -124,51 +128,64 @@ const Header = ({isShowMenu , setIsShowMenu}:{isShowMenu : boolean, setIsShowMen
                     </g>
                   </svg>
                   <ul>
-                    {
-                      token ?
-                        (
-                          <>
-                          <li>
-                      <a  title="Tài khoản" onClick={()=>navigation("/account")}>
-                        Tài khoản
-                      </a>
-                    </li>
-                    <li>
-                      <a title="Đăng xuất" onClick={()=>{localStorage.removeItem("token");navigation("/")}}>
-                        Đăng xuất
-                      </a>
-                    </li>
-                    <li>
-                      <a  title="Quản lý shop" onClick={()=>navigation("/manage")}>
-                        Quản lý shop
-                      </a>
-                    </li>
-                          </>
-                        ) :
-                        (
-                          <>
-                           <li>
-                        <a title="Đăng ký" onClick={()=>navigation("/account/register")}>
-                          Đăng ký
-                        </a>
-                      </li>
-                      <li>
-                        <a title="Đăng nhập" onClick={()=>navigation("/account/login")}>
-                          Đăng nhập
-                        </a>
-                      </li>
-                          </>
-                        )
-                    }
-                    
+                    {token ? (
+                      <>
+                        <li>
+                          <a
+                            title="Tài khoản"
+                            onClick={() => navigation("/account")}
+                          >
+                            Tài khoản
+                          </a>
+                        </li>
+                        <li>
+                          <a
+                            title="Đăng xuất"
+                            onClick={() => {
+                              localStorage.removeItem("token");
+                              document.cookie = "jwt=; Max-Age=0;secure; path=/;";
+                              navigation("/");
+                            }}
+                          >
+                            Đăng xuất
+                          </a>
+                        </li>
+                        <li>
+                          <a
+                            title="Quản lý shop"
+                            onClick={() => navigation("/manage")}
+                          >
+                            Quản lý shop
+                          </a>
+                        </li>
+                      </>
+                    ) : (
+                      <>
+                        <li>
+                          <a
+                            title="Đăng ký"
+                            onClick={() => navigation("/account/register")}
+                          >
+                            Đăng ký
+                          </a>
+                        </li>
+                        <li>
+                          <a
+                            title="Đăng nhập"
+                            onClick={() => navigation("/account/login")}
+                          >
+                            Đăng nhập
+                          </a>
+                        </li>
+                      </>
+                    )}
                   </ul>
-                
                 </li>
 
                 <li className="header-wishlist d-lg-flex ">
                   <a
                     title="Sản phẩm yêu thích"
-                    onClick={()=>navigation("/san-pham-yeu-thich")}
+                    onClick={() => navigation("/san-pham-yeu-thich")}
                     className="button-wishlist icon"
                   >
                     <svg
@@ -193,11 +210,14 @@ const Header = ({isShowMenu , setIsShowMenu}:{isShowMenu : boolean, setIsShowMen
             </div>
           </div>
         </div>
-        <div className="header-menu" >
-        {/* style={{display: isShowMenu ? "block" : "none"}} */}
+        <div className="header-menu">
+          {/* style={{display: isShowMenu ? "block" : "none"}} */}
           <div className="container" style={{ position: "relative" }}>
             <div className="header-menu-des">
-              <nav className="header-nav current" style={isShowMenu ? {transform: "translateX(0)"}: undefined}>
+              <nav
+                className="header-nav current"
+                style={isShowMenu ? { transform: "translateX(0)" } : undefined}
+              >
                 <ul className="item_big">
                   <li>
                     <a
@@ -216,12 +236,18 @@ const Header = ({isShowMenu , setIsShowMenu}:{isShowMenu : boolean, setIsShowMen
                   <li className="d-lg-none d-block account-mb">
                     <ul>
                       <li>
-                        <a title="Đăng ký" onClick={()=>navigation("/account/register")}>
+                        <a
+                          title="Đăng ký"
+                          onClick={() => navigation("/account/register")}
+                        >
                           Đăng ký
                         </a>
                       </li>
                       <li>
-                        <a title="Đăng nhập" onClick={()=>navigation("/account/login")}>
+                        <a
+                          title="Đăng nhập"
+                          onClick={() => navigation("/account/login")}
+                        >
                           Đăng nhập
                         </a>
                       </li>
@@ -231,14 +257,17 @@ const Header = ({isShowMenu , setIsShowMenu}:{isShowMenu : boolean, setIsShowMen
                     <span>Menu chính</span>
                   </li>
                   {/* header menu */}
-          
-                  <SideBar/>
+
+                  <SideBar />
                   {/* header menu */}
                   <li className="d-lg-none d-block item-mb">
-                    <a href="/he-thong-cua-hang" title="Hệ thống cửa hàng">
+                    <a href="/lien-he" title="Hệ thống cửa hàng">
                       Hệ thống cửa hàng
                     </a>
-                    <a  title="Sản phẩm Yêu thích" onClick={()=>navigation("/san-pham-yeu-thich")}>
+                    <a
+                      title="Sản phẩm Yêu thích"
+                      onClick={() => navigation("/san-pham-yeu-thich")}
+                    >
                       Sản phẩm yêu thích
                     </a>
                   </li>

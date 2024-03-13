@@ -1,4 +1,27 @@
+import { useEffect, useState } from "react"
+import { useInvoiceApi } from "/@/apis"
+import { IInvoice } from "/@/apis/invoiceApi/types"
+import { formattedNumber } from "/@/utils/stringUtil"
+
 const Order = ()=>{
+  const [listOrder , setListOrder] = useState<IInvoice[]>([])
+  const {invoiceApi} = useInvoiceApi()
+
+  const handleGetOrder = async ()=>{
+    try {
+      const order = await invoiceApi.getAll() as unknown as {data:IInvoice[]}
+      setListOrder(order.data)
+      console.log("🚀 ~ handleGetOrder ~ order:", order)
+    } catch (error) {
+      
+    }
+  }
+  
+  useEffect(()=>{
+    handleGetOrder()
+  },[])
+
+
     return(
         <>
         <section className="signup page_customer_account">
@@ -8,7 +31,7 @@ const Order = ()=>{
         <div className="block-account">
           <h5 className="title-account">Trang tài khoản</h5>
           <p>
-            Xin chào, <span style={{ color: "#000000" }}>dang ngoc cuong</span>
+            Xin chào, <span style={{ color: "#000000" }}>Nguyen Van Nam</span>
             &nbsp;!
           </p>
           <ul>
@@ -23,7 +46,7 @@ const Order = ()=>{
                 className="title-info active"
                 href="javascript:void(0);"
               >
-                Đơn hàng của bạn
+               
               </a>
             </li>
             <li>
@@ -63,29 +86,36 @@ const Order = ()=>{
                     </tr>
                   </thead>
                   <tbody>
-                    <tr className="first odd">
-                      <td>
-                        <a href="/account/orders/12519662" title="">
-                          #1006
-                        </a>
-                      </td>
-                      <td>02/11/2023</td>
-                      <td>Thị xã Sơn Tây, Hà Nội, Vietnam {/* Hà Nội */}</td>
-                      <td>
-                        <span className="price">37.607.000₫</span>
-                      </td>
-                      <td>
-                        <b
-                          className="span_pending"
-                          style={{ color: "#E49C06", fontWeight: 600 }}
-                        >
-                          Chưa thanh toán
-                        </b>
-                      </td>
-                      <td>
-                        <span className="span_">Chưa chuyển</span>
-                      </td>
-                    </tr>
+                    {listOrder && (
+                      listOrder.map((item, index) => {
+                        return (
+                          <tr className="first odd" key={index}>
+                          <td>
+                            <a href={`/account/orders/${item._id}`} title="">
+                              {item._id}
+                            </a>
+                          </td>
+                          <td>{item.createdAt}</td>
+                          <td>{item.address}</td>
+                          <td>
+                            <span className="price">{formattedNumber(item.totalAmount)}₫</span>
+                          </td>
+                          <td>
+                            <b
+                              className="span_pending"
+                              style={{ color: "#E49C06", fontWeight: 600 }}
+                            >
+                              {item.statusPayment}
+                            </b>
+                          </td>
+                          <td>
+                            <span className="span_">{item.statusInvoice}</span>
+                          </td>
+                        </tr>
+                        )
+                      })
+                    )}
+
                   </tbody>
                 </table>
               </div>

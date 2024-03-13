@@ -1,0 +1,95 @@
+#popup-coupon-body {
+    .popup-coupon {
+        padding: 0 8px;
+        box-sizing: border-box;
+        width: 450px;
+        max-height: 505px;
+        height: auto;
+        background: transparent;
+        margin: 0 auto;
+        position: relative;
+        position: fixed;
+        left: 50%;
+        top: 10%;
+        transition: transform 0.5s cubic-bezier(0.645, 0.045, 0.355, 1),visibility 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+        box-shadow: none;
+        touch-action: manipulation;
+        opacity: 0;
+        transform: translateX(-50%);
+        z-index: -1;
+        min-height: 200px
+    }
+    
+    @media (max-width: 767px) {
+        .popup-coupon {
+            width:100%
+        }
+    }
+    
+    .popup-coupon.active {
+        opacity: 1;
+        z-index: 99999
+    }
+    
+    .popup-coupon .content {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        border-radius: 5px;
+        background-color: #fff;
+        margin: 0 auto;
+        -webkit-box-shadow: 3px 3px 20px 0 rgba(0,0,0,0.15);
+        box-shadow: 3px 3px 20px 0 rgba(0,0,0,0.15);
+        position: relative;
+        overflow: hidden
+    }
+    
+    .popup-coupon .content .title {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        background: #000;
+        color: #fff
+    }
+    
+    .popup-coupon .content .close-popup {
+        position: absolute;
+        top: 8px;
+        right: 10px
+    }
+    
+    .popup-coupon .content .close-popup svg {
+        width: 15px;
+        height: 15px;
+        transition: transform 0.3s
+    }
+    
+    .popup-coupon .content .close-popup svg path {
+        fill: #fff
+    }
+    
+    .popup-coupon .content .close-popup:hover svg {
+        transform: rotate(90deg)
+    }
+    
+    .popup-coupon .content ul {
+        width: 100%
+    }
+    
+    .popup-coupon .content ul li {
+        padding: 10px;
+        display: flex
+    }
+    
+    .popup-coupon .content ul li:nth-child(2n+1) {
+        background-color: #f9f9f9
+    }
+    
+    .popup-coupon .content ul li span:first-child {
+        min-width: 126px;
+        display: inline-block;
+        color: #000
+    }
+    
+}

@@ -1,22 +1,20 @@
-import { BaseApi } from "../baseApi";
+import { BaseApi, apiCommon } from "../baseApi";
 import { IUser } from "./types";
-import { DOMAIN_DEVELOPMENT } from "../apiConst";
+import { DOMAIN_DEVELOPMENT, HTTP_METHOD } from "../apiConst";
 import { EndPoint } from "../apiConst";
-
-// const api = BaseApi(Domain.ITEM)
-
-// export function statusApi() {
-//     function getAll<T, R = any>(data: T, queries?: IBaseSearchListQueryParams & R): Promise<BasePagination<any>> {
-//         return api.getAll<T, R, any>(data, queries)
-//     }
-//     return {
-//         getAll,
-//     }
-// };
 
 export class UserApi extends BaseApi<IUser> {
   constructor() {
     super(`${DOMAIN_DEVELOPMENT}/${EndPoint.user}`);
   }
+
+  async changeActiveUser(id:string): Promise<{
+    status:boolean,
+    message:string ,
+    data:string,
+  }> {
+    return apiCommon({ url:  `${this.configUrl}/${id}`, method: HTTP_METHOD.PATCH});
+  }
+
 
 }

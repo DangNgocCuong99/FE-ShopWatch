@@ -44,7 +44,7 @@ function ViewTrademark() {
                 <StatusForm form={form} mode={MODE.VIEW} />
             }
                 header={t('common.detail_text', {
-                    domain: t('domain.status.main')
+                    domain: "thương hiệu"
                 })}
                 footer={
                     <Space>

@@ -1,4 +1,4 @@
-import { useCartApi } from "/@/apis"
+import { useCartApi, useFavoriteApi } from "/@/apis"
 import { IProduct } from "/@/apis/productApi/types"
 import { formattedNumber } from "/@/utils/stringUtil"
 import { selectCart, setListProduct } from "/@/stores/cart/cartReduce";
@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { setProductPopup } from "/@/stores/popupItem/popupReduce";
 
 export const renderProductTest = (dataApi : IProduct[],column?:number) => {
-
+  const { favoriteApi } = useFavoriteApi();
 
   
   const {cartApi} = useCartApi()
@@ -28,12 +28,17 @@ export const renderProductTest = (dataApi : IProduct[],column?:number) => {
     dispatch(setListProduct(res.data as unknown as any[]))
   }
 
-  const handleFaverite = ()=>{
-    alert('bamvao yeu thich')
+  const handleFaverite =async (id:string)=>{
+    try {
+    const res = await favoriteApi.create({productId:id}) as {message:string}
+    alert(res.message)
+    } catch (error) {
+      
+    }
   }
 
-   return dataApi?.map((i)=>(
-   <div className={columnR === 5 ? "col-xl-20 col-lg-3 col-sm-4 col-6 col-fix":"col-6 col-md-4 col-xl-3 col-fix"}>
+   return dataApi?.map((i,index)=>(
+   <div className={columnR === 5 ? "col-xl-20 col-lg-3 col-sm-4 col-6 col-fix":"col-6 col-md-4 col-xl-3 col-fix"} key={index}>
    <div
      className="variants product-action"
    >
@@ -102,7 +107,7 @@ export const renderProductTest = (dataApi : IProduct[],column?:number) => {
            </svg>
          </a>
          <a
-         onClick={()=>handleFaverite()}
+         onClick={()=>handleFaverite(i._id)}
            className="setWishlist btn-wishlist btn-views"
            data-wish="tissot-tradition-t063-617-36-037-00-nam-quartz-pin-mat-so-42-mm-chronograph-kinh-sapphire"
            tabIndex={0}
@@ -149,12 +154,12 @@ export const renderProductTest = (dataApi : IProduct[],column?:number) => {
      <div className="product-info">
       {showSolded && (
      <div className="elio-productcount">
-     {/* <div className="countdown">
+     <div className="countdown">
        <div className="line">
          <span style={{ width: "50%" }}> </span>
        </div>
        <span className="title">Đã bán 10</span>
-     </div> */}
+     </div>
    </div>
   
       )}

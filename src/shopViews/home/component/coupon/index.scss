@@ -1,0 +1,95 @@
+#coupon {
+    
+.section_coupon {
+    margin-bottom: 50px
+}
+
+.section_coupon .swiper-slide {
+    width: 295px;
+    margin-right: 30px;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(88deg, #000, #505050, #000);
+    border: 2px solid #d1a02f;
+    border-radius: 5px
+}
+
+.section_coupon .swiper-slide .content_wrap {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    position: relative;
+    width: 100%
+}
+
+.section_coupon .swiper-slide .content_wrap .content-top {
+    font-size: 16px;
+    color: #d1a02f
+}
+
+.section_coupon .swiper-slide .content_wrap .content-top span {
+    display: block;
+    font-size: 12px;
+    color: #fff
+}
+
+@media (max-width: 350px) {
+    .section_coupon .swiper-slide .content_wrap .content-top {
+        font-size:14px
+    }
+
+    .section_coupon .swiper-slide .content_wrap .content-top span {
+        font-size: 10px
+    }
+}
+
+.section_coupon .swiper-slide .content_wrap .content-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between
+}
+
+.section_coupon .swiper-slide .content_wrap .content-bottom span {
+    color: #fff;
+    font-size: 12px
+}
+
+.section_coupon .swiper-slide .content_wrap .content-bottom .coupon-code {
+    display: inline-block;
+    color: #fff;
+    background: #d1a02f;
+    padding: 5px 10px;
+    margin-top: 5px;
+    margin-left: 0px;
+    min-width: 90px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 5px
+}
+
+.section_coupon .swiper-slide .content_wrap .info-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 25px;
+    height: 25px;
+    font-size: 14px;
+    border: 1px solid #fff;
+    border-radius: 99px;
+    position: absolute;
+    right: 10px;
+    top: 5px
+}
+
+.section_coupon .swiper-slide .content_wrap .info-button svg {
+    width: 10px;
+    height: 10px;
+    fill: #fff
+}
+
+.section_coupon .swiper-slide .content_wrap .info-button:hover svg {
+    fill: #d1a02f
+}
+
+
+}

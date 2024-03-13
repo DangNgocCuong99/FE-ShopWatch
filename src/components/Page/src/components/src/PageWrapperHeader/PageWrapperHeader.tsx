@@ -6,7 +6,7 @@ function PageWrapperHeader({ title }: { title: string }) {
 
     return (
         <Card className="page-wrapper-header">
-            <p> {title} </p>
+            <p style={{fontSize:"30px"}}> {title} </p>
         </Card>
     );
 };

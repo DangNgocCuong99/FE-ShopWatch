@@ -14,7 +14,7 @@ const GioiThieu = ()=>{
             </div>
             <div className="content-page rte block-background">
               <p>
-                Dola Watch là cửa hàng đồng hồ đeo tay chuyên cung cấp các sản
+                DungNam Watch là cửa hàng đồng hồ đeo tay chuyên cung cấp các sản
                 phẩm từ những thương hiệu nổi tiếng trên toàn thế giới.
               </p>
               <p>

@@ -1,9 +1,27 @@
+import { useEffect, useState } from "react";
+import { useProductApi } from "/@/apis";
 import { transformRoute } from "/@/router/hook"
 import { renderProduct } from "/@/shopViews/product-template"
+import { renderProductTest } from "/@/shopViews/product-template/index_test";
+import './index.scss'
 
 const ProductMen = () => {
+  const { productApi } = useProductApi();
+  const [listProduct, setListProduct] = useState<any[]>();
+
+  const handleFetchProduct = async () => {
+    try {
+      const res = await productApi.getAll({ page: 1, pageSize: 12 });
+      setListProduct(res.data.items);
+    } catch (error) {}
+  };
+
+  useEffect(() => {
+    handleFetchProduct();
+  }, []);
+
     return (
-        <>
+        <div id="product-men">
 <section className="section_product section_product1">
   <div className="container">
     <div className="block-background">
@@ -89,7 +107,7 @@ const ProductMen = () => {
               style={{display:"inline-flex", transform: "translate3d(0px, 0px, 0px)" }}
             >
                 <div className="row row-fix">
-              {renderProduct(4)}
+              {listProduct && renderProductTest(listProduct,4)}
             </div>
             </div>
           </div>
@@ -99,7 +117,7 @@ const ProductMen = () => {
   </div>
 </section>
 
-        </>
+        </div>
     )
 }
 

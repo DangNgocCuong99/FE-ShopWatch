@@ -18,6 +18,7 @@ import ChinhSachThanhVien from "/@/shopViews/chinh-sach-thanh-vien";
 import HuongDanMuaHang from "/@/shopViews/huon-dan-mua-hang";
 import BaoMatThongTinCaNhan from "/@/shopViews/bao-mat-thong-tin-ca-nhan";
 import CheckOutStatus from "/@/shopViews/check-out-status";
+import Address from "/@/shopViews/address";
 
 interface RouterShopType extends  RouteType {
     img?:{
@@ -472,6 +473,12 @@ export const headerMenuItems:RouterShopType[] = [
         path:"/account/orders/:id",
         displayText :"DetailOrder",
         element:<DetailOrder/>,
+        hiddenMenu:true
+    },
+    {
+        path:"/account/addresses",
+        displayText :"addresses",
+        element:<Address/>,
         hiddenMenu:true
     },
 

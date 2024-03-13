@@ -1,7 +1,7 @@
-import './index.css'
+import './index.scss'
 const PopupCoupon = ({isShow, handleClose}:{isShow:boolean,handleClose : ()=> void}) => {
   return (
-    <>
+    <div id='popup-coupon-body'>
      {isShow ? (<div className="backdrop__body-backdrop___1rvky active" onClick={handleClose}/>):null} 
       <div className={isShow ? "popup-coupon active" : "popup-coupon"} style={{}}>
 
@@ -48,7 +48,7 @@ const PopupCoupon = ({isShow, handleClose}:{isShow:boolean,handleClose : ()=> vo
   </ul>
 </div>
 </div>
-    </>
+    </div>
  
   );
 };

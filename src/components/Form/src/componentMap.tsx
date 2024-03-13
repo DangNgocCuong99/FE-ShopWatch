@@ -1,5 +1,5 @@
 import { Input, DatePicker, Select } from "antd";
-import { DeleteOutlined, EditOutlined, EyeOutlined } from "@ant-design/icons";
+import { DeleteOutlined, EditOutlined, EyeOutlined, RollbackOutlined } from "@ant-design/icons";
 
 import { ComponentType } from "./types";
 
@@ -12,6 +12,8 @@ componentMap.set("DatePicker", <DatePicker />);
 componentMap.set("ant-design:eye-outlined", <EyeOutlined />);
 componentMap.set("ant-design:edit-outlined", <EditOutlined />);
 componentMap.set("ant-design:delete-outlined", <DeleteOutlined />);
+componentMap.set("ant-design:rollback-outlined", <RollbackOutlined />);
+
 
 
 export function add(compName: ComponentType, component: JSX.Element) {

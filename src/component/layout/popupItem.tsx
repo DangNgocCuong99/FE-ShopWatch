@@ -1,19 +1,47 @@
 import { useEffect, useState } from "react"
 import { useDispatch ,useSelector} from "react-redux";
-import { selectProductPopup } from "/@/stores/popupItem/popupReduce";
+import { selectProductPopup ,setProductPopup } from "/@/stores/popupItem/popupReduce";
 import { IProduct } from "/@/apis/productApi/types";
 import { selectCart } from "/@/stores/cart/cartReduce";
+import { formattedNumber } from "/@/utils/stringUtil";
 const PopupItem = ()=>{
+    const dispatch = useDispatch();
     const [mode,setMode] = useState(false)
     const [product, setProduct] = useState<IProduct>()
     const popupStore = useSelector(selectProductPopup)
     const cartStore = useSelector(selectCart)
+    const [infoCart , setInfoCart] = useState({price:0,quantity:0})
     useEffect(()=>{
+      console.log("effect");
+      
         if(popupStore.product){
             setProduct(popupStore.product)
             setMode(true)
         }
     },[popupStore])
+
+    const handleClosePopup = ()=>{
+      dispatch(setProductPopup(undefined))
+      setMode(false)
+    }
+
+    const handleSumCart = () =>{
+      let price = 0
+      let quantity = 0 
+      for (let index = 0; index < cartStore.listProduct.length; index++) {
+        price += cartStore.listProduct[index].discountedPrice * cartStore.listProduct[index].quantity   
+        quantity += cartStore.listProduct[index].quantity    
+      }
+      setInfoCart({price:price,quantity:quantity})
+    }
+    useEffect(()=>{
+      if(
+        cartStore.listProduct?.length > 0 &&
+        popupStore.product 
+      ){
+        handleSumCart()
+      }
+    },[cartStore])
     return (
         <>
         {mode && (
@@ -53,10 +81,10 @@ const PopupItem = ()=>{
                    </div>
                    <a className="noti-cart-count" href="/cart" title="Giỏ hàng">
                      {" "}
-                     Giỏ hàng của bạn hiện có <span className="count_item_pr">{cartStore.listProduct?.length || 0}</span> sản
-                     phẩm{" "}
+                     Giỏ hàng của bạn hiện có <span className="count_item_pr">{infoCart.quantity || 0}</span> sản
+                     phẩm , Tổng tiền là {formattedNumber(infoCart.price)}₫{" "}
                    </a>
-                   <a title="Đóng" className="cart_btn-close iconclose" onClick={()=>setMode(false)}>
+                   <a title="Đóng" className="cart_btn-close iconclose" onClick={()=>handleClosePopup()}>
                      <svg
                        xmlns="http://www.w3.org/2000/svg"
                        xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -77,8 +105,8 @@ const PopupItem = ()=>{
                      </svg>
                    </a>
                    <div className="bottom-action">
-                     <div className="cart_btn-close tocontinued">Tiếp tục mua hàng</div>
-                     <a href="/checkout" className="checkout">
+                     <div className="cart_btn-close tocontinued" onClick={()=> handleClosePopup()}>Tiếp tục mua hàng</div>
+                     <a href="/check-out" className="checkout">
                        Thanh toán ngay
                      </a>
                    </div>

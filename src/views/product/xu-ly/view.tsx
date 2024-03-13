@@ -24,7 +24,7 @@ function ViewProduct() {
 
     const handleFetchDetail = async () => {
         try {
-            const dataForm = await productApi.getById(id)
+            const dataForm = await productApi.getDetailByManage(id)
             form.setFieldsValue(dataForm.data)
             form.setFieldValue('images',  dataForm.data.images.map((i,key)=>({
                 uid: key,

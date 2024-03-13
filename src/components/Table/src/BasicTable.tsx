@@ -12,8 +12,7 @@ import { PageWrapperBody } from "/@/components/Page/src/components";
 import { ActionItem } from "./types/tableAction";
 import { BasicColumn } from "./types/table";
 import BasicForm from "../../Form/src/BasicForm";
-import "./index.css";
-import { log } from "console";
+import "./index.scss";
 
 function BasicTable({
   dataForm,
@@ -41,14 +40,13 @@ function BasicTable({
 
   const getColumn = (): BasicColumn[] => [
     ...columns.map((i)=>{
-      return {...i,
-        width:i.width || 300}
+      return {...i}
     }),
     {
       title: "Action",
       key: "action",
       fixed:"right",
-      width: actionColum.width || 130,
+      width: actionColum.width || 220,
       render: (_: any, record: any) =>
         actionColum.actions(record).map((item, key) => {
           return (
@@ -145,14 +143,14 @@ function BasicTable({
   };
 
   return (
-    <div>
+    <div id="basic-table">
       {dataForm ? <PageWrapperBody
         Child={
           <div>
             <BasicForm dataForm={dataForm} formSchema={form} />
             <div className="search-items">
               <Space>
-                <Button icon={<SyncOutlined />} onClick={handleRefresh} />
+                <Button icon={<SyncOutlined />} onClick={handleRefresh} style={{width:"auto"}}/>
                 <Button
                   icon={<SearchOutlined />}
                   onClick={() => handleSearch()}
@@ -169,7 +167,7 @@ function BasicTable({
           <div>
             <Table
               title={()=>toolbar}
-              bordered
+              // bordered
               columns={getColumn()}
               dataSource={dataTable}
               pagination={{

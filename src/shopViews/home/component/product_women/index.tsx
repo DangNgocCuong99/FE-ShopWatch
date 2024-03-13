@@ -1,9 +1,26 @@
+import { useEffect, useState } from "react";
 import { transformRoute } from "/@/router/hook"
 import { renderProduct } from "/@/shopViews/product-template"
+import { renderProductTest } from "/@/shopViews/product-template/index_test";
+import { useProductApi } from "/@/apis";
+import './index.scss'
 
 const ProductWomen = () => {
+  const { productApi } = useProductApi();
+  const [listProduct, setListProduct] = useState<any[]>();
+
+  const handleFetchProduct = async () => {
+    try {
+      const res = await productApi.getAll({ page: 1, pageSize: 12 });
+      setListProduct(res.data.items);
+    } catch (error) {}
+  };
+
+  useEffect(() => {
+    handleFetchProduct();
+  }, []);
     return (
-        <>
+        <div id="product-women">
 <section className="section_product section_product2">
   <div className="container">
     <div className="block-background">
@@ -22,7 +39,7 @@ const ProductWomen = () => {
             Đồng hồ nữ
           </a>
         </h3>
-        <ul className="menu-title">
+        {/* <ul className="menu-title">
           <li className="nav-item">
             <a className="a-img" href="/chat-lieu-day" title="CHẤT LIỆU DÂY">
               CHẤT LIỆU DÂY
@@ -46,7 +63,7 @@ const ProductWomen = () => {
               CÁC DÒNG ĐẶC BIỆT
             </a>
           </li>
-        </ul>
+        </ul> */}
       </div>
       <div className="row">
         <div className="col-lg-4 col-xl-3 col-sm-4 col-12 order-2 order-md-1">
@@ -92,7 +109,7 @@ const ProductWomen = () => {
               style={{ width: 1210, transform: "translate3d(0px, 0px, 0px)" ,display:"unset"}}
             >
        <div className="row row-fix">
-              {renderProduct(4)}
+       {listProduct && renderProductTest(listProduct,4)}
             </div>
             </div>
           </div>
@@ -103,7 +120,7 @@ const ProductWomen = () => {
 </section>
 
 
-        </>
+        </div>
     )
 }
 

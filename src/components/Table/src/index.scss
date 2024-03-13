@@ -1,0 +1,25 @@
+#basic-table {
+    .search-items {
+        text-align: end;
+        /* padding: 16px ; */
+        /* margin: 16px ; */
+    }
+    /* .ant-col{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    .ant-form-item-label{
+        justify-content: left;
+    } */
+    .ant-table-cell .ant-btn {
+        width: auto;
+        height: auto;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.07);
+    }
+
+    .ant-table-tbody > tr > td,
+    .ant-table-thead > tr > th {
+        white-space: normal !important;
+    }
+}

@@ -8,7 +8,7 @@ const ChangePassword = ()=>{
         <div className="block-account">
           <h5 className="title-account">Trang tài khoản</h5>
           <p>
-            Xin chào, <span style={{ color: "#000000" }}>dang ngoc cuong</span>
+            Xin chào, <span style={{ color: "#000000" }}>Nguyen Van Nam</span>
             &nbsp;!
           </p>
           <ul>

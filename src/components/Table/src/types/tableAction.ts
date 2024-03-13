@@ -22,7 +22,7 @@ export interface PopConfirm {
   description:string;
   okText?: string;
   cancelText?: string;
-  confirm: Fn;
+  confirm?: Fn;
   cancel?: Fn;
   icon?: string;
   placement?:

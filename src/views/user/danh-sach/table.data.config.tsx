@@ -1,4 +1,4 @@
-import { Tooltip } from "antd";
+import { Button, Tooltip , Tag } from "antd";
 
 import { BasicColumnModel } from "/@/components/Table/src/types/table";
 
@@ -6,43 +6,72 @@ import { IUserInfo } from "./types";
 
 const tranformToolTip = (value: any) => {
   return (
-    <Tooltip title={value + 'asd'}>
+    <Tooltip title={value + "asd"}>
       <div>{value}</div>
     </Tooltip>
-  )
-}
+  );
+};
 
 export const columns: BasicColumnModel<IUserInfo>[] = [
   {
     title: "Name",
     dataIndex: "username",
-    key: "title",
+    key: "username",
     render: (value: any) => {
-      return tranformToolTip(value)
-    }
+      return tranformToolTip(value);
+    },
   },
   {
     title: "Email",
     dataIndex: "email",
-    key: "title",
+    key: "email",
     render: (value: any) => {
-      return tranformToolTip(value)
-    }
+      return tranformToolTip(value);
+    },
   },
-  {
-    title: "Img",
-    dataIndex: "img",
-    key: "title",
-    render: (value: any) => {
-      return tranformToolTip(value)
-    }
-  },
+  // {
+  //   title: "Img",
+  //   dataIndex: "img",
+  //   key: "title",
+  //   render: (value: any) => {
+  //     return tranformToolTip(value)
+  //   }
+  // },
   {
     title: "role",
     dataIndex: "role",
-    key: "title",
+    key: "role",
     render: (value: any) => {
-      return tranformToolTip(value)
-    }
-  }
+      return tranformToolTip(value);
+    },
+  },
+  {
+    title: "Status OTP",
+    dataIndex: "status",
+    key: "status",
+    render: (value: any) => {
+      return (
+        <Button
+          type={value === "active" ? "primary" : undefined}
+          className={value === "active" ? "tag-primary" : "tag-badge"}
+        >
+          {value}
+        </Button>
+      );
+    },
+  },
+  {
+    title: "Is Active",
+    dataIndex: "isActive",
+    key: "isActive",
+    render: (value: boolean) => {
+      return (
+        <>
+        {
+        value ? <Tag color="green">{value.toString()}</Tag> : <Tag color="red">{value.toString()}</Tag>
+      }
+        </>
+      )
+    },
+  },
 ];

@@ -1,7 +1,7 @@
 export const renderProduct = (column: 4|5, showSolded ?: boolean)=>{
 const data = [1,2,3,4,5,6,7,8,9,0,2,2,2,2,2]
- return data.map((i)=>(
- <div className={column === 5 ? "col-xl-20 col-lg-3 col-sm-4 col-6 col-fix":"col-6 col-md-4 col-xl-3 col-fix"}>
+ return data.map((i,index)=>(
+ <div className={column === 5 ? "col-xl-20 col-lg-3 col-sm-4 col-6 col-fix":"col-6 col-md-4 col-xl-3 col-fix"} key={index}>
  <form
    action="/cart/add"
    method="post"
