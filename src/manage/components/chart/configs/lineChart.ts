@@ -1,13 +1,16 @@
-const lineChart = {
+import dayjs from "dayjs";
+import { formattedNumber } from "/@/utils/stringUtil";
+
+const lineChart = (current:number[] , last:number[])=> ({
   series: [
     {
-      name: "Mobile apps",
-      data: [350, 40, 300, 220, 500, 250, 400, 230, 500],
+      name: dayjs().year(),
+      data: current,
       offsetY: 0,
     },
     {
-      name: "Websites",
-      data: [30, 90, 40, 140, 290, 290, 340, 230, 400],
+      name: dayjs().year() - 1,
+      data: last,
       offsetY: 0,
     },
   ],
@@ -38,7 +41,7 @@ const lineChart = {
         style: {
           fontSize: "14px",
           fontWeight: 600,
-          colors: ["#8c8c8c"],
+          colors: "#8c8c8c",
         },
       },
     },
@@ -48,40 +51,33 @@ const lineChart = {
         style: {
           fontSize: "14px",
           fontWeight: 600,
-          colors: [
-            "#8c8c8c",
-            "#8c8c8c",
-            "#8c8c8c",
-            "#8c8c8c",
-            "#8c8c8c",
-            "#8c8c8c",
-            "#8c8c8c",
-            "#8c8c8c",
-            "#8c8c8c",
-          ],
+          colors: "#8c8c8c",
         },
       },
       categories: [
-        "Feb",
-        "Mar",
-        "Apr",
-        "May",
-        "Jun",
-        "Jul",
-        "Aug",
-        "Sep",
-        "Oct",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12"
       ],
     },
 
     tooltip: {
       y: {
-        formatter: function (val) {
-          return val;
+        formatter: function (val:number) {
+          return formattedNumber(val) + " đ";;
         },
       },
     },
   },
-};
+});
 
 export default lineChart;

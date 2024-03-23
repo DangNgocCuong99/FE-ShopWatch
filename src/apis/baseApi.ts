@@ -10,6 +10,7 @@ import {
   HTTP_METHOD,
 } from "./apiConst";
 import { jwtDecode } from "jwt-decode";
+import { message } from "antd";
 
 const token = () => localStorage.getItem("token");
 
@@ -27,8 +28,14 @@ axiosClient.interceptors.request.use(async (config) => {
     const decodedToken = jwtDecode(accessToken);
 
     if (decodedToken.exp && decodedToken.exp * 1000 < new Date().getTime()) {
-      accessToken = await refreshToken();
-      localStorage.setItem("token", accessToken!);
+      const resAccessToken = await refreshToken();
+      if (resAccessToken){
+        localStorage.setItem("token", resAccessToken);
+      } else{
+        message.info("vui long dang nhap lai")
+        localStorage.removeItem("token")
+        window.location.href = "/"
+      }
     }
     config.headers.Authorization = "Bearer " + accessToken;
   }

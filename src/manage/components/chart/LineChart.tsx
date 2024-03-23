@@ -1,44 +1,38 @@
-/*!
-  =========================================================
-  * Muse Ant Design Dashboard - v1.0.0
-  =========================================================
-  * Product Page: https://www.creative-tim.com/product/muse-ant-design-dashboard
-  * Copyright 2021 Creative Tim (https://www.creative-tim.com)
-  * Licensed under MIT (https://github.com/creativetimofficial/muse-ant-design-dashboard/blob/main/LICENSE.md)
-  * Coded by Creative Tim
-  =========================================================
-  * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
 import ReactApexChart from "react-apexcharts";
 import { Typography } from "antd";
 import { MinusOutlined } from "@ant-design/icons";
 import lineChart from "./configs/lineChart";
+import { formattedNumber } from "/@/utils/stringUtil";
 
-function LineChart() {
+
+function LineChart({amountYear,dataCurrent,dataLast,growthAmountYear}:{amountYear:number,dataCurrent:number[],dataLast:number[],growthAmountYear:number}) {
   const { Title, Paragraph } = Typography;
+  const {options, series} = lineChart(dataCurrent,dataLast)
 
   return (
     <>
       <div className="linechart">
         <div>
-          <Title level={5}>Active Users</Title>
+          <Title level={5}>Doanh thu năm nay:{formattedNumber(amountYear)}đ</Title>
           <Paragraph className="lastweek">
-            than last week <span className="bnb2">+30%</span>
+            nhiều hơn năm ngoái{" "}
+            <span className="bnb2">
+              {(growthAmountYear < 0 ? growthAmountYear : "+" + growthAmountYear) + "%"}
+            </span>
           </Paragraph>
         </div>
         <div className="sales">
           <ul>
-            <li>{<MinusOutlined />} Traffic</li>
-            <li>{<MinusOutlined />} Sales</li>
+            <li>{<MinusOutlined />} Năm ngoái</li>
+            <li>{<MinusOutlined />} Năm nay</li>
           </ul>
         </div>
       </div>
 
       <ReactApexChart
         className="full-width"
-        options={lineChart.options}
-        series={lineChart.series}
+        options={options}
+        series={series}
         type="area"
         height={350}
         width={"100%"}

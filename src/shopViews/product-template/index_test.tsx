@@ -45,7 +45,7 @@ export const renderProductTest = (dataApi : IProduct[],column?:number) => {
      <div className="product-thumbnail">
        <a
          className="image_thumb scale_hover"
-         href="/chi-tiet-san-pham/asdasd"
+         href={`/chi-tiet-san-pham/${i._id}`}
          title="TISSOT TRADITION T063.617.36.037.00 – NAM – QUARTZ (PIN) – MẶT SỐ 42 MM, CHRONOGRAPH, KÍNH SAPPHIRE"
        >
          <img

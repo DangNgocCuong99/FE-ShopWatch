@@ -24,4 +24,6 @@ export interface IProduct {
   dayDeo: string;
   mauMatSo: string;
   chongNuoc: string;
+  quantity:Number,
+  sold:Number,
 }

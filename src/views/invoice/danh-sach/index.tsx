@@ -7,33 +7,33 @@ import { BasePagination } from "/@/apis/types";
 import { dataConfig } from "./filter.data.config";
 import { columns } from "./table.data.config";
 import { useRedirect } from "../useRedirect";
-import { IProductInfo } from "./types";
 import { t } from "i18next";
-import { useProductApi } from "/@/apis";
+import { useInvoiceApi, useTrademarkApi} from "/@/apis";
 import { useReload } from "/@/components/Table/src/hook/useTable";
-import { IProduct } from "/@/apis/productApi/types";
+import { ITrademark } from "/@/apis/trademarkApi/types";
 
 
-function ManageProduct() {
-    const { goDetailStatus, goUpdateStatus, goCreateStatus } = useRedirect();
-    const { productApi } = useProductApi();
+function ManageInvoice() {
+    const { goDetailInvoice, goUpdateInvoice, goCreateInvoice } = useRedirect();
     const { reload, handleReload } = useReload()
+    const {trademarkApi} = useTrademarkApi()
+    const  {invoiceApi} = useInvoiceApi()
 
     const handleDelete = async (id: string) => {
         try {
-            await productApi.deleteById(id);
+            await trademarkApi.deleteById(id);
             handleReload()
         } catch (error) { }
     };
 
     const actionColum = {
-        actions: (record: IProduct) => {
+        actions: (record: ITrademark) => {
             const [builder] = useTableActionsBuilder();
             const action = builder
                 .addView({
-                    onClick: () => goDetailStatus(record._id)
+                    onClick: () => goDetailInvoice(record._id)
                 })
-                .addEdit({ onClick: () => goUpdateStatus(record._id) })
+                .addEdit({ onClick: () => goUpdateInvoice(record._id) })
                 .addRemove(() => handleDelete(record._id))
                 .build();
             return action;
@@ -41,13 +41,13 @@ function ManageProduct() {
     };
 
     const handleAdd = async () => {
-        goCreateStatus();
+        goCreateInvoice();
     };
 
-    const handleApi = async (params:any) => {
-        const {data} = await productApi.getAll(params);
+    const handleApi = async (params:any)=> {
+        const {data} = await invoiceApi.getAll(params);
         return {
-            items: data.items,
+            items: data,
             total:data.total,
         };
     };
@@ -68,7 +68,7 @@ function ManageProduct() {
                             justifyContent: "space-between",
                         }}
                     >
-                        <h2>Danh Sach San Pham</h2>
+                        <h2>Danh Sách Hóa Đơn</h2>
                         <Button onClick={() => handleAdd()}>
                             {t("common.add_text")}
                         </Button>
@@ -79,4 +79,4 @@ function ManageProduct() {
     );
 }
 
-export default ManageProduct;
+export default ManageInvoice;

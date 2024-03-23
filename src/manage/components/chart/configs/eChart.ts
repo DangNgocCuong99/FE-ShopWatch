@@ -1,8 +1,11 @@
-const eChart = {
+import { ApexOptions } from "apexcharts";
+import { formattedNumber } from "/@/utils/stringUtil";
+
+const eChart= (dataCurrent:number[])=>( {
   series: [
     {
-      name: "Sales",
-      data: [450, 200, 100, 220, 500, 100, 400, 230, 500],
+      name: "Doanh thu",
+      data: dataCurrent,
       color: "#fff",
     },
   ],
@@ -39,15 +42,18 @@ const eChart = {
     },
     xaxis: {
       categories: [
-        "Feb",
-        "Mar",
-        "Apr",
-        "May",
-        "Jun",
-        "Jul",
-        "Aug",
-        "Sep",
-        "Oct",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12"
       ],
       labels: {
         show: true,
@@ -55,18 +61,7 @@ const eChart = {
         minWidth: 0,
         maxWidth: 160,
         style: {
-          colors: [
-            "#fff",
-            "#fff",
-            "#fff",
-            "#fff",
-            "#fff",
-            "#fff",
-            "#fff",
-            "#fff",
-            "#fff",
-            "#fff",
-          ],
+          colors: "#fff",
         },
       },
     },
@@ -77,30 +72,19 @@ const eChart = {
         minWidth: 0,
         maxWidth: 160,
         style: {
-          colors: [
-            "#fff",
-            "#fff",
-            "#fff",
-            "#fff",
-            "#fff",
-            "#fff",
-            "#fff",
-            "#fff",
-            "#fff",
-            "#fff",
-          ],
+          colors: "#fff",
         },
       },
     },
 
     tooltip: {
       y: {
-        formatter: function (val) {
-          return "$ " + val + " thousands";
+        formatter: function (val:number) {
+          return formattedNumber(val) + " đ";
         },
       },
     },
   },
-};
+});
 
 export default eChart;

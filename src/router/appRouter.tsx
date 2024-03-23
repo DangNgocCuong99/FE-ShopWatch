@@ -18,6 +18,10 @@ import ManageTrademark from "../views/trademark/danh-sach";
 import CreateTrademark from "../views/trademark/xu-ly/create";
 import EditTrademark from "../views/trademark/xu-ly/edit";
 import ViewTrademark from "../views/trademark/xu-ly/view";
+import ManageInvoice from "../views/invoice/danh-sach";
+import CreateInvoice from "../views/invoice/xu-ly/create";
+import EditInvoice from "../views/invoice/xu-ly/edit";
+import ViewInvoice from "../views/invoice/xu-ly/view";
 
 const appRoutes: RouteType[] = [
   {
@@ -116,6 +120,36 @@ const appRoutes: RouteType[] = [
         path:"view/:id",
         state: "trademark.view",
         element:<ViewTrademark/>,
+        displayText:"chi tiet thuong hieu",
+        hiddenMenu:true
+      }
+    ]
+  },
+  {
+    path: "invoice",
+    state: "invoice",
+    element: <ManageInvoice/>,
+    displayText:"quan ly hoa don",
+    icon: <UserOutlined />,
+    child:[
+      {
+        path:"add",
+        state: "invoice.add",
+        element:<CreateInvoice/>,
+        displayText:'them thuong hieu',
+        hiddenMenu:true
+      },
+      {
+        path:"edit/:id",
+        state: "invoice.edit",
+        element:<EditInvoice/>,
+        displayText:'sua thuong hieu',
+        hiddenMenu:true
+      },
+      {
+        path:"view/:id",
+        state: "invoice.view",
+        element:<ViewInvoice/>,
         displayText:"chi tiet thuong hieu",
         hiddenMenu:true
       }

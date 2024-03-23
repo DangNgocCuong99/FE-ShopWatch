@@ -3,6 +3,7 @@ import { statusInvoice, statusPayment } from "/@/utils";
 
 export interface IInvoice {
   _id: string;
+  userId:string;
   items: {
     productId: string;
     quantity: number;
@@ -15,5 +16,6 @@ export interface IInvoice {
   discount: number;
   address: string;
   phone: string;
+  userName:string;
   createdAt: number;
 }

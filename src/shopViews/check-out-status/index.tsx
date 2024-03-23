@@ -1,19 +1,27 @@
 import { useSearchParams } from "react-router-dom";
-import "./index.css";
+import "./index.scss";
 import { useInvoiceApi } from "/@/apis";
 import { useEffect, useState } from "react";
 import { formattedNumber } from "/@/utils/stringUtil";
 import { statusPayment } from "/@/utils";
+import { message } from "antd";
+import { IInvoice } from "/@/apis/invoiceApi/types";
 const CheckOutStatus = () => {
   const { invoiceApi } = useInvoiceApi();
   const [searchParams] = useSearchParams();
-  const [invoice, setInvoice] = useState<any>();
+  const [invoice, setInvoice] = useState<IInvoice>();
   const vnp_ResponseCode = searchParams.get("vnp_ResponseCode");
   const vnp_OrderInfo = searchParams.get("vnp_OrderInfo");
-  const id = searchParams.get("id");
 
   const handleGetInvoice = async(id: string) => {
     try {
+      console.log(vnp_ResponseCode);
+      if(vnp_ResponseCode == "00"){
+        message.info("thanh toan thanh cong");
+      }else{
+        message.error("thanh toan that bai")
+      }
+      
       const res = await invoiceApi.getById(id);
       setInvoice(res.data)
     } catch (error) {}
@@ -22,10 +30,7 @@ const CheckOutStatus = () => {
     if (vnp_OrderInfo) {
       handleGetInvoice(vnp_OrderInfo);
     }
-    if (id){
-      handleGetInvoice(id)
-    }
-  }, [vnp_OrderInfo,id]);
+  }, [vnp_OrderInfo]);
 
   const handleRenderItem = (listItem:any[]) => {
     return listItem.map((item:any, index:number) => {
@@ -65,7 +70,9 @@ const CheckOutStatus = () => {
   }
 
   return (
-    <div className="content">
+   <>
+      <div className="content" id="check-out-status">
+    {invoice && (
       <form>
         <div className="wrap wrap--mobile-fluid">
           <main className="main main--nosidebar">
@@ -225,7 +232,10 @@ const CheckOutStatus = () => {
           </main>
         </div>
       </form>
+    )}
+
     </div>
+    </>
   );
 };
 

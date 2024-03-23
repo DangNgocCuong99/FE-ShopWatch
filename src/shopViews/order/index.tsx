@@ -9,9 +9,8 @@ const Order = ()=>{
 
   const handleGetOrder = async ()=>{
     try {
-      const order = await invoiceApi.getAll() as unknown as {data:IInvoice[]}
-      setListOrder(order.data)
-      console.log("🚀 ~ handleGetOrder ~ order:", order)
+      const order = await invoiceApi.getAll() 
+      setListOrder(order.data.items as IInvoice[])
     } catch (error) {
       
     }
