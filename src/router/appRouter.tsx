@@ -1,8 +1,8 @@
 import {
-  DesktopOutlined,
-  FileOutlined,
-  PieChartOutlined,
-  TeamOutlined,
+  BarChartOutlined,
+  FileDoneOutlined,
+  ProductOutlined,
+  TrademarkCircleOutlined,
   UserOutlined,
 } from "@ant-design/icons";
 
@@ -28,22 +28,8 @@ const appRoutes: RouteType[] = [
     path: "dashboard",
     element: <ManageProduct />,
     state: "Home",
-    displayText: "HOME",
-    icon: <DesktopOutlined />,
-  },
-  {
-    path: "avatar",
-    element: <></>,
-    state: "avatar",
-    displayText: "Ảnh đại diện",
-    hiddenMenu: true,
-  },
-  {
-    path: "change_password",
-    element: <></>,
-    state: "change_password",
-    displayText: "Đổi mật khẩu",
-    hiddenMenu: true,
+    displayText: "Thống kê",
+    icon: <BarChartOutlined />,
   },
   {
     path: "user",
@@ -70,7 +56,7 @@ const appRoutes: RouteType[] = [
     element: <ManageProduct/>,
     state:"product",
     displayText:"Quản lý sản phẩm",
-    icon: <UserOutlined />,
+    icon: <ProductOutlined />,
     child:[
       {
         path:"add",
@@ -100,7 +86,7 @@ const appRoutes: RouteType[] = [
     state: "trademark",
     element: <ManageTrademark/>,
     displayText:"Quản lý thương hiệu",
-    icon: <UserOutlined />,
+    icon: <TrademarkCircleOutlined />,
     child:[
       {
         path:"add",
@@ -130,7 +116,7 @@ const appRoutes: RouteType[] = [
     state: "invoice",
     element: <ManageInvoice/>,
     displayText:"Quản lý hóa đơn",
-    icon: <UserOutlined />,
+    icon: <FileDoneOutlined />,
     child:[
       {
         path:"add",

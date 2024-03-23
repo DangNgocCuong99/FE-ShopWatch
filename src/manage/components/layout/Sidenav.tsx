@@ -69,20 +69,7 @@ function Sidenav({ color }: { color: string }) {
             </Menu.Item>
           ):null;
         })}
-        <Menu.Item key="1">
-          <NavLink to="/manage/dashboard">
-            <span
-              className="icon"
-              style={{
-                background: page === "dashboard" ? color : "",
-              }}
-            >
-              {dashboard}
-            </span>
-            <span className="label">Thống kê</span>
-          </NavLink>
-        </Menu.Item>
-
+        
   
       
         
