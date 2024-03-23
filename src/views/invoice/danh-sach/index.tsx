@@ -16,12 +16,11 @@ import { ITrademark } from "/@/apis/trademarkApi/types";
 function ManageInvoice() {
     const { goDetailInvoice, goUpdateInvoice, goCreateInvoice } = useRedirect();
     const { reload, handleReload } = useReload()
-    const {trademarkApi} = useTrademarkApi()
     const  {invoiceApi} = useInvoiceApi()
 
     const handleDelete = async (id: string) => {
         try {
-            await trademarkApi.deleteById(id);
+            await invoiceApi.deleteById(id);
             handleReload()
         } catch (error) { }
     };
@@ -33,8 +32,8 @@ function ManageInvoice() {
                 .addView({
                     onClick: () => goDetailInvoice(record._id)
                 })
-                .addEdit({ onClick: () => goUpdateInvoice(record._id) })
-                .addRemove(() => handleDelete(record._id))
+                .addEdit({ onClick: () => goUpdateInvoice(record._id) }) 
+                .addRemove(() => handleDelete(record._id)) // nut xoa 
                 .build();
             return action;
         },

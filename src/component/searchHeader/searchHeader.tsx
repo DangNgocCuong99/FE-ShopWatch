@@ -115,7 +115,7 @@ const SearchHeader = () => {
               </svg>
             </button>
 
-            <div className="search-suggest open">
+            <div className="search-suggest">
   <ul className="smart-search-title">
     <li data-tab="#tab-search-1" className="active">
       <a href="javascript:void(0)" title="Sản phẩm">

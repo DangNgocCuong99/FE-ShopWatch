@@ -37,6 +37,13 @@ export const dataConfig = (mode?: MODE): FormSchemaModel<IProduct>[] => [
     {
         field: 'gioiTinh',
         label: 'Giới tính',
+        component : 'Select',
+        componentProps : {
+            options:[
+                { value: 'nam', label: "Nam" },
+                { value: 'nu', label: 'Nữ' },
+            ]
+        }
     },
     {
         field: 'kinh',
