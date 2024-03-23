@@ -144,7 +144,7 @@ const Footer = ()=>{
 			<div className="row">
 
 				<div className="col-12 col-lg-12">
-					<span className="copy-right">Bản quyền thuộc về <b>Nam Dung</b>.</span>
+					<span className="copy-right">Bản quyền thuộc về <b>Dung Nam</b>.</span>
 					<span className="opacity1">
 						Cung cấp bởi 
 						 <a href="https://www.facebook.com/namnguyennn.2712"> Nam Dung</a> 
