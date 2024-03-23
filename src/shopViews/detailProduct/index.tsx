@@ -231,7 +231,7 @@ useEffect(()=>{
                   <div className=" col-12 col-md-7 col-lg-5">
                     <div className="details-pro block-background">
                       <h1 className="title-product">
-                        {product?.name} – {product?.gioiTinh} – {product?.may} (PIN)
+                        {product?.name} – {product?.gioiTinh} – {product?.may} 
                         – MẶT SỐ {product?.duongKinhMatSo} MM, KÍNH {product?.kinh}
                       </h1>
                       <div className="inventory_quantity">
