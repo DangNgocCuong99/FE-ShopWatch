@@ -54,7 +54,7 @@ function EditTrademark() {
     return (
         <div>
             <BasicPageWrapper header={t('common.edit_text', {
-                domain: "Thương hiệu"
+                domain: "thương hiệu"
             })} body={<StatusForm form={form} mode={MODE.EDIT} />} footer={
                 <Space>
                     <Button type="primary" onClick={handleSave}>{t("common.save_text")}</Button>

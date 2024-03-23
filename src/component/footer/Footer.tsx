@@ -8,10 +8,10 @@ const Footer = ()=>{
 				<div className="col-12 col-md-12 col-lg-12 ft-info col-footer"> 
 
 					<a href="/" className="logo-ft" title="Logo">	
-						<img width="220" height="27" src="/logo.png" alt="Dola Watch"/>
+						<img width="220" height="27" src="/logo.png" alt="Nam Dung Watch"/>
 					</a>
 					<div className="content-ft">
-						Được thành lập vào năm 2019, trải qua những năm hoạt động và phát triển, Dola Watch trở thành đại lý ủy quyền cho rất nhiều thương hiệu trên thế giới, chuyên bán đồng hồ chính hãng.
+						Được thành lập vào năm 2019, trải qua những năm hoạt động và phát triển, Nam Dung Watch trở thành đại lý ủy quyền cho rất nhiều thương hiệu trên thế giới, chuyên bán đồng hồ chính hãng.
 
 					</div>
 					<div className="footer-social">
@@ -144,10 +144,10 @@ const Footer = ()=>{
 			<div className="row">
 
 				<div className="col-12 col-lg-12">
-					<span className="copy-right">Bản quyền thuộc về <b>Dola theme</b>.</span>
+					<span className="copy-right">Bản quyền thuộc về <b>Nam Dung</b>.</span>
 					<span className="opacity1">
 						Cung cấp bởi 
-						 <a href="https://www.sapo.vn/?utm_campaign=cpn:kho_theme-plm:footer&amp;utm_source=Tu_nhien&amp;utm_medium=referral&amp;utm_content=fm:text_link-km:-sz:&amp;utm_term=&amp;campaign=kho_theme-sapo" rel="noopener" title="Sapo" target="_blank">Sapo</a> 
+						 <a href="https://www.facebook.com/namnguyennn.2712"> Nam Dung</a> 
 					</span>
 				</div>
 

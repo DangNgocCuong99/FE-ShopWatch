@@ -8,7 +8,7 @@ export const dataConfig = (): FormSchemaModel<ITrademark>[] => [
         },
         {
             field:"moTa",
-            label:"mô tả"
+            label:"Mô tả"
         },
 
     ];

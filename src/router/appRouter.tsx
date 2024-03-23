@@ -25,7 +25,7 @@ import ViewInvoice from "../views/invoice/xu-ly/view";
 
 const appRoutes: RouteType[] = [
   {
-    path: "home",
+    path: "dashboard",
     element: <ManageProduct />,
     state: "Home",
     displayText: "HOME",
@@ -69,28 +69,28 @@ const appRoutes: RouteType[] = [
     path: "product",
     element: <ManageProduct/>,
     state:"product",
-    displayText:"quan ly san pham",
+    displayText:"Quản lý sản phẩm",
     icon: <UserOutlined />,
     child:[
       {
         path:"add",
         state:"product.add",
         element:<CreateProduct/>,
-        displayText:'them san pham',
+        displayText:'Thêm sản phẩm',
         hiddenMenu:true
       },
       {
         path:"edit/:id",
         state:"product.edit",
         element:<EditProduct/>,
-        displayText:'sua san pham',
+        displayText:'Sửa sản phẩm',
         hiddenMenu:true
       },
       {
         path:"view/:id",
         state:"product.view",
         element:<ViewProduct/>,
-        displayText:"chi tiet san pham",
+        displayText:"Chi tiết sản phẩm",
         hiddenMenu:true
       }
     ]
@@ -99,28 +99,28 @@ const appRoutes: RouteType[] = [
     path: "trademark",
     state: "trademark",
     element: <ManageTrademark/>,
-    displayText:"quan ly thuong hieu",
+    displayText:"Quản lý thương hiệu",
     icon: <UserOutlined />,
     child:[
       {
         path:"add",
         state: "trademark.add",
         element:<CreateTrademark/>,
-        displayText:'them thuong hieu',
+        displayText:'Thêm thương hiệu',
         hiddenMenu:true
       },
       {
         path:"edit/:id",
         state: "trademark.edit",
         element:<EditTrademark/>,
-        displayText:'sua thuong hieu',
+        displayText:'Sửa thương hiệu',
         hiddenMenu:true
       },
       {
         path:"view/:id",
         state: "trademark.view",
         element:<ViewTrademark/>,
-        displayText:"chi tiet thuong hieu",
+        displayText:"Chi tiết thương hiệu",
         hiddenMenu:true
       }
     ]
@@ -129,28 +129,28 @@ const appRoutes: RouteType[] = [
     path: "invoice",
     state: "invoice",
     element: <ManageInvoice/>,
-    displayText:"quan ly hoa don",
+    displayText:"Quản lý hóa đơn",
     icon: <UserOutlined />,
     child:[
       {
         path:"add",
         state: "invoice.add",
         element:<CreateInvoice/>,
-        displayText:'them thuong hieu',
+        displayText:'Thêm hóa đơn',
         hiddenMenu:true
       },
       {
         path:"edit/:id",
         state: "invoice.edit",
         element:<EditInvoice/>,
-        displayText:'sua thuong hieu',
+        displayText:'Sửa hóa đơn',
         hiddenMenu:true
       },
       {
         path:"view/:id",
         state: "invoice.view",
         element:<ViewInvoice/>,
-        displayText:"chi tiet thuong hieu",
+        displayText:"Chi tiết hóa đơn",
         hiddenMenu:true
       }
     ]

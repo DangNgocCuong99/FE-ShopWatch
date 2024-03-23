@@ -67,7 +67,7 @@ function ManageTrademark() {
                             justifyContent: "space-between",
                         }}
                     >
-                        <h2>Danh Sách Thương hiệu</h2>
+                        <h2>Danh sách thương hiệu</h2>
                         <Button onClick={() => handleAdd()}>
                             {t("common.add_text")}
                         </Button>

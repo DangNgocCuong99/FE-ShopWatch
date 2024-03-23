@@ -34,7 +34,7 @@ const TableInvoice = (attrs: Recordable) => {
 
   const columns: ColumnsType<Recordable>= [
     {
-      title: "images",
+      title: "Ảnh",
       dataIndex: "images",
       key: "images",
       render:(val)=>{
@@ -44,17 +44,17 @@ const TableInvoice = (attrs: Recordable) => {
       }
     },
     {
-      title: "Name",
+      title: "Tên",
       dataIndex: "name",
       key: "name",
     },
     {
-      title: "so Luong",
+      title: "Số lượng",
       dataIndex: "quantitySales",
       key: "quantitySales",
     },
     {
-      title: "don gia",
+      title: "Đơn giá",
       dataIndex: "totalAmount",
       key: "totalAmount",
     },

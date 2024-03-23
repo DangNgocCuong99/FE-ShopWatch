@@ -29,14 +29,7 @@ export const columns: BasicColumnModel<IUserInfo>[] = [
       return tranformToolTip(value);
     },
   },
-  // {
-  //   title: "Img",
-  //   dataIndex: "img",
-  //   key: "title",
-  //   render: (value: any) => {
-  //     return tranformToolTip(value)
-  //   }
-  // },
+  
   {
     title: "role",
     dataIndex: "role",

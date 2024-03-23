@@ -542,7 +542,7 @@ useEffect(()=>{
                                 width={20}
                                 height={20}
                                 src="//bizweb.dktcdn.net/100/487/743/themes/912230/assets/km_product3.png?1696125396195"
-                                alt="Tặng 100.000₫ mua hàng tại website thành viên Dola Watch, áp dụng khi mua Online tại Hồ Chí Minh và 1 số khu vực khác."
+                                alt="Tặng 100.000₫ mua hàng tại website thành viên Nam Dung Watch, áp dụng khi mua Online tại Hồ Chí Minh và 1 số khu vực khác."
                               />
                               Tặng 100.000₫ mua hàng tại website thành viên Dola
                               Watch, áp dụng khi mua Online tại Hồ Chí Minh và 1

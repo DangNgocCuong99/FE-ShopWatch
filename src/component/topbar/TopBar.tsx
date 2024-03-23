@@ -3,7 +3,7 @@ import "./index.css";
 
 const Topbar = () => {
   const arrTitleBar: string[] = [
-    "Chào mừng bạn đến với cửa hàng DolaWatch!",
+    "Chào mừng bạn đến với cửa hàng Nam Dung Watch!",
     "Rất nhiều ưu đãi và chương trình khuyến mãi đang chờ đợi bạn",
     "Ưu đãi lớn dành cho thành viên mới",
   ];

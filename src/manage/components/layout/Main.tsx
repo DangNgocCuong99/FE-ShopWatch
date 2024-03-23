@@ -131,9 +131,10 @@ function Main() {
         <Content className="content-ant">
           <Outlet/>
         </Content>
-        {/* <Footer /> */}
+        <Footer />
       </Layout>
     </Layout>
+
   );
 }
 

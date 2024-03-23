@@ -14,23 +14,16 @@ const tranformToolTip = (value: any) => {
 
 export const columns: BasicColumnModel<ITrademark>[] = [
   {
-    title: "Name",
+    title: "Tên",
     dataIndex: "name",
     key: "title",
     render: (value: any) => {
       return tranformToolTip(value)
     }
   },
-  // {
-  //   title: "Email",
-  //   dataIndex: "email",
-  //   key: "title",
-  //   render: (value: any) => {
-  //     return tranformToolTip(value)
-  //   }
-  // },
+
   {
-    title: "Img",
+    title: "Ảnh",
     dataIndex: "images",
     key: "title",
     render: (value: any[]) => {
@@ -42,12 +35,5 @@ export const columns: BasicColumnModel<ITrademark>[] = [
         ))
     }
   },
-  // {
-  //   title: "role",
-  //   dataIndex: "role",
-  //   key: "title",
-  //   render: (value: any) => {
-  //     return tranformToolTip(value)
-  //   }
-  // }
+  
 ];

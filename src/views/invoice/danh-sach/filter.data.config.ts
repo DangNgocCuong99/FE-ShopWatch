@@ -9,7 +9,7 @@ export const dataConfig = (): FormSchemaModel<IInvoice>[] => [
         },
         {
             field:"userId",
-            label:"trang thai"
+            label:"Trạng thái"
         },
 
     ];

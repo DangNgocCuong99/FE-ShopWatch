@@ -68,7 +68,7 @@ function ManageProduct() {
                             justifyContent: "space-between",
                         }}
                     >
-                        <h2>Danh Sach San Pham</h2>
+                        <h2>Danh sách sản phẩm</h2>
                         <Button onClick={() => handleAdd()}>
                             {t("common.add_text")}
                         </Button>

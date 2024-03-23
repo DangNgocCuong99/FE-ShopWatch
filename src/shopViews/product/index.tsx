@@ -601,7 +601,7 @@ const Product = () => {
                   <a
                     href="/collections/all"
                     className="image-effect"
-                    title="Dola Watch"
+                    title="Nam Dung Watch"
                   >
                     <img
                       width={800}
@@ -609,7 +609,7 @@ const Product = () => {
                       className="lazyload"
                       src="//bizweb.dktcdn.net/100/487/743/themes/912230/assets/lazy.png?1696125396195"
                       data-src="//bizweb.dktcdn.net/100/487/743/themes/912230/assets/banner_col_2.png?1696125396195"
-                      alt="Dola Watch"
+                      alt="Nam Dung Watch"
                     />
                   </a>
                 </div>
@@ -621,7 +621,7 @@ const Product = () => {
                   <a
                     href="/collections/all"
                     className="image-effect"
-                    title="Dola Watch"
+                    title="Nam Dung Watch"
                   >
                     <img
                       width={800}
@@ -629,7 +629,7 @@ const Product = () => {
                       className="lazyload"
                       src="//bizweb.dktcdn.net/100/487/743/themes/912230/assets/lazy.png?1696125396195"
                       data-src="//bizweb.dktcdn.net/100/487/743/themes/912230/assets/banner_col_3.png?1696125396195"
-                      alt="Dola Watch"
+                      alt="Nam Dung Watch"
                     />
                   </a>
                 </div>
@@ -641,7 +641,7 @@ const Product = () => {
                   <a
                     href="/collections/all"
                     className="image-effect"
-                    title="Dola Watch"
+                    title="Nam Dung Watch"
                   >
                     <img
                       width={800}
@@ -649,7 +649,7 @@ const Product = () => {
                       className="lazyload loaded"
                       src="//bizweb.dktcdn.net/100/487/743/themes/912230/assets/banner_col_1.png?1696125396195"
                       data-src="//bizweb.dktcdn.net/100/487/743/themes/912230/assets/banner_col_1.png?1696125396195"
-                      alt="Dola Watch"
+                      alt="Nam Dung Watch"
                       data-was-processed="true"
                     />
                   </a>
@@ -662,7 +662,7 @@ const Product = () => {
                   <a
                     href="/collections/all"
                     className="image-effect"
-                    title="Dola Watch"
+                    title="Nam Dung Watch"
                   >
                     <img
                       width={800}
@@ -670,7 +670,7 @@ const Product = () => {
                       className="lazyload loaded"
                       src="//bizweb.dktcdn.net/100/487/743/themes/912230/assets/banner_col_2.png?1696125396195"
                       data-src="//bizweb.dktcdn.net/100/487/743/themes/912230/assets/banner_col_2.png?1696125396195"
-                      alt="Dola Watch"
+                      alt="Nam Dung Watch"
                       data-was-processed="true"
                     />
                   </a>
@@ -683,7 +683,7 @@ const Product = () => {
                   <a
                     href="/collections/all"
                     className="image-effect"
-                    title="Dola Watch"
+                    title="Nam Dung Watch"
                   >
                     <img
                       width={800}
@@ -691,7 +691,7 @@ const Product = () => {
                       className="lazyload loaded"
                       src="//bizweb.dktcdn.net/100/487/743/themes/912230/assets/banner_col_3.png?1696125396195"
                       data-src="//bizweb.dktcdn.net/100/487/743/themes/912230/assets/banner_col_3.png?1696125396195"
-                      alt="Dola Watch"
+                      alt="Nam Dung Watch"
                       data-was-processed="true"
                     />
                   </a>
@@ -704,7 +704,7 @@ const Product = () => {
                   <a
                     href="/collections/all"
                     className="image-effect"
-                    title="Dola Watch"
+                    title="Nam Dung Watch"
                   >
                     <img
                       width={800}
@@ -712,7 +712,7 @@ const Product = () => {
                       className="lazyload loaded"
                       src="//bizweb.dktcdn.net/100/487/743/themes/912230/assets/banner_col_1.png?1696125396195"
                       data-src="//bizweb.dktcdn.net/100/487/743/themes/912230/assets/banner_col_1.png?1696125396195"
-                      alt="Dola Watch"
+                      alt="Nam Dung Watch"
                       data-was-processed="true"
                     />
                   </a>
@@ -725,7 +725,7 @@ const Product = () => {
                   <a
                     href="/collections/all"
                     className="image-effect"
-                    title="Dola Watch"
+                    title="Nam Dung Watch"
                   >
                     <img
                       width={800}
@@ -733,7 +733,7 @@ const Product = () => {
                       className="lazyload loaded"
                       src="//bizweb.dktcdn.net/100/487/743/themes/912230/assets/banner_col_2.png?1696125396195"
                       data-src="//bizweb.dktcdn.net/100/487/743/themes/912230/assets/banner_col_2.png?1696125396195"
-                      alt="Dola Watch"
+                      alt="Nam Dung Watch"
                       data-was-processed="true"
                     />
                   </a>

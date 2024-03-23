@@ -39,11 +39,11 @@ const ChinhSach = ()=>{
             </p>
             <p>+ Cung cấp đầy đủ và chính xác thông tin cá nhân.</p>
             <p>
-              <strong>Dola&nbsp;</strong>xin thân tặng Quý khách hàng Chương
+              <strong>Dung Nam&nbsp;</strong>xin thân tặng Quý khách hàng Chương
               trình&nbsp;
               <strong>‘’ TRI ÂN&nbsp;KHÁCH HÀNG THÂN THIẾT&nbsp;</strong>’’ như
               một lời tri ân sâu sắc cảm ơn sự tin yêu của quý khách dành
-              cho&nbsp;<strong>Dola.</strong>
+              cho&nbsp;<strong>Nam Dung.</strong>
             </p>
           </div>
         </div>

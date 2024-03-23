@@ -10,7 +10,7 @@ export const dataConfig = (mode?: MODE): FormSchemaModel<IProduct>[] => [
     },
     {
         field: 'originalPrice',
-        label: 'Gía gốc',
+        label: 'Giá gốc',
     },
     {
         field: 'discountedPrice',
@@ -85,27 +85,5 @@ export const dataConfig = (mode?: MODE): FormSchemaModel<IProduct>[] => [
         field: 'chongNuoc',
         label: 'Chống nước',
     },
-    // {
-    //     field: 'select',
-    //     label: 'compoent custom',
-    //     component:'SelectStatus',
-    // },
-    // {
-    //     field: 'inputNumber',
-    //     label: 'inputNumber',
-    //     component: 'InputNumber'
-    // },
-    // {
-    //     field: 'status',
-    //     label: 'select Status',
-    //     component: "Select",
-    //     componentProps:{
-    //         options: [
-    //             { value: 'jack', label: 'Jack' },
-    //             { value: 'lucy', label: 'Lucy' },
-    //             { value: 'Yiminghe', label: 'yiminghe' },
-    //             { value: 'disabled', label: 'Disabled', disabled: true },
-    //         ],
-    //     },
-    // },
+   
 ]

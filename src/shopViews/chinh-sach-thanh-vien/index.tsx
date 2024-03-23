@@ -16,7 +16,7 @@ const ChinhSachThanhVien = () => {
               </p>
               <p>
                 Điều kiện cấp thẻ thành viên: Khi khách hàng mua hàng trên hệ
-                thống&nbsp;Dola sẽ được cấp thẻ thành viên.
+                thống&nbsp;Nam Dung sẽ được cấp thẻ thành viên.
               </p>
               <p>
                 <strong>2. Thẻ VIP</strong>
@@ -26,7 +26,7 @@ const ChinhSachThanhVien = () => {
               </p>
               <p>+ Có giá trị tổng đơn hàng lớn hơn 15&nbsp;triệu/ tháng</p>
               <p>+ Mua hàng với giá trị 3&nbsp;triệu trợ lên</p>
-              <p>+ Tham gia các hoạt động, chương trình khuyến mãi của Dola</p>
+              <p>+ Tham gia các hoạt động, chương trình khuyến mãi của Nam Dung</p>
               <p>
                 <strong>Lưu ý:&nbsp;</strong>Hạn mức 10,&nbsp;20,&nbsp;30,
                 50,100 triệu đồng&nbsp;là tính từ thời điểm bắt đầu mua tới khi

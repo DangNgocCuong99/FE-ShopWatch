@@ -24,7 +24,7 @@ export const columns: BasicColumnModel<IInvoice>[] = [
     }
   },
   {
-    title: "Tong tien",
+    title: "Tổng tiền",
     dataIndex: "totalAmount",
     key: "title",
     render: (value: any) => {
@@ -32,12 +32,12 @@ export const columns: BasicColumnModel<IInvoice>[] = [
     }
   },
   {
-    title: "dia chi",
+    title: "Địa chỉ",
     dataIndex: "address",
     key: "title",
   },
   {
-    title: "trang thai thanh toan",
+    title: "Trạng thái thanh toán",
     dataIndex: "statusPayment",
     key: "title",
     render: (value: any) => { //lay ra gia tri cua mot truong trong ban ghi

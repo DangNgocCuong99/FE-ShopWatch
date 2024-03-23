@@ -6,51 +6,51 @@ import { MODE, statusInvoice, statusPayment } from "/@/utils";
 export const dataConfig = (mode?: MODE): FormSchemaModel<IInvoice>[] => [
     {
         field: 'userName',
-        label: 'ten nguoi dung',
+        label: 'Tên người dùng',
     },
     {
         field: 'address',
-        label: 'dia chi',
+        label: 'Địa chỉ',
     },
     {
         field: 'phone',
-        label: 'so dien thoai',
+        label: 'Số điện thoại',
     },
     {
         field: 'statusInvoice',
-        label: 'trang thai don hang',
+        label: 'Trạng thái đơn hàng',
         component:'SelectStatusInvoice'
     },
     {
         field: 'statusPayment',
-        label: 'trang thai thanh toan',
+        label: 'Trạng thái thanh toán',
         component:'Select',
         componentProps:{
             options:[
-                { value: statusPayment.cash, label: "thanh toan khi nhan hang (cod)" },
-                { value: statusPayment.paid , label: 'da thanh toan (bank)' },
-                { value: statusPayment.unpaid, label: 'chua thanh toan (bank)' },
+                { value: statusPayment.cash, label: "Thanh toán khi nhận hàng (cod)" },
+                { value: statusPayment.paid , label: 'Đã thanh toán (bank)' },
+                { value: statusPayment.unpaid, label: 'Chưa thanh toán (bank)' },
             ]
         }
     },
     {
         field: 'transportFee',
-        label: 'phi ship',
+        label: 'Phí ship',
         disabled: true
     },
     {
         field: 'discount',
-        label: 'giam gia',
+        label: 'Giảm giá',
         disabled: true
     },
     {
         field: 'totalAmount',
-        label: 'tong tien hang',
+        label: 'Tổng tiền hàng',
         disabled:true
     },
     {
         field: 'items',
-        label: 'San pham mua',
+        label: 'Sản phẩm mua',
         component:'TableInvoice',
         colProps:{
             lg:24,md:24,sm:24,xl:24,xs:24,xxl:24

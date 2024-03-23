@@ -46,7 +46,7 @@ function ViewInvoice() {
                 <StatusForm form={form} mode={MODE.VIEW} />
             }
                 header={t('common.detail_text', {
-                    domain: "hoa don"
+                    domain: "hóa đơn"
                 })}
                 footer={
                     <Space>

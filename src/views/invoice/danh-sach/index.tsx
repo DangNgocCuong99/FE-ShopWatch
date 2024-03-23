@@ -67,10 +67,10 @@ function ManageInvoice() {
                             justifyContent: "space-between",
                         }}
                     >
-                        <h2>Danh Sách Hóa Đơn</h2>
-                        <Button onClick={() => handleAdd()}>
+                        <h2>Danh sách hóa đơn</h2>
+                        {/* <Button onClick={() => handleAdd()}>
                             {t("common.add_text")}
-                        </Button>
+                        </Button> */}                                   {/* nút thêm hoá đơn */}
                     </div>
                 }
             />
