@@ -27,21 +27,35 @@ export const dataConfig = (mode?: MODE): FormSchemaModel<IInvoice>[] => [
         component:'Select',
         componentProps:{
             options:[
-                { value: statusPayment.cash, label: "thanh toan khi nhan hang" },
-                { value: statusPayment.paid , label: 'da thanh toan' },
-                { value: statusPayment.unpaid, label: 'chua thanh toan' },
+                { value: statusPayment.cash, label: "thanh toan khi nhan hang (cod)" },
+                { value: statusPayment.paid , label: 'da thanh toan (bank)' },
+                { value: statusPayment.unpaid, label: 'chua thanh toan (bank)' },
             ]
         }
     },
     {
-        field: 'statusInvoice',
-        label: 'trang thai don hang',
-        component:'SelectStatusInvoice'
+        field: 'transportFee',
+        label: 'phi ship',
+        disabled: true
+    },
+    {
+        field: 'discount',
+        label: 'giam gia',
+        disabled: true
+    },
+    {
+        field: 'totalAmount',
+        label: 'tong tien hang',
+        disabled:true
     },
     {
         field: 'items',
-        label: 'trang thai don hang',
-        component:'TableInvoice'
+        label: 'San pham mua',
+        component:'TableInvoice',
+        colProps:{
+            lg:24,md:24,sm:24,xl:24,xs:24,xxl:24
+        }
     },
+
 
 ]

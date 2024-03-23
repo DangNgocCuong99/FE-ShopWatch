@@ -47,7 +47,7 @@ function ManageInvoice() {
     const handleApi = async (params:any)=> {
         const {data} = await invoiceApi.getAll(params);
         return {
-            items: data,
+            items: data.items,
             total:data.total,
         };
     };

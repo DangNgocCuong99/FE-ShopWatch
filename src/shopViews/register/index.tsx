@@ -36,6 +36,7 @@ const Register = () => {
       alert(res.message);
       if (res.status){
         localStorage.setItem('token', res.data)
+        localStorage.setItem('role',"user")
         navigation("/");
       }
     } catch (error) {
@@ -124,21 +125,9 @@ const Register = () => {
                                     type="text"
                                     className="form-control form-control-lg"
                                     defaultValue=""
-                                    name="lastName"
-                                    id="lastName"
-                                    placeholder="Họ"
-                                  />
-                                </fieldset>
-                              </div>
-                              <div className="col-md-12 col-lg-12 col-sm-12 col-xs-12">
-                                <fieldset className="form-group">
-                                  <input
-                                    type="text"
-                                    className="form-control form-control-lg"
-                                    defaultValue=""
                                     name="firstName"
                                     id="firstName"
-                                    placeholder="Tên"
+                                    placeholder="Họ Tên"
                                     value={username}
                                     onChange={(e) =>
                                       setUsername(e.target.value)

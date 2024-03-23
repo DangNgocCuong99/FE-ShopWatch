@@ -15,13 +15,12 @@ const CheckOutStatus = () => {
   const id = searchParams.get("id");
   const handleGetInvoice = async(id: string) => {
     try {
-      console.log(vnp_ResponseCode);
-      if(vnp_ResponseCode == "00"){
+      if(vnp_ResponseCode == "00" && vnp_OrderInfo){
         message.info("thanh toan thanh cong");
+        await invoiceApi.updateById(vnp_OrderInfo,{statusPayment:statusPayment.paid})
       }else if (vnp_ResponseCode){
         message.error("thanh toan that bai")
       }
-      
       const res = await invoiceApi.getById(id);
       setInvoice(res.data)
     } catch (error) {}
