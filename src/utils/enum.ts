@@ -16,3 +16,13 @@ export enum statusInvoice {
     processing="processing",
     todo="todo"
 }
+
+export enum sortProduct {
+    nameUp = "nameUp",
+    nameDown = "nameDown",
+    priceUp = "priceUp",
+    priceDown = "priceDown",
+    createdAtUp = "createdAtUp",
+    createdAtDown = "createdAtDown",
+  }
+  

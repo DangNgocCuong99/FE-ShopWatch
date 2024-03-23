@@ -5,13 +5,14 @@ import { useProductApi, useTrademarkApi } from "/@/apis";
 import { renderProductTest } from "../product-template/index_test";
 import { IProduct } from "/@/apis/productApi/types";
 import { ITrademark } from "/@/apis/trademarkApi/types";
-import { WEIGHT } from "/@/utils";
+import { WEIGHT, sortProduct } from "/@/utils";
 
 const Product = () => {
   const { productApi } = useProductApi();
   const { trademarkApi } = useTrademarkApi();
   const [listProduct, setListProduct] = useState<IProduct[]>();
   const [listTrademark, setListTrademark] = useState<ITrademark[]>();
+  const [sortBy,setSortBy] = useState<sortProduct>()
 
   const handleFetchProduct = async () => {
     try {
@@ -783,8 +784,7 @@ const Product = () => {
                 <ul>
                   <li className="btn-quick-sort alpha-asc">
                     <a
-                      href="javascript:;"
-                      // onclick="sortby('alpha-asc')"
+                      onClick={()=>setSortBy(sortProduct.nameUp)}
                       title="Tên A-Z"
                     >
                       <i />
@@ -793,8 +793,7 @@ const Product = () => {
                   </li>
                   <li className="btn-quick-sort alpha-desc">
                     <a
-                      href="javascript:;"
-                      // onclick="sortby('alpha-desc')"
+                       onClick={()=>setSortBy(sortProduct.nameDown)}
                       title="Tên Z-A"
                     >
                       <i />
@@ -803,8 +802,7 @@ const Product = () => {
                   </li>
                   <li className="btn-quick-sort position-desc">
                     <a
-                      href="javascript:;"
-                      // onclick="sortby('created-desc')"
+                       onClick={()=>setSortBy(sortProduct.createdAtUp)}
                       title="Hàng mới"
                     >
                       <i />
@@ -813,8 +811,7 @@ const Product = () => {
                   </li>
                   <li className="btn-quick-sort price-asc">
                     <a
-                      href="javascript:;"
-                      // onclick="sortby('price-asc')"
+                      onClick={()=>setSortBy(sortProduct.priceUp)}
                       title="Giá thấp đến cao"
                     >
                       <i />
@@ -823,8 +820,7 @@ const Product = () => {
                   </li>
                   <li className="btn-quick-sort price-desc">
                     <a
-                      href="javascript:;"
-                      // onclick="sortby('price-desc')"
+                     onClick={()=>setSortBy(sortProduct.priceDown)}
                       title="Giá cao xuống thấp"
                     >
                       <i />
