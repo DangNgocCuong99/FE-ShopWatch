@@ -6,77 +6,77 @@ import { MODE } from "/@/utils";
 export const dataConfig = (mode?: MODE): FormSchemaModel<IProduct>[] => [
     {
         field: 'name',
-        label: 'ten san pham',
+        label: 'Tên sản phẩm',
     },
     {
         field: 'originalPrice',
-        label: 'gia goc',
+        label: 'Gía gốc',
     },
     {
         field: 'discountedPrice',
-        label: 'gia ban',
+        label: 'Giá bán',
     },
     {
         field: 'trademark',
-        label: 'hang dongho',
+        label: 'Hãng đồng hồ',
         component:"SelectTrademark"
     },
     {
         field: 'images',
-        label: 'hinh anh ',
+        label: 'Hình ảnh ',
         component:"InputImg",
     },
     {
         field: 'soHieu',
-        label: 'soHieu',
+        label: 'Số hiệu',
     },
     {
         field: 'xuatXu',
-        label: 'xuatXu',
+        label: 'Xuất xứ',
     },
     {
         field: 'gioiTinh',
-        label: 'gioiTinh',
+        label: 'Giới tính',
     },
     {
         field: 'kinh',
-        label: 'kinh',
+        label: 'Kính',
     },
     {
         field: 'may',
-        label: 'may',
+        label: 'Máy',
     },
     {
         field: 'baoHanhQuocTe',
-        label: 'baoHanhQuocTe',
+        label: 'Bảo hành quốc tế',
     },
     {
         field: 'baoHanhTrongNuoc',
-        label: 'baoHanhTrongNuoc',
+        label: 'Bảo hành trong nước',
     },
     {
         field: 'duongKinhMatSo',
-        label: 'duongKinhMatSo',
+        label: 'Đường kính mắt số',
     },
     {
         field: 'beDayMatSo',
-        label: 'beDayMatSo',
+        label: 'Bề dày mặt số',
     },
     {
         field: 'nieng',
-        label: 'nieng',
+        label: 'Niềng',
     },
     {
         field: 'dayDeo',
-        label: 'dayDeo',
+        label: 'Dây đeo',
     },
     {
         field: 'mauMatSo',
-        label: 'mauMatSo',
+        label: 'Mẫu mắt số',
     },
     {
         field: 'chongNuoc',
-        label: 'chongNuoc',
+        label: 'Chống nước',
     },
     // {
     //     field: 'select',

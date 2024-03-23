@@ -143,24 +143,11 @@ export default class SignUp extends Component {
                     {profile}
                     <span>Profile</span>
                   </Link>
-                </Menu.Item>
-                <Menu.Item key="3">
-                  <Link to="/manage/sign-up">
-                    {signup}
-                    <span> Sign Up</span>
-                  </Link>
-                </Menu.Item>
-                <Menu.Item key="4">
-                  <Link to="/manage/sign-in">
-                    {signin}
-                    <span> Sign In</span>
-                  </Link>
+              
                 </Menu.Item>
               </Menu>
             </div>
-            <div className="header-col header-btn">
-              <Button type="false">FREE DOWNLOAD</Button>
-            </div>
+          
           </Header>
 
           <Content className="p-0">

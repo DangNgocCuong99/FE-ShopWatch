@@ -4,7 +4,9 @@ import SearchHeader from "../searchHeader/searchHeader";
 
 import SideBar from "../sideBar/sideBar";
 import { useNavigate } from "react-router-dom";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { useFavoriteApi } from "/@/apis";
+
 
 const getRole = ()=> localStorage.getItem("role")
 const Header = ({
@@ -16,7 +18,28 @@ const Header = ({
 }) => {
   const navigation = useNavigate();
   const token = localStorage.getItem("token");
+  const { favoriteApi } = useFavoriteApi();
+  const [totalFavorites, setTotalFavorites] = useState(0);
 
+  
+    const fetchData = async () => {
+      try {
+        // Gọi API để lấy danh sách sản phẩm yêu thích
+        const res = await favoriteApi.getAll();
+        const favoriteList = res.data; // Danh sách sản phẩm yêu thích
+        const totalCount = favoriteList.items?.length||0; // Đếm số lượng sản phẩm yêu thích
+        console.log(totalCount);
+        console.log(typeof totalCount);
+        setTotalFavorites(totalCount); // Cập nhật state với tổng số lượng sản phẩm yêu thích
+      } catch (error) {
+        console.error("Error fetching favorite list:", error);
+      }
+    };
+
+    useEffect(() => {
+      fetchData();
+    }, []);
+  
   return (
     <>
       {/* {placeholder} */}
@@ -146,7 +169,7 @@ const Header = ({
                               localStorage.removeItem("token");
                               localStorage.removeItem("role");
                               document.cookie = "jwt=; Max-Age=0;secure; path=/;";
-                              navigation("/");
+                              navigation("/account/login");
                             }}
                           >
                             Đăng xuất
@@ -156,7 +179,7 @@ const Header = ({
                           <li>
                           <a
                             title="Quản lý shop"
-                            onClick={() => navigation("/manage")}
+                            onClick={() => navigation("/manage/home")}
                           >
                             Quản lý shop
                           </a>
@@ -204,7 +227,7 @@ const Header = ({
                       ></path>
                     </svg>
                     <span className="count js-wishlist-count js-wishlist-count-mobile">
-                      1
+                      {totalFavorites}
                     </span>
                   </a>
                 </li>

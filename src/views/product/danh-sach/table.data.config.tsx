@@ -21,7 +21,7 @@ export const columns: BasicColumnModel<IProductInfo>[] = [
   //   }
   // },
   {
-    title: "hinh anh",
+    title: "Hình ảnh",
     dataIndex: "images",
     key: "title",
     render: (value: any[]) => {
@@ -34,7 +34,7 @@ export const columns: BasicColumnModel<IProductInfo>[] = [
     }
   },
   {
-    title: "hang dong ho",
+    title: "Hãng đồng hồ",
     dataIndex: "trademark",
     key: "title",
     render: (value: IProductInfo["trademark"]) => {

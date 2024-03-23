@@ -11,6 +11,7 @@ import {
   GoogleLoginButton,
 } from "react-social-login-buttons";
 import { useNavigate } from "react-router-dom";
+import { message } from "antd";
 
 const Login = () => {
   const navigation = useNavigate();
@@ -22,7 +23,7 @@ const Login = () => {
     try {
       if (!email || !password) return;
       const res = await AuthApi.login({ email: email, password: password });
-      alert(res.message);
+      message.info(res.message);
       if (!res.status) return;
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("role", res.data.role);

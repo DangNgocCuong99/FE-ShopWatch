@@ -16,6 +16,7 @@ import { Layout, Drawer, Affix } from "antd";
 import Sidenav from "./Sidenav";
 import Header from "./Header";
 import Footer from "./Footer";
+import { useParams } from "react-router-dom";
 
 const { Header: AntHeader, Content, Sider  } = Layout;
 
@@ -33,9 +34,11 @@ function Main() {
 
   const navigate = useNavigate()
 
+  const { id } = useParams() as { id: string }
+
 
   let { pathname } = useLocation();
-  pathname = pathname.replace("/", "");
+  pathname = pathname.replace("/", "").replace("/"+id,"");
 
 
   useEffect(() => {

@@ -5,16 +5,16 @@ import { MODE } from "/@/utils";
 export const dataConfig = (mode?: MODE): FormSchemaModel<ITrademark>[] => [
     {
         field: 'name',
-        label: 'ten thuong hieu',
+        label: 'Tên thương hiệu',
     },
     {
         field: 'images',
-        label: 'role',
+        label: 'Hình ảnh',
         component:"SelectImg",
     },
     {
         field: 'moTa',
-        label: 'mo ta',
+        label: 'Mô tả',
     },
 
 ]

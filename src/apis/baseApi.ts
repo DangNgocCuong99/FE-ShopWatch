@@ -19,11 +19,12 @@ const axiosClient = axios.create({
   Authorization: `Bearer ${token()}`,
   "Content-type": ContentTypeEnum.JSON,
 },
-withCredentials: true,});
+withCredentials: true,}); //cho phép be thao tắc với cookie của fe
 //@overwrite lại axios
 axiosClient.interceptors.request.use(async (config) => {
   let accessToken = localStorage.getItem("token");
-
+  console.log("abc");
+  
   if (accessToken) {
     const decodedToken = jwtDecode(accessToken);
 
