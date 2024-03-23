@@ -6,6 +6,7 @@ import SideBar from "../sideBar/sideBar";
 import { useNavigate } from "react-router-dom";
 import { Dispatch, SetStateAction } from "react";
 
+const getRole = ()=> localStorage.getItem("role")
 const Header = ({
   isShowMenu,
   setIsShowMenu,
@@ -143,6 +144,7 @@ const Header = ({
                             title="Đăng xuất"
                             onClick={() => {
                               localStorage.removeItem("token");
+                              localStorage.removeItem("role");
                               document.cookie = "jwt=; Max-Age=0;secure; path=/;";
                               navigation("/");
                             }}
@@ -150,7 +152,8 @@ const Header = ({
                             Đăng xuất
                           </a>
                         </li>
-                        <li>
+                        {getRole()=== "admin" && (
+                          <li>
                           <a
                             title="Quản lý shop"
                             onClick={() => navigation("/manage")}
@@ -158,6 +161,7 @@ const Header = ({
                             Quản lý shop
                           </a>
                         </li>
+                        )}   
                       </>
                     ) : (
                       <>

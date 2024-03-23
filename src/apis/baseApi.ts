@@ -34,6 +34,7 @@ axiosClient.interceptors.request.use(async (config) => {
       } else{
         message.info("vui long dang nhap lai")
         localStorage.removeItem("token")
+        localStorage.removeItem("role")
         window.location.href = "/"
       }
     }

@@ -316,7 +316,7 @@ const FlashSale = () => {
                   display: "inline-flex",
                 }}
               >
-                {renderProductTest(listProduct as IProduct[], 5)}
+                {renderProductTest(listProduct as IProduct[],setListProduct, 5)}
               </div>
             </div>
             <div className="see-more">

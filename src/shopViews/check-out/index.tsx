@@ -7,13 +7,14 @@ import { statusInvoice, statusPayment } from "/@/utils";
 import { useSelector } from "react-redux";
 import { selectCart } from "/@/stores/cart/cartReduce";
 import { formattedNumber } from "/@/utils/stringUtil";
-import data from '/tree.json'
+import data from "/tree.json";
+import { useNavigate } from "react-router-dom";
 
 const CheckOut = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const { invoiceApi } = useInvoiceApi();
   const cartStore = useSelector(selectCart);
-  const {paymentApi} = usePaymentApi()
+  const { paymentApi } = usePaymentApi();
 
   const [provinces] = useState(Object.values(data)); // Lấy danh sách tỉnh/thành phố từ file JSON
 
@@ -22,12 +23,15 @@ const CheckOut = () => {
   const [selectedProvince, setSelectedProvince] = useState("");
   const [selectedDistrict, setSelectedDistrict] = useState("");
   const [selectedWard, setSelectedWard] = useState("");
-
+  const [payments, setPayments] = useState("");
+  const navigation = useNavigate();
 
   const handleProvinceChange = (e) => {
     const provinceId = e.target.value;
-    const selectedProvince = provinces.find(province => province.code === provinceId);
-    const provinceDistricts = Object.values(selectedProvince['quan-huyen']);
+    const selectedProvince = provinces.find(
+      (province) => province.code === provinceId
+    );
+    const provinceDistricts = Object.values(selectedProvince["quan-huyen"]);
     setDistricts(provinceDistricts);
     setSelectedProvince(provinceId);
     setSelectedDistrict("");
@@ -36,8 +40,10 @@ const CheckOut = () => {
 
   const handleDistrictChange = (e) => {
     const districtId = e.target.value;
-    const selectedDistrict = districts.find(district => district.code === districtId);
-    const districtWards = Object.values(selectedDistrict['xa-phuong']);
+    const selectedDistrict = districts.find(
+      (district) => district.code === districtId
+    );
+    const districtWards = Object.values(selectedDistrict["xa-phuong"]);
     setWards(districtWards);
     setSelectedDistrict(districtId);
     setSelectedWard("");
@@ -48,7 +54,6 @@ const CheckOut = () => {
     setSelectedWard(wardId);
   };
 
-
   const handleOnChange = (value: string) => {
     setPhoneNumber(value);
   };
@@ -56,11 +61,18 @@ const CheckOut = () => {
   const handleCheckout = async () => {
     try {
       const res = await invoiceApi.createInvoice<any, any>({
-        statusPayment: statusPayment.unpaid,
-        statusInvoice: statusInvoice.processing,
+        statusPayment: payments === "bank" ? statusPayment.unpaid : statusPayment.cash,
+        statusInvoice: statusInvoice.todo,
       });
-      const url = await paymentApi.create({invoice: res.data._id}) as string;
-      window.location.href = url;
+
+      if (payments === "bank" ){
+        const url = (await paymentApi.create({
+          invoice: res.data._id,
+        })) as string;
+        window.location.href = url;
+      }else{
+        navigation(`/check-out-status/?id=${res.data._id}`)
+      }
     } catch (error) {}
   };
 
@@ -77,27 +89,31 @@ const CheckOut = () => {
                   className="product-thumbnail__image"
                 />
               </div>
-              <span className="product-thumbnail__quantity">{product.quantity}</span>
+              <span className="product-thumbnail__quantity">
+                {product.quantity}
+              </span>
             </div>
           </td>
           <th className="product__description">
-            <span className="product__description__name">
-              {product.name}
-            </span>
+            <span className="product__description__name">{product.name}</span>
           </th>
-          <td className="product__price">{formattedNumber(product.discountedPrice * product.quantity)}₫</td>
+          <td className="product__price">
+            {formattedNumber(product.discountedPrice * product.quantity)}₫
+          </td>
         </tr>
       );
-    })
+    });
   };
 
-  const handleTinhTong = ()=>{
-    let price = 0
+  const handleTinhTong = () => {
+    let price = 0;
     for (let index = 0; index < cartStore.listProduct?.length; index++) {
-      price += cartStore.listProduct[index].discountedPrice * cartStore.listProduct[index].quantity       
+      price +=
+        cartStore.listProduct[index].discountedPrice *
+        cartStore.listProduct[index].quantity;
     }
-    return price
-  }
+    return price;
+  };
 
   return (
     <div data-tg-refresh="checkout" id="checkout" className="content">
@@ -152,7 +168,7 @@ const CheckOut = () => {
                             </div>
                           </div>
                         </div>
-                        <div className="field field--show-floating-label field--disabled">  
+                        <div className="field field--show-floating-label field--disabled">
                           <div className="field__input-wrapper">
                             <label htmlFor="email" className="field__label">
                               Email
@@ -205,11 +221,8 @@ const CheckOut = () => {
                             <PhoneInput
                               country={"vn"}
                               value={phoneNumber}
-                              onChange={(value) =>
-                                handleOnChange(value)
-                              }
+                              onChange={(value) => handleOnChange(value)}
                             />
-                        
                           </div>
                         </div>
                         <div
@@ -258,9 +271,14 @@ const CheckOut = () => {
                               <option value="" hidden="">
                                 ---
                               </option>
-                              {provinces.map(province => (
-          <option key={province.code} value={province.code}>{province.name}</option>
-        ))}
+                              {provinces.map((province) => (
+                                <option
+                                  key={province.code}
+                                  value={province.code}
+                                >
+                                  {province.name}
+                                </option>
+                              ))}
                             </select>
                           </div>
                         </div>
@@ -289,9 +307,14 @@ const CheckOut = () => {
                               <option value="" hidden="">
                                 ---
                               </option>
-                              {districts.map(district => (
-          <option key={district.code} value={district.code}>{district.name}</option>
-        ))}
+                              {districts.map((district) => (
+                                <option
+                                  key={district.code}
+                                  value={district.code}
+                                >
+                                  {district.name}
+                                </option>
+                              ))}
                             </select>
                           </div>
                         </div>
@@ -320,9 +343,11 @@ const CheckOut = () => {
                               <option value="" hidden="">
                                 ---
                               </option>
-                              {wards.map(ward => (
-          <option key={ward.code} value={ward.code}>{ward.name}</option>
-        ))}
+                              {wards.map((ward) => (
+                                <option key={ward.code} value={ward.code}>
+                                  {ward.name}
+                                </option>
+                              ))}
                             </select>
                           </div>
                         </div>
@@ -453,8 +478,8 @@ const CheckOut = () => {
                                 type="radio"
                                 className="input-radio"
                                 data-bind="paymentMethod"
-                                defaultValue={618857}
                                 data-provider-id={4}
+                                onChange={(e)=>e.target.checked ? setPayments("cod") : null}
                               />
                             </div>
                             <label
@@ -498,8 +523,9 @@ const CheckOut = () => {
                                 type="radio"
                                 className="input-radio"
                                 data-bind="paymentMethod"
-                                defaultValue={618858}
                                 data-provider-id={5}
+                                value={"banking"}
+                                onChange={(e)=>e.target.checked ? setPayments("bank") : null}
                               />
                             </div>
                             <label
@@ -600,9 +626,7 @@ const CheckOut = () => {
                           </th>
                         </tr>
                       </thead>
-                      <tbody>
-                        {handleRenderItem()}
-                      </tbody>
+                      <tbody>{handleRenderItem()}</tbody>
                     </table>
                   </div>
                   <div
@@ -688,7 +712,9 @@ const CheckOut = () => {
                       <tbody className="total-line-table__tbody">
                         <tr className="total-line total-line--subtotal">
                           <th className="total-line__name">Tạm tính</th>
-                          <td className="total-line__price">{formattedNumber(handleTinhTong())}₫</td>
+                          <td className="total-line__price">
+                            {formattedNumber(handleTinhTong())}₫
+                          </td>
                         </tr>
                         <tr className="total-line total-line--shipping-fee">
                           <th className="total-line__name">Phí vận chuyển</th>
@@ -712,7 +738,7 @@ const CheckOut = () => {
                               className="payment-due__price"
                               data-bind="getTextTotalPrice()"
                             >
-                              {formattedNumber(handleTinhTong()+40000)}₫
+                              {formattedNumber(handleTinhTong() + 40000)}₫
                             </span>
                           </td>
                         </tr>

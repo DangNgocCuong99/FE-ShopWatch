@@ -15,8 +15,11 @@ import LienHe from "../shopViews/lienHe";
 import KienThucDongHo from "../shopViews/kien-thuc-dong-ho";
 import AppManage from "../manage/App";
 import ShopRouter from "./routerShop";
+import { useEffect } from "react";
+
 
 export default function AppRoutes() {
+
   return (
     <BrowserRouter>
       <Routes>

@@ -1,4 +1,4 @@
-import { useSearchParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import "./index.scss";
 import { useInvoiceApi } from "/@/apis";
 import { useEffect, useState } from "react";
@@ -12,13 +12,13 @@ const CheckOutStatus = () => {
   const [invoice, setInvoice] = useState<IInvoice>();
   const vnp_ResponseCode = searchParams.get("vnp_ResponseCode");
   const vnp_OrderInfo = searchParams.get("vnp_OrderInfo");
-
+  const id = searchParams.get("id");
   const handleGetInvoice = async(id: string) => {
     try {
       console.log(vnp_ResponseCode);
       if(vnp_ResponseCode == "00"){
         message.info("thanh toan thanh cong");
-      }else{
+      }else if (vnp_ResponseCode){
         message.error("thanh toan that bai")
       }
       
@@ -29,8 +29,10 @@ const CheckOutStatus = () => {
   useEffect(() => {
     if (vnp_OrderInfo) {
       handleGetInvoice(vnp_OrderInfo);
+    } else if(id){
+      handleGetInvoice(id)
     }
-  }, [vnp_OrderInfo]);
+  }, [vnp_OrderInfo,id]);
 
   const handleRenderItem = (listItem:any[]) => {
     return listItem.map((item:any, index:number) => {
@@ -109,7 +111,7 @@ const CheckOutStatus = () => {
                       <h2 className="section__title">Cảm ơn bạn đã đặt hàng</h2>
                       <p className="section__text">
                         Một email xác nhận đã được gửi tới
-                        nguyenvannam@gmail.com. <br />
+                        {invoice?.email}. <br />
                         Xin vui lòng kiểm tra email của bạn
                       </p>
                     </div>
@@ -120,9 +122,9 @@ const CheckOutStatus = () => {
                         <div className="row">
                           <div className="col col--md-two">
                             <h2>Thông tin mua hàng</h2>
-                            <p>dang cuong</p>
-                            <p>nguyenvannam@gmail.com</p>
-                            <p>+84388842605</p>
+                            <p>{invoice?.userName}</p>
+                            <p>{invoice?.email}</p>
+                            <p>{invoice?.phone}</p>
                           </div>
                           <div className="col col--md-two">
                             <h2>Địa chỉ nhận hàng</h2>

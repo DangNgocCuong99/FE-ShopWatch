@@ -107,7 +107,7 @@ const ProductMen = () => {
               style={{display:"inline-flex", transform: "translate3d(0px, 0px, 0px)" }}
             >
                 <div className="row row-fix">
-              {listProduct && renderProductTest(listProduct,4)}
+              {listProduct && renderProductTest(listProduct,setListProduct,4)}
             </div>
             </div>
           </div>

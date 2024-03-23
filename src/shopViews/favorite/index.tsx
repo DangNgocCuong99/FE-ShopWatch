@@ -29,7 +29,7 @@ const Favorite = ()=>{
         <div className="list-favorite-right" data-type="wishlist">
           <div className="list-favorite-main">
             <div className="list-favorite-list row row-fix">
-            {listProduct && renderProductTest(listProduct,5)}
+            {listProduct && renderProductTest(listProduct,setListProduct,5)}
             </div>
           </div>
         </div>

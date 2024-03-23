@@ -91,7 +91,7 @@ const ProductTab = ()=>{
           </ul>
           <div className="tab-1 tab-content current">
             <div className="row row-fix">
-              {listProduct && renderProductTest(listProduct,5)}
+              {listProduct && renderProductTest(listProduct,setListProduct,5)}
             </div>
             <div className="text-center no-padding">
               <a className="see-more" title="Xem tất cả" href="/san-pham-moi">

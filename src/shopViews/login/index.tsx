@@ -24,7 +24,8 @@ const Login = () => {
       const res = await AuthApi.login({ email: email, password: password });
       alert(res.message);
       if (!res.status) return;
-      localStorage.setItem("token", res.data);
+      localStorage.setItem("token", res.data.token);
+      localStorage.setItem("role", res.data.role);
       navigation("/");
     } catch (error) {}
   };

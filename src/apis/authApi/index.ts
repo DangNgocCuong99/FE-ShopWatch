@@ -10,7 +10,7 @@ export class AuthApi extends BaseApi<IAuth> {
   async login(body:{email:string,password:string}): Promise<{
     status:boolean,
     message:string ,
-    data:string,
+    data:{token:string,role:string},
   }> {
     return apiNotRefresh({ url:  `${this.configUrl}/login`, method: HTTP_METHOD.POST,data:body});
   }
