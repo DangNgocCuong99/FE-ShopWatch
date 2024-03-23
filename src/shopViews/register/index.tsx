@@ -20,10 +20,11 @@ const Register = () => {
   const [username, setUsername] = useState<string>();
   const [isPopup, setIsPopup] = useState(false);
   const [otp, setOtp] = useState<string>()
+  const [phoneNumber, setPhoneNumber] = useState<string>()
   const handleRegister = async () => {
     try {
       if (!email || !password) return;
-      const res = await AuthApi.register({ email, password, username });
+      const res = await AuthApi.register({ email, password, username ,phoneNumber});
       alert(res.message);
       if (!res.status) return
       setIsPopup(true)
@@ -160,6 +161,10 @@ const Register = () => {
                                     pattern="\d+"
                                     className="form-control form-control-comment form-control-lg"
                                     name="PhoneNumber"
+                                    value={phoneNumber}
+                                    onChange={(e) =>
+                                      setPhoneNumber(e.target.value)
+                                    }
                                   />
                                 </fieldset>
                               </div>
