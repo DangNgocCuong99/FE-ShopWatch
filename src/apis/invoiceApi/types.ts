@@ -17,5 +17,6 @@ export interface IInvoice {
   address: string;
   phone: string;
   userName:string;
+  note:string;
   createdAt: number;
 }
