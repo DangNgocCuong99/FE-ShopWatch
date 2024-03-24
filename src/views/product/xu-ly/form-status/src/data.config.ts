@@ -25,11 +25,6 @@ export const dataConfig = (mode?: MODE): FormSchemaModel<IProduct>[] => [
         component:"SelectTrademark"
     },
     {
-        field: 'images',
-        label: 'Hình ảnh ',
-        component:"InputImg",
-    },
-    {
         field: 'soHieu',
         label: 'Số hiệu',
     },
@@ -87,6 +82,11 @@ export const dataConfig = (mode?: MODE): FormSchemaModel<IProduct>[] => [
     {
         field: 'chongNuoc',
         label: 'Chống nước',
+    },
+    {
+        field: 'images',
+        label: 'Hình ảnh ',
+        component:"InputImg",
     },
    
 ]
