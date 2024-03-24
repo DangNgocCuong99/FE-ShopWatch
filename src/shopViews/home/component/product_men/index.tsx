@@ -11,7 +11,7 @@ const ProductMen = () => {
 
   const handleFetchProduct = async () => {
     try {
-      const res = await productApi.getAll({ page: 1, pageSize: 12 });
+      const res = await productApi.getAll({ page: 1, pageSize: 12 ,gioiTinh:"nam"});
       setListProduct(res.data.items);
     } catch (error) {}
   };
@@ -40,31 +40,7 @@ const ProductMen = () => {
             Đồng hồ nam
           </a>
         </h3>
-        {/* <ul className="menu-title">
-          <li className="nav-item">
-            <a className="a-img" href="/chat-lieu-day" title="CHẤT LIỆU DÂY">
-              CHẤT LIỆU DÂY
-            </a>
-          </li>
-          <li className="nav-item">
-            <a
-              className="a-img"
-              href="/thuong-hieu-hot"
-              title="THƯƠNG HIỆU HOT"
-            >
-              THƯƠNG HIỆU HOT
-            </a>
-          </li>
-          <li className="nav-item">
-            <a
-              className="a-img"
-              href="/cac-dong-dac-biet"
-              title="CÁC DÒNG ĐẶC BIỆT"
-            >
-              CÁC DÒNG ĐẶC BIỆT
-            </a>
-          </li>
-        </ul> */}
+
       </div>
       <div className="row">
         <div className="col-lg-4 col-xl-3 col-sm-4 col-12 order-2 order-md-1">

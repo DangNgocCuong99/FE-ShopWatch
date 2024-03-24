@@ -11,7 +11,7 @@ const ProductWomen = () => {
 
   const handleFetchProduct = async () => {
     try {
-      const res = await productApi.getAll({ page: 1, pageSize: 12 });
+      const res = await productApi.getAll({ page: 1, pageSize: 12 ,gioiTinh:"nu"});
       setListProduct(res.data.items);
     } catch (error) {}
   };
