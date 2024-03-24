@@ -39,10 +39,10 @@ const Footer = ()=>{
 								
 								</span></li>
 							<li>
-								<b>Điện thoại: </b><a title="1900 6750" href="tel:19006750">1900 6750</a>
+								<b>Điện thoại: </b><a title="1900 0000" href="tel:19006750">1900 0000</a>
 							</li>
 							<li>
-								<b>Email: </b><a title="support@sapo.vn" href="mailto:support@sapo.vn">support@sapo.vn</a>
+								<b>Email: </b><a title="a35141@thanglong.edu.vn" href="mailto:a35141@thanglong.edu.vn">a35141@thanglong.edu.vn</a>
 							</li>
 						</ul>
 					</div>	

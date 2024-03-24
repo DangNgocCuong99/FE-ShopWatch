@@ -84,8 +84,8 @@ const Header = ({
                   </svg>
                   <span>
                     Hotline:
-                    <a href="tel:19006750" title="1900 6750">
-                      1900 6750
+                    <a href="tel:19006750" title="1900 0000">
+                      1900 0000
                     </a>
                   </span>
                 </li>

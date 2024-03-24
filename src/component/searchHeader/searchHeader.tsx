@@ -36,7 +36,7 @@ const SearchHeader = () => {
           >
             <input
               className="input-group-field auto-search search-auto form-control"
-              placeholder="ban muon tim gi?"
+              placeholder="Bạn muốn tìm gì?"
               autoComplete="off"
               value={textSearch}
               onChange={(e) => {

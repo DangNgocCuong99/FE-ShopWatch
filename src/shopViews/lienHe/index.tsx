@@ -66,8 +66,8 @@ const LienHe = ()=>{
                   </div>
                   <div className="info">
                     <b>Hotline</b>
-                    <a title="1900 6750" href="tel:19006750">
-                      1900 6750
+                    <a title="1900 0000" href="tel:19006750">
+                      1900 0000
                     </a>
                   </div>
                 </li>
@@ -83,8 +83,8 @@ const LienHe = ()=>{
                   </div>
                   <div className="info">
                     <b>Email</b>
-                    <a title="support@sapo.vn" href="mailto:support@sapo.vn">
-                      support@sapo.vn
+                    <a title="a35141@thanglong.edu.vn" href="mailto:a35141@thanglong.edu.vn">
+                      a35141@thanglong.edu.vn
                     </a>
                   </div>
                 </li>
