@@ -209,7 +209,7 @@ const PopupQuickView = () => {
                             <button
                               type="submit"
                               className="btn_cool btn btn_base fix_add_to_cart ajax_addtocart btn_add_cart btn-cart add_to_cart add_to_cart_detail"
-                              onClick={()=>handleAddToCart(product._id)}
+                              onClick={()=>handleAddToCart()}
                             >
                               <span className="btn-content text_1">
                                 Thêm vào giỏ hàng

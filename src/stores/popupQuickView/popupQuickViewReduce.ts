@@ -9,7 +9,7 @@ const initialState:IPopupState = {
     product: undefined,
 };
 
-export const popupStore = createSlice({
+export const popupQuickViewStore = createSlice({
     name: "popupQuickViewStore",
     initialState,
     reducers: {
@@ -21,8 +21,8 @@ export const popupStore = createSlice({
 
 export const {
     setProductPopupQuickView
-} = popupStore.actions;
+} = popupQuickViewStore.actions;
 
 export const selectProductPopupQuickView = (state:any) => state.popupQuickViewReduce as IPopupState;
 
-export default popupStore.reducer;
+export default popupQuickViewStore.reducer;

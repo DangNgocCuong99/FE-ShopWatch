@@ -4,10 +4,11 @@ import { formattedNumber } from "/@/utils/stringUtil";
 import { selectCart, setListProduct } from "/@/stores/cart/cartReduce";
 import { useDispatch } from "react-redux";
 import { setProductPopup } from "/@/stores/popupItem/popupReduce";
-import { HeartFilled, HeartOutlined } from "@ant-design/icons";
+import { HeartOutlined, HeartTwoTone } from "@ant-design/icons";
 import { message } from "antd";
 import { SetStateAction, useState } from "react";
 import { setProductPopupQuickView } from "/@/stores/popupQuickView/popupQuickViewReduce";
+import { setTotalFavorite } from "/@/stores/favorite/favoriteReduce";
 
 export const renderProductTest = (
   dataApi: IProduct[],
@@ -42,11 +43,21 @@ export const renderProductTest = (
     dispatch(setListProduct(res.data as unknown as any[]));
   };
 
+  const fetchDataFavorite = async () => {
+    try {
+      const res = await favoriteApi.getAll() 
+      dispatch(setTotalFavorite(res.data.items.length || 0));
+    } catch (error) {
+      console.error("Error fetching favorite list:", error);
+    }
+  };
+
   const handleFaverite = async (id: string) => {
     try {
       const res = (await favoriteApi.create({ productId: id })) as {
         message: string;
       };
+      await fetchDataFavorite()
       message.info(res.message);
       setListProducts((product) =>
         product?.map((val, i) => {
@@ -142,9 +153,11 @@ export const renderProductTest = (
                   className="setWishlist btn-wishlist btn-views"
                   data-wish="tissot-tradition-t063-617-36-037-00-nam-quartz-pin-mat-so-42-mm-chronograph-kinh-sapphire"
                   tabIndex={0}
-                  title="Thêm vào yêu thích"
+                  title={!i.favorite ? "Thêm vào yêu thích" :"Huỷ yêu thích"}
                 >
-                  {i.favorite ? <HeartOutlined /> : <HeartFilled />}
+                  {i.favorite ? 
+                  <HeartTwoTone /> 
+                  : <HeartOutlined />}
                 </a>
               </div>
               <div className="tag-km">

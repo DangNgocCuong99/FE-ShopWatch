@@ -122,8 +122,6 @@ const FlashSale = () => {
               <div className="count-down">
                 <div
                   className="timer-view"
-                  data-countdown="countdown"
-                  data-date="2023-12-30-00-00-00"
                 >
                   <div className="block-timer">
                     <p>

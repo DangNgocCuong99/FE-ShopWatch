@@ -12,8 +12,6 @@ const PopupItem = ()=>{
     const cartStore = useSelector(selectCart)
     const [infoCart , setInfoCart] = useState({price:0,quantity:0})
     useEffect(()=>{
-      console.log("effect");
-      
         if(popupStore.product){
             setProduct(popupStore.product)
             setMode(true)

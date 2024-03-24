@@ -16,7 +16,7 @@ const Product = () => {
 
   const handleFetchProduct = async () => {
     try {
-      const res = (await productApi.getAll({ page: 1, pageSize: 10000 })) as {
+      const res = (await productApi.getAll({ page: 1, pageSize: 10000 ,sortBy })) as {
         data: { items: IProduct[] };
       };
       setListProduct(res.data.items);
@@ -782,45 +782,45 @@ const Product = () => {
                   Xếp theo:
                 </h3>
                 <ul>
-                  <li className="btn-quick-sort alpha-asc">
+                  <li className={"btn-quick-sort alpha-asc"+ (sortBy===sortProduct.nameUp ? " active": "")}>
                     <a
-                      onClick={()=>setSortBy(sortProduct.nameUp)}
+                      onClick={()=>{setSortBy(sortProduct.nameUp),handleFetchProduct()}}
                       title="Tên A-Z"
                     >
                       <i />
                       Tên A-Z
                     </a>
                   </li>
-                  <li className="btn-quick-sort alpha-desc">
+                  <li className={"btn-quick-sort alpha-desc" + (sortBy===sortProduct.nameDown ? " active": "")}>
                     <a
-                       onClick={()=>setSortBy(sortProduct.nameDown)}
+                       onClick={()=>{setSortBy(sortProduct.nameDown),handleFetchProduct()}}
                       title="Tên Z-A"
                     >
                       <i />
                       Tên Z-A
                     </a>
                   </li>
-                  <li className="btn-quick-sort position-desc">
+                  <li className={"btn-quick-sort position-desc" + (sortBy===sortProduct.createdAtUp ? " active": "")}>
                     <a
-                       onClick={()=>setSortBy(sortProduct.createdAtUp)}
+                       onClick={()=>{setSortBy(sortProduct.createdAtUp),handleFetchProduct()}}
                       title="Hàng mới"
                     >
                       <i />
                       Hàng mới
                     </a>
                   </li>
-                  <li className="btn-quick-sort price-asc">
+                  <li className={"btn-quick-sort price-asc" + (sortBy===sortProduct.priceUp ? " active": "")}>
                     <a
-                      onClick={()=>setSortBy(sortProduct.priceUp)}
+                      onClick={()=>{setSortBy(sortProduct.priceUp),handleFetchProduct()}}
                       title="Giá thấp đến cao"
                     >
                       <i />
                       Giá thấp đến cao
                     </a>
                   </li>
-                  <li className="btn-quick-sort price-desc">
+                  <li className={"btn-quick-sort price-desc"+ (sortBy===sortProduct.priceDown ? " active": "")}>
                     <a
-                     onClick={()=>setSortBy(sortProduct.priceDown)}
+                     onClick={()=>{setSortBy(sortProduct.priceDown),handleFetchProduct()}}
                       title="Giá cao xuống thấp"
                     >
                       <i />
