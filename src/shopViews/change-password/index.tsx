@@ -1,4 +1,21 @@
+import { useEffect, useState } from "react";
+import { useUserApi } from "/@/apis";
+
 const ChangePassword = ()=>{
+  const [name, setName] = useState<string>();
+  const { userApi } = useUserApi();
+  const HandleGetUser = async () => {
+    try {
+      const res = await userApi.getCurrentUser();
+      setName(res.data.username);
+      
+    } catch (error) {}
+  };
+  useEffect(() => {
+    HandleGetUser();
+  }, []);
+
+
     return (
         <>
         <section className="signup page_customer_account">
@@ -8,7 +25,7 @@ const ChangePassword = ()=>{
         <div className="block-account">
           <h5 className="title-account">Trang tài khoản</h5>
           <p>
-            Xin chào, <span style={{ color: "#000000" }}>Nguyen Van Nam</span>
+            Xin chào, <span style={{ color: "#000000" }}>{name}</span>
             &nbsp;!
           </p>
           <ul>

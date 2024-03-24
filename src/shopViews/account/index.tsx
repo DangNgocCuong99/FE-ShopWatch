@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useUserApi } from "/@/apis";
-import { Button } from "antd";
+import { Button, Flex } from "antd";
 const Account = () => {
   const [mode, setMode] = useState<string>();
   const [name, setName] = useState<string>();
@@ -70,24 +70,27 @@ const Account = () => {
               </div>
             </div>
             <div className="col-xs-12 col-sm-12 col-lg-9 col-right-ac">
+              <div style={{display:"flex"}}>
               <h1 className="title-head margin-top-0">Thông tin tài khoản</h1>
-
               {mode === "edit" ? (
-                <button style={{ backgroundColor: "blue" }} onClick={() => {HandleUpdate()}}>
+                <button style={{ color:'white',backgroundColor: "black",marginLeft: '30px',width: '50px',height:'25px' }} onClick={() => {HandleUpdate()}}>
                   {" "}
-                  luu
+                  Save
                 </button>
               ) : (
                 <button
-                  style={{ backgroundColor: "red" }}
+                  style={{  color:'white',backgroundColor: "black",marginLeft: '30px',width: '50px',height:'25px' }}
                   onClick={() => {
                     setMode("edit");
                   }}
                 >
                   {" "}
-                  Sua
+                  Edit
                 </button>
               )}
+              </div>
+              
+
               <div className="form-signup name-account m992">
                 <p>
                   <strong>Họ tên:</strong>{" "}

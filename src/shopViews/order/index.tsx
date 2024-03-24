@@ -1,12 +1,16 @@
 import { useEffect, useState } from "react"
 import { useInvoiceApi } from "/@/apis"
 import { IInvoice } from "/@/apis/invoiceApi/types"
+import { useUserApi } from "/@/apis";
 import { formattedNumber } from "/@/utils/stringUtil"
+import dayjs from "dayjs"
+
 
 const Order = ()=>{
   const [listOrder , setListOrder] = useState<IInvoice[]>([])
   const {invoiceApi} = useInvoiceApi()
-
+  const [name, setName] = useState<string>();
+  const { userApi } = useUserApi();
   const handleGetOrder = async ()=>{
     try {
       const order = await invoiceApi.getAll() 
@@ -15,9 +19,17 @@ const Order = ()=>{
       
     }
   }
+  const HandleGetUser = async () => {
+    try {
+      const res = await userApi.getCurrentUser();
+      setName(res.data.username);
+      
+    } catch (error) {}
+  };
   
   useEffect(()=>{
     handleGetOrder()
+    HandleGetUser()
   },[])
 
 
@@ -30,7 +42,7 @@ const Order = ()=>{
         <div className="block-account">
           <h5 className="title-account">Trang tài khoản</h5>
           <p>
-            Xin chào, <span style={{ color: "#000000" }}>Nguyen Van Nam</span>
+            Xin chào, <span style={{ color: "#000000" }}>{name}</span>
             &nbsp;!
           </p>
           <ul>
@@ -94,7 +106,7 @@ const Order = ()=>{
                               {item._id}
                             </a>
                           </td>
-                          <td>{item.createdAt}</td>
+                          <td>{dayjs(item?.createdAt).format('DD-MM-YYYY')}</td>
                           <td>{item.address}</td>
                           <td>
                             <span className="price">{formattedNumber(item.totalAmount)}₫</span>
