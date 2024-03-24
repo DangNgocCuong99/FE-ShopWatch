@@ -36,5 +36,6 @@ export enum EndPoint {
   cart='cart',
   invoice='invoice',
   payment='payment',
-  favorite='favorite'
+  favorite='favorite',
+  voucher="voucher"
 }

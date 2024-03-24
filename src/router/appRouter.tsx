@@ -22,6 +22,10 @@ import ManageInvoice from "../views/invoice/danh-sach";
 import CreateInvoice from "../views/invoice/xu-ly/create";
 import EditInvoice from "../views/invoice/xu-ly/edit";
 import ViewInvoice from "../views/invoice/xu-ly/view";
+import ManageVoucher from "../views/voucher/danh-sach";
+import CreateVoucher from "../views/voucher/xu-ly/create";
+import EditVoucher from "../views/voucher/xu-ly/edit";
+import ViewVoucher from "../views/voucher/xu-ly/view";
 
 const appRoutes: RouteType[] = [
   {
@@ -107,6 +111,36 @@ const appRoutes: RouteType[] = [
         state: "trademark.view",
         element:<ViewTrademark/>,
         displayText:"Chi tiết thương hiệu",
+        hiddenMenu:true
+      }
+    ]
+  },
+  {
+    path: "voucher",
+    state: "voucher",
+    element: <ManageVoucher/>,
+    displayText:"Quản lý mã giảm giá",
+    icon: <TrademarkCircleOutlined />,
+    child:[
+      {
+        path:"add",
+        state: "voucher.add",
+        element:<CreateVoucher/>,
+        displayText:'Thêm mã giảm giá',
+        hiddenMenu:true
+      },
+      {
+        path:"edit/:id",
+        state: "voucher.edit",
+        element:<EditVoucher/>,
+        displayText:'Sửa mã giảm giá',
+        hiddenMenu:true
+      },
+      {
+        path:"view/:id",
+        state: "voucher.view",
+        element:<ViewVoucher/>,
+        displayText:"Chi tiết mã giảm giá",
         hiddenMenu:true
       }
     ]

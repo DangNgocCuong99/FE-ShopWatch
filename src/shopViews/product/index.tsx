@@ -12,14 +12,15 @@ const Product = () => {
   const { trademarkApi } = useTrademarkApi();
   const [listProduct, setListProduct] = useState<IProduct[]>();
   const [listTrademark, setListTrademark] = useState<ITrademark[]>();
-  const [sortBy,setSortBy] = useState<sortProduct>()
+  const [sortBy,setSortBy] = useState<sortProduct>(sortProduct.nameUp)
 
   const handleFetchProduct = async () => {
     try {
+      setListProduct(()=>[])
       const res = (await productApi.getAll({ page: 1, pageSize: 10000 ,sortBy })) as {
         data: { items: IProduct[] };
       };
-      setListProduct(res.data.items);
+      setListProduct(()=>res.data.items);
     } catch (error) {}
   };
 

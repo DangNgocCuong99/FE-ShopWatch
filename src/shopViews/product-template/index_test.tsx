@@ -5,7 +5,7 @@ import { selectCart, setListProduct } from "/@/stores/cart/cartReduce";
 import { useDispatch } from "react-redux";
 import { setProductPopup } from "/@/stores/popupItem/popupReduce";
 import { HeartOutlined, HeartTwoTone } from "@ant-design/icons";
-import { message } from "antd";
+import { Card, message } from "antd";
 import { SetStateAction, useState } from "react";
 import { setProductPopupQuickView } from "/@/stores/popupQuickView/popupQuickViewReduce";
 import { setTotalFavorite } from "/@/stores/favorite/favoriteReduce";
@@ -72,7 +72,6 @@ export const renderProductTest = (
 
   return (
     <>
- 
       {dataApi?.map((i, index) => (
         <div
           className={

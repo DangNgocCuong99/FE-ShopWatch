@@ -29,5 +29,5 @@ export interface IProduct {
   favorite:boolean,
   isNewProject:boolean,
   isBestSale:boolean,
-  isHot:boolean
+  isHot:boolean,
 }

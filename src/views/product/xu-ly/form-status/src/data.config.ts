@@ -9,6 +9,10 @@ export const dataConfig = (mode?: MODE): FormSchemaModel<IProduct>[] => [
         label: 'Tên sản phẩm',
     },
     {
+        field: 'quantity',
+        label: 'Số lượng',
+    },
+    {
         field: 'originalPrice',
         label: 'Giá gốc',
     },

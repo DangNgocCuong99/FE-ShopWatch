@@ -7,6 +7,7 @@ import { XuLyCartApi } from './cart';
 import { XuLyInvoiceApi } from './invoice';
 import { XuLyPaymentApi } from './payment';
 import { XuLyFavoriteApi } from './favorite';
+import { XuLyVoucherApi } from './voucher';
 let apiStatusInstance: InstanceType<typeof XuLyStatusApi>;
 let apiUserInstance: InstanceType<typeof XuLyUserApi>;
 let apiAuthInstance: InstanceType<typeof XuLyAuthApi>;
@@ -16,6 +17,7 @@ let apiCartInstance: InstanceType<typeof XuLyCartApi>
 let appInvoiceInstance: InstanceType<typeof XuLyInvoiceApi>
 let appPaymentInstance: InstanceType<typeof XuLyPaymentApi>
 let appFavoriteInstance: InstanceType<typeof XuLyFavoriteApi>
+let appVoucherInstance: InstanceType<typeof XuLyVoucherApi>
 
 export const useStatusApi = (): XuLyStatusApi => {
     if (!apiStatusInstance) {
@@ -80,4 +82,11 @@ export const useStatusApi = (): XuLyStatusApi => {
       appFavoriteInstance = new XuLyFavoriteApi();
     }
     return appFavoriteInstance
+  }
+
+  export const useVoucherApi = (): XuLyVoucherApi => {
+    if (!appVoucherInstance){
+      appVoucherInstance = new XuLyVoucherApi();
+    }
+    return appVoucherInstance
   }
