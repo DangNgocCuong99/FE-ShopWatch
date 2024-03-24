@@ -211,7 +211,7 @@ const DetailOrder = () => {
                       <tfoot>
                         <tr className="order_summary discount">
                           <td>Khuyến mại </td>
-                          <td className="total money right">0₫</td>
+                          <td className="total money right">{formattedNumber(order?.discount || 0)}₫</td>
                         </tr>
                         <tr className="order_summary ">
                           <td>Phí vận chuyển</td>
@@ -223,7 +223,7 @@ const DetailOrder = () => {
                           <td>Tổng tiền</td>
                           <td className="right">
                             <strong style={{ color: "#CA170E", fontSize: 19 }}>
-                              {order && formattedNumber(order?.totalAmount + 40000)}₫
+                              {order && formattedNumber(order?.totalAmount + 40000 -( order?.discount || 0))}₫
                             </strong>
                           </td>
                         </tr>

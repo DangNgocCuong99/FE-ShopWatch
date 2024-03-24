@@ -28,7 +28,7 @@ const CheckOut = () => {
   const [selectAddress, setSelectAddress] = useState<"other" | "current">(
     "current"
   );
-  const [codeVoucher, setCodeVoucher] = useState();
+  const [codeVoucher, setCodeVoucher] = useState<string>();
   const [notes, setNotes] = useState();
   const navigation = useNavigate();
   const [statusVoucher, setStatusVoucher] = useState(true);
@@ -44,9 +44,10 @@ const CheckOut = () => {
   const handleGetVoucher = async()=>{
     try {
       if(!codeVoucher) return
-      const res = await voucherApi.getById(codeVoucher)
+      const res = await voucherApi.checkVoucher(codeVoucher)
       if (res.status) {
         setStatusVoucher(true)
+        setDiscount(res.data.discount)
       }else{
         setStatusVoucher(false)
       }
@@ -702,18 +703,14 @@ const CheckOut = () => {
                                 type="text"
                                 className="field__input"
                                 autoComplete="off"
-                                data-bind-disabled="isLoadingReductionCode"
-                                data-bind-event-keypress="handleReductionCodeKeyPress(event)"
-                                data-define="{reductionCode: null}"
-                                data-bind="reductionCode"
+                                value={codeVoucher}
+                                onChange={(e)=>{setCodeVoucher(e.target.value),setDiscount(0)}}
                               />
                               <button
-                                className="field__input-btn btn spinner btn--disabled"
+                                className={"field__input-btn btn spinner"}
                                 type="button"
-                                data-bind-disabled="isLoadingReductionCode || !reductionCode"
-                                data-bind-class="{'spinner--active': isLoadingReductionCode, 'btn--disabled': !reductionCode}"
-                                data-bind-event-click="applyReductionCode()"
-                                disabled=""
+                                disabled={codeVoucher ? false :true}
+                                onClick={()=>handleGetVoucher()}
                               >
                                 <span className="spinner-label">Áp dụng</span>
                                 <svg
@@ -726,7 +723,7 @@ const CheckOut = () => {
                             </div>
                           </div>
                           <p
-                            className="field__message field__message--error field__message--error-always-show hide"
+                            className={"field__message field__message--error field__message--error-always-show"+( statusVoucher ? " hide": "")}
                             data-bind-show="!isLoadingReductionCode && isLoadingReductionCodeError"
                             data-bind="loadingReductionCodeErrorMessage"
                           >
@@ -773,6 +770,16 @@ const CheckOut = () => {
                             40.000₫
                           </td>
                         </tr>
+
+                        <tr className="total-line total-line--shipping-fee">
+                          <th className="total-line__name">Giảm giá</th>
+                          <td
+                            className="total-line__price"
+                            data-bind="getTextShippingPrice()"
+                          >
+                            {formattedNumber(discount || 0)}₫
+                          </td>
+                        </tr>
                       </tbody>
                       <tfoot className="total-line-table__footer">
                         <tr className="total-line payment-due">
@@ -786,7 +793,7 @@ const CheckOut = () => {
                               className="payment-due__price"
                               data-bind="getTextTotalPrice()"
                             >
-                              {formattedNumber(infoCart.price + 40000)}₫
+                              {formattedNumber(infoCart.price + 40000 - (discount || 0))}₫
                             </span>
                           </td>
                         </tr>

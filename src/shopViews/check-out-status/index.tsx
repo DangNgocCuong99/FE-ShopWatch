@@ -203,6 +203,12 @@ const CheckOutStatus = () => {
                               </th>
                               <td className="total-line__price">40.000₫</td>
                             </tr>
+                            <tr className="total-line total-line--shipping-fee">
+                              <th className="total-line__name">
+                                Giảm giá
+                              </th>
+                              <td className="total-line__price">{formattedNumber(invoice.discount || 0)}₫</td>
+                            </tr>
                           </tbody>
                         </table>
                       </div>
@@ -217,7 +223,7 @@ const CheckOutStatus = () => {
                               </th>
                               <td className="total-line__price">
                                 <span className="payment-due__price">
-                                {invoice && formattedNumber(handleTinhTong(invoice.items)+ 40000)}₫
+                                {invoice && formattedNumber(handleTinhTong(invoice.items)+ 40000 - (invoice.discount || 0))}₫
                                 </span>
                               </td>
                             </tr>
