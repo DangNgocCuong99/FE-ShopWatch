@@ -24,13 +24,6 @@ function EditInvoice() {
     const handleFetchDetail = async () => {
         const res = await invoiceApi.getById(id)
             form.setFieldsValue(res.data)
-            // form.setFieldValue('images',  res.data.images.map((i,key)=>({
-            //     uid: key,
-            //     name: i!.substring(i!.lastIndexOf("/") + 25),
-            //     status: 'done',
-            //     url: i,
-            //     thumbUrl: i,
-            //   }))) 
     }
 
     const [form] = Form.useForm();
@@ -38,9 +31,8 @@ function EditInvoice() {
         try {
             await form.validateFields()
             const dataForm = await form.getFieldsValue()
-            const linkImages = dataForm.images.map((i: { url: string; response: string; })=> i.url ? i.url : i.response)
-            const tranformData = {...dataForm, images: linkImages}
-            await trademarkApi.updateById(id, tranformData)
+            const tranformData = {statusPayment :dataForm.statusPayment, statusInvoice: dataForm.statusInvoice}
+            await invoiceApi.updateById(id, tranformData)
             handleGoDetail()
         } catch (error) {
 

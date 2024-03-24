@@ -7,14 +7,17 @@ export const dataConfig = (mode?: MODE): FormSchemaModel<IInvoice>[] => [
     {
         field: 'userName',
         label: 'Tên người dùng',
+        disabled:true
     },
     {
         field: 'address',
         label: 'Địa chỉ',
+        disabled:true
     },
     {
         field: 'phone',
         label: 'Số điện thoại',
+        disabled:true
     },
     {
         field: 'statusInvoice',
@@ -31,7 +34,8 @@ export const dataConfig = (mode?: MODE): FormSchemaModel<IInvoice>[] => [
                 { value: statusPayment.paid , label: 'Đã thanh toán (bank)' },
                 { value: statusPayment.unpaid, label: 'Chưa thanh toán (bank)' },
             ]
-        }
+        },
+        disabled:true
     },
     {
         field: 'transportFee',
