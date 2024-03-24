@@ -7,6 +7,7 @@ import Footer from "../footer/Footer";
 import { findContentBypath, headerMenuItems } from "../sideBar/dataConfig";
 import BreadCrumb from "../breadcumb";
 import PopupItem from "./popupItem";
+import PopupQuickView from "./popupQuickView";
 
 const checkToken = () => {
   const token = () => localStorage.getItem("token"); // Lấy token từ localStorage hoặc nơi lưu trữ token khác
@@ -54,6 +55,7 @@ const Layout = () => {
       </div>
       <Footer />
       <PopupItem />
+      <PopupQuickView/>
     </div>
   );
 };

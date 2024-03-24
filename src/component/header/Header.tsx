@@ -179,7 +179,7 @@ const Header = ({
                           <li>
                           <a
                             title="Quản lý shop"
-                            onClick={() => navigation("/manage/home")}
+                            onClick={() => navigation("/manage/dashboard")}
                           >
                             Quản lý shop
                           </a>

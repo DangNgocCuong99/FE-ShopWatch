@@ -11,26 +11,38 @@ const Cart = () => {
   const cartStore = useSelector(selectCart)
   const {cartApi} = useCartApi()
   const token = localStorage.getItem("token");
+  const [infoCart , setInfoCart] = useState({price:0,quantity:0})
 
     useEffect(()=>{
       handleGetDataCart()
     },[token])
+
+    useEffect(()=>{
+      if(
+        cartStore.listProduct?.length > 0 
+      ){
+        handleSumCart()
+      }
+    },[cartStore])
 
     const handleGetDataCart =async () => {
       const res = await cartApi.getAll()
       dispatch(setListProduct(res.data as unknown as any[]))
     }
 
-    const handleTinhTong = (data : ICart[])=>{
+    const handleSumCart = () =>{
       let price = 0
-      for (let index = 0; index < data?.length; index++) {
-        price += data[index].discountedPrice * data[index].quantity       
+      let quantity = 0 
+      for (let index = 0; index < cartStore.listProduct.length; index++) {
+        price += cartStore.listProduct[index].discountedPrice * cartStore.listProduct[index].quantity   
+        quantity += cartStore.listProduct[index].quantity    
       }
-      return price
+      setInfoCart({price:price,quantity:quantity})
     }
+
     const handleAddToCart = async(id:string)=>{
           try {
-              await cartApi.create({productId:id})
+              await cartApi.create({productId:id, quantity:1})
               handleGetDataCart()
           } catch (error) {
             
@@ -163,7 +175,7 @@ const Cart = () => {
               ></path>
             </g>
           </svg>
-          <span className="count count_item_pr">{cartStore.listProduct?.length || 0}</span>
+          <span className="count count_item_pr">{infoCart.quantity}</span>
         </a>
         <div className="top-cart-content">
           <div className="CartHeaderContainer">
@@ -182,7 +194,7 @@ const Cart = () => {
                   <div className="cart__subtotal">
                     <div className="cart__col-6">Tổng tiền:</div>
                     <div className="text-right cart__totle">
-                      <span className="total-price">{formattedNumber(handleTinhTong(cartStore.listProduct))}₫</span>
+                      <span className="total-price">{formattedNumber(infoCart.price)}₫</span>
                     </div>
                   </div>
                 </div>

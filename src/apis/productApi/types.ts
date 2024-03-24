@@ -26,5 +26,8 @@ export interface IProduct {
   chongNuoc: string;
   quantity:number,
   sold:number,
-  favorite:boolean
+  favorite:boolean,
+  isNewProject:boolean,
+  isBestSale:boolean,
+  isHot:boolean
 }
