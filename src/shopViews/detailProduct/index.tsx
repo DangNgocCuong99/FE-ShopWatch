@@ -434,7 +434,7 @@ useEffect(()=>{
     <div className="flex-quantity">
       <div className="custom custom-btn-number show">
         <label className="sl section">Số lượng:</label>
-        <div className="input_number_product form-control">
+        <div className="input_number_product form-control" style={{display:"flex"}}>
           <button
             className="btn_num num_1 button button_qty"
             onclick="var result = document.getElementById('qtym'); var qtypro = result.value; if( !isNaN( qtypro ) && qtypro > 1 ) result.value--;return false;"

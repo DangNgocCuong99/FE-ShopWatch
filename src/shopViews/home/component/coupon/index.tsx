@@ -8,6 +8,7 @@ const Coupon = () => {
   const [listVoucher,setListVoucher] = useState<IVoucher[]>()
   const [isPopupCoupon, setIsPopupCoupon] = useState(false);
   const {voucherApi} = useVoucherApi()
+  const [voucher, setVoucher] = useState<IVoucher>()
 
   const handleGetVoucher = async( )=>{
     try {
@@ -39,7 +40,7 @@ const Coupon = () => {
               <div className="content_wrap">
                 <a
                   title="Chi tiết"
-                  onClick={() => setIsPopupCoupon(true)}
+                  onClick={() => {setIsPopupCoupon(true),setVoucher(voucher)}}
                   className="info-button"
                 >
                   <svg
@@ -63,11 +64,14 @@ const Coupon = () => {
           </div>
         </div>
       </section>
-
+      {voucher && 
       <PopupCoupon
-        isShow={isPopupCoupon}
-        handleClose={() => setIsPopupCoupon(false)}
-      />
+      isShow={isPopupCoupon}
+      handleClose={() => setIsPopupCoupon(false)}
+      voucher={voucher}
+    />
+      }
+      
     </div>
   );
 };

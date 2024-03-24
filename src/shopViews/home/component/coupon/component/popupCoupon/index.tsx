@@ -1,5 +1,6 @@
 import './index.scss'
-const PopupCoupon = ({isShow, handleClose}:{isShow:boolean,handleClose : ()=> void}) => {
+import { IVoucher } from '/@/apis/voucherApi/types';
+const PopupCoupon = ({isShow, handleClose,voucher}:{isShow:boolean,handleClose : ()=> void,voucher:IVoucher}) => {
   return (
     <div id='popup-coupon-body'>
      {isShow ? (<div className="backdrop__body-backdrop___1rvky active" onClick={handleClose}/>):null} 
@@ -31,18 +32,16 @@ const PopupCoupon = ({isShow, handleClose}:{isShow:boolean,handleClose : ()=> vo
   <ul>
     <li>
       <span>Mã giảm giá:</span>
-      <span className="code">DOLA10</span>
+      <span className="code">{voucher.code}</span>
     </li>
     <li>
       <span>Ngày hết hạn:</span>
-      <span className="time">1/10/2023</span>
+      <span className="time">Vô thời hạn</span>
     </li>
     <li>
-      <span>Điều kiện:</span>
+      <span>Mô tả:</span>
       <span className="dieukien">
-        Áp dụng cho đơn hàng từ 200k trở lên
-        <br />
-        Không đi kèm với chương trình khác
+        {voucher.moTa}
       </span>
     </li>
   </ul>
