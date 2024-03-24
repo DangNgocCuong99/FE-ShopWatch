@@ -6,6 +6,8 @@ import SideBar from "../sideBar/sideBar";
 import { useNavigate } from "react-router-dom";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { useFavoriteApi } from "/@/apis";
+import { useDispatch, useSelector } from "react-redux";
+import { selectFavorite, setTotalFavorite } from "/@/stores/favorite/favoriteReduce";
 
 
 const getRole = ()=> localStorage.getItem("role")
@@ -19,27 +21,25 @@ const Header = ({
   const navigation = useNavigate();
   const token = localStorage.getItem("token");
   const { favoriteApi } = useFavoriteApi();
-  const [totalFavorites, setTotalFavorites] = useState(0);
+  const dispatch = useDispatch();
 
+  const favoriteStore = useSelector(selectFavorite)
   
     const fetchData = async () => {
       try {
-        // Gọi API để lấy danh sách sản phẩm yêu thích
-        const res = await favoriteApi.getAll();
-        const favoriteList = res.data; // Danh sách sản phẩm yêu thích
-        const totalCount = favoriteList.items?.length||0; // Đếm số lượng sản phẩm yêu thích
-        console.log(totalCount);
-        console.log(typeof totalCount);
-        setTotalFavorites(totalCount); // Cập nhật state với tổng số lượng sản phẩm yêu thích
+        const res = await favoriteApi.getAll() 
+        dispatch(setTotalFavorite(res.data.items.length || 0));
       } catch (error) {
         console.error("Error fetching favorite list:", error);
       }
     };
 
+    const getTotalFavorite = ()=>favoriteStore?.quantily || 0
+
     useEffect(() => {
       fetchData();
     }, []);
-  
+
   return (
     <>
       {/* {placeholder} */}
@@ -227,7 +227,7 @@ const Header = ({
                       ></path>
                     </svg>
                     <span className="count js-wishlist-count js-wishlist-count-mobile">
-                      {totalFavorites}
+                      {getTotalFavorite()}
                     </span>
                   </a>
                 </li>

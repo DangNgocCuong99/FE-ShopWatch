@@ -5,6 +5,7 @@ import systemStore from './multipleTab/multipleTabReduce';
 import cartReduce from './cart/cartReduce';
 import popupReduce from './popupItem/popupReduce';
 import popupQuickViewReduce from './popupQuickView/popupQuickViewReduce';
+import favoriteReduce from './favorite/favoriteReduce';
 
 export const store = configureStore({
     reducer: {
@@ -12,7 +13,8 @@ export const store = configureStore({
         multipleTab: systemStore,
         cartReduce:cartReduce,
         popupReduce:popupReduce,
-        popupQuickViewReduce:popupQuickViewReduce
+        popupQuickViewReduce:popupQuickViewReduce,
+        favoriteReduce:favoriteReduce
     },
 });
 
