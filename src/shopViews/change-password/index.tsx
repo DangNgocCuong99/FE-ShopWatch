@@ -44,11 +44,11 @@ const ChangePassword = ()=>{
                 Đổi mật khẩu
               </a>
             </li>
-            <li>
+            {/* <li>
               <a className="title-info" href="/account/addresses">
                 Sổ địa chỉ (1)
               </a>
-            </li>
+            </li> */}
           </ul>
         </div>
       </div>

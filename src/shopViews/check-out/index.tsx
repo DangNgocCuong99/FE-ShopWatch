@@ -2,7 +2,7 @@ import PhoneInput from "react-phone-input-2";
 import "./index.css";
 import { useEffect, useState } from "react";
 import "react-phone-input-2/lib/style.css";
-import { useInvoiceApi, usePaymentApi } from "/@/apis";
+import { useInvoiceApi, usePaymentApi, useUserApi } from "/@/apis";
 import { statusInvoice, statusPayment } from "/@/utils";
 import { useSelector } from "react-redux";
 import { selectCart } from "/@/stores/cart/cartReduce";
@@ -24,7 +24,31 @@ const CheckOut = () => {
   const [selectedDistrict, setSelectedDistrict] = useState("");
   const [selectedWard, setSelectedWard] = useState("");
   const [payments, setPayments] = useState("");
+  const [selectAddress, setSelectAddress] = useState<"other"|"current">("current");
+  const [codeVoucher, setCodeVoucher] = useState()
+  const [notes, setNotes] = useState()
   const navigation = useNavigate();
+
+
+  const [name, setName] = useState<string>();
+  const [email, setEmail] = useState<string>();
+  const [address, setAddress] = useState<string>();
+  const { userApi } = useUserApi();
+  
+
+  const HandleGetUser = async () => {
+    try {
+      const res = await userApi.getCurrentUser();
+      setName(res.data.username);
+      setEmail(res.data.email);
+      setPhoneNumber(res.data.phoneNumber);
+      setAddress(res.data.address);
+    } catch (error) {}
+  };
+
+  useEffect(() => {
+    HandleGetUser();
+  }, []);
 
   const handleProvinceChange = (e) => {
     const provinceId = e.target.value;
@@ -141,26 +165,21 @@ const CheckOut = () => {
                               htmlFor="customer-address"
                               className="field__label"
                             >
-                              Sổ địa chỉ
+                              Địa chỉ
                             </label>
                             <select
                               size={1}
                               className="field__input field__input--select"
                               id="customer-address"
                               data-bind="customerAddress"
+                              value={selectAddress}
+                              onChange={(e)=>setSelectAddress(e.target.value as "current" | "other")}
                             >
-                              <option value={0}>Địa chỉ khác...</option>
+                              <option value={"other"}>Địa chỉ khác...</option>
                               <option
-                                selected="selected"
-                                data-name="Nguyen Van Nam"
-                                data-address=""
-                                data-phone={+84389993293}
-                                data-province={1}
-                                data-district={1}
-                                data-ward={3291}
+                                value={"current"}
                               >
-                                Nguyen Van Nam, Phường Phú Thịnh, Thị xã Sơn
-                                Tây, Hà Nội
+                                {address}
                               </option>
                             </select>
                             <div className="field__caret">
@@ -177,9 +196,9 @@ const CheckOut = () => {
                               id="email"
                               type="email"
                               className="field__input"
-                              data-bind="email"
-                              defaultValue="nguyenvannam@gmail.com"
                               disabled={true}
+                              value={email}
+                              onChange={(e)=>setEmail(e.target.value)}
                             />
                           </div>
                         </div>
@@ -199,8 +218,8 @@ const CheckOut = () => {
                               id="billingName"
                               type="text"
                               className="field__input"
-                              data-bind="billing.name"
-                              defaultValue="Nguyen Van Nam"
+                              value={name}
+                              onChange={(e)=>setName(e.target.value)}
                             />
                           </div>
                         </div>
@@ -225,34 +244,15 @@ const CheckOut = () => {
                             />
                           </div>
                         </div>
-                        <div
-                          className="field "
-                          data-bind-class="{'field--show-floating-label': billing.address}"
-                        >
-                          <div className="field__input-wrapper">
-                            <label
-                              htmlFor="billingAddress"
-                              className="field__label"
-                            >
-                              Địa chỉ (tùy chọn)
-                            </label>
-                            <input
-                              name="billingAddress"
-                              id="billingAddress"
-                              type="text"
-                              className="field__input"
-                              data-bind="billing.address"
-                              defaultValue=""
-                            />
-                          </div>
-                        </div>
+                        {selectAddress === "other" && 
+                        <>
                         <div className="field field--show-floating-label ">
                           <div className="field__input-wrapper field__input-wrapper--select2">
                             <label
                               htmlFor="billingProvince"
                               className="field__label"
                             >
-                              Tỉnh thành
+                              Tỉnh thành(tùy chọn)
                             </label>
                             <select
                               name="billingProvince"
@@ -351,6 +351,9 @@ const CheckOut = () => {
                             </select>
                           </div>
                         </div>
+                        </>
+                        }
+                        
                       </div>
                     </div>
                   </section>
@@ -365,11 +368,9 @@ const CheckOut = () => {
                           Ghi chú (tùy chọn)
                         </label>
                         <textarea
-                          name="note"
-                          id="note"
                           className="field__input"
-                          data-bind="note"
-                          defaultValue={""}
+                          value={notes}
+                          onChange={(e)=>setNotes(e.target.value)}
                         />
                       </div>
                     </div>

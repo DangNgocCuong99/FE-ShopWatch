@@ -3,7 +3,6 @@ import "./index.css";
 import { selectCart, setListProduct } from "/@/stores/cart/cartReduce";
 import { useDispatch ,useSelector} from "react-redux";
 import { useCartApi } from "/@/apis";
-import { ICart } from "/@/apis/cartApi/types";
 import { formattedNumber } from "/@/utils/stringUtil";
 
 const Cart = () => {

@@ -61,11 +61,7 @@ const Account = () => {
                       Đổi mật khẩu
                     </a>
                   </li>
-                  <li>
-                    <a className="title-info" href="/account/addresses">
-                      Sổ địa chỉ (1)
-                    </a>
-                  </li>
+                  
                 </ul>
               </div>
             </div>

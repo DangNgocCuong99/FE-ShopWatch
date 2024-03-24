@@ -171,7 +171,7 @@ const Address = () => {
                       Đổi mật khẩu
                     </a>
                   </li>
-                  <li>
+                  {/* <li>
                     <a
                       // disabled="disabled"
                       className="title-info active"
@@ -179,7 +179,7 @@ const Address = () => {
                     >
                       Sổ địa chỉ (2)
                     </a>
-                  </li>
+                  </li> */}
                 </ul>
               </div>
             </div>
