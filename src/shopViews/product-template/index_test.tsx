@@ -126,14 +126,16 @@ export const renderProductTest = (
                 name="variantId"
                 defaultValue={91048217}
               />
+              
               <div className="action">
-                <button
+              {i.quantity >= 1 && (<button
                   className="btn-cart btn-views add_to_cart "
                   title="Mua ngay"
                   onClick={() => handleAddToCart(i)}
                 >
                   Mua ngay
-                </button>
+                </button>)}
+                
                 <a
                   title="Xem nhanh"
                   data-handle="tissot-tradition-t063-617-36-037-00-nam-quartz-pin-mat-so-42-mm-chronograph-kinh-sapphire"

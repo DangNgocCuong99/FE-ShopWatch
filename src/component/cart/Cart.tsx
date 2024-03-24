@@ -17,11 +17,9 @@ const Cart = () => {
     },[token])
 
     useEffect(()=>{
-      if(
-        cartStore.listProduct?.length > 0 
-      ){
-        handleSumCart()
-      }
+      
+      handleSumCart()
+      
     },[cartStore])
 
     const handleGetDataCart =async () => {
@@ -198,7 +196,7 @@ const Cart = () => {
                   </div>
                 </div>
                 <div className="cart__btn-proceed-checkout-dt">
-                  <button
+                  {infoCart.quantity>0 && (<button
                     onClick={() => {window.location.href="/check-out"}}
                     type="button"
                     className="button btn btn-default cart__btn-proceed-checkout"
@@ -206,7 +204,8 @@ const Cart = () => {
                     title="Thanh toán"
                   >
                     Thanh toán
-                  </button>
+                  </button>)}
+                  
                 </div>
               </div>
             </form>
