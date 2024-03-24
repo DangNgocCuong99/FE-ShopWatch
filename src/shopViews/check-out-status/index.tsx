@@ -127,10 +127,10 @@ const CheckOutStatus = () => {
                           </div>
                           <div className="col col--md-two">
                             <h2>Địa chỉ nhận hàng</h2>
-                            <p>dang cuong</p>
-                            <p>hà nội</p>
-                            <p>Phường Phú Thịnh, Thị xã Sơn Tây, Hà Nội</p>
-                            <p>+84388842605</p>
+                            <p>{invoice?.userName}</p>
+                            <p>{invoice?.phone}</p>
+                            <p>{invoice?.note}</p>
+                            <p>{invoice?.phone}</p>
                           </div>
                         </div>
                         <div className="row">
@@ -168,8 +168,7 @@ const CheckOutStatus = () => {
                   >
                     <div className="order-summary__header">
                       <div className="order-summary__title">
-                        Đơn hàng #1009
-                        <span className="unprintable">(15)</span>
+                        Đơn hàng #{invoice?._id}
                       </div>
                       <div className="order-summary__action hide-on-desktop unprintable">
                         <a

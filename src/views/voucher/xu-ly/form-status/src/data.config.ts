@@ -11,5 +11,9 @@ export const dataConfig = (mode?: MODE): FormSchemaModel<IVoucher>[] => [
         field: 'moTa',
         label: 'Mô tả',
     },
+    {
+        field: "discount",
+        label: "Giảm giá",
+    }
 
 ]

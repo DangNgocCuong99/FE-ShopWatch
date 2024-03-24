@@ -15,7 +15,7 @@ const CheckOut = () => {
   const { invoiceApi } = useInvoiceApi();
   const cartStore = useSelector(selectCart);
   const { paymentApi } = usePaymentApi();
-  const [infoCart , setInfoCart] = useState({price:0,quantity:0})
+  const [infoCart, setInfoCart] = useState({ price: 0, quantity: 0 });
 
   const [provinces] = useState(Object.values(data)); // Lấy danh sách tỉnh/thành phố từ file JSON
 
@@ -25,17 +25,18 @@ const CheckOut = () => {
   const [selectedDistrict, setSelectedDistrict] = useState("");
   const [selectedWard, setSelectedWard] = useState("");
   const [payments, setPayments] = useState("cod");
-  const [selectAddress, setSelectAddress] = useState<"other"|"current">("current");
-  const [codeVoucher, setCodeVoucher] = useState()
-  const [notes, setNotes] = useState()
+  const [selectAddress, setSelectAddress] = useState<"other" | "current">(
+    "current"
+  );
+  const [codeVoucher, setCodeVoucher] = useState();
+  const [notes, setNotes] = useState();
   const navigation = useNavigate();
-
 
   const [name, setName] = useState<string>();
   const [email, setEmail] = useState<string>();
   const [address, setAddress] = useState<string>();
   const { userApi } = useUserApi();
-  
+  const [discount, setDiscount] = useState<number>();
 
   const HandleGetUser = async () => {
     try {
@@ -84,30 +85,41 @@ const CheckOut = () => {
   };
 
   const handleCheckout = async () => {
-    console.log(wards);
-    return
-    
+    const phuong = wards.find((wards) => wards.code === selectedWard)?.name;
+    const quan = districts.find(
+      (district) => district.code === selectedDistrict
+    )?.name;
+    const tinh = provinces.find(
+      (province) => province.code === selectedProvince
+    )?.name;
+    const finalAddress = selectAddress === "current" ? address : (phuong +","+ quan+","+ tinh)
     try {
       const res = await invoiceApi.createInvoice<any, any>({
-        statusPayment: payments === "bank" ? statusPayment.unpaid : statusPayment.cash,
+        statusPayment:
+          payments === "bank" ? statusPayment.unpaid : statusPayment.cash,
         statusInvoice: statusInvoice.todo,
-        phoneNumber,
-        address: selectAddress === "current" ? address : "a"
+        phone:phoneNumber,
+        address: finalAddress,
+        useName: name,
+        transportFee:40000,
+        discount:discount,
+        email:email,
+        note:notes,
       });
 
-      if (payments === "bank" ){
+      if (payments === "bank") {
         const url = (await paymentApi.create({
           invoice: res.data._id,
         })) as string;
         window.location.href = url;
-      }else{
-        navigation(`/check-out-status/?id=${res.data._id}`)
+      } else {
+        navigation(`/check-out-status/?id=${res.data._id}`);
       }
     } catch (error) {}
   };
 
   const handleRenderItem = () => {
-    return cartStore.listProduct.map((product,key) => {
+    return cartStore.listProduct.map((product, key) => {
       return (
         <tr className="product" key={key}>
           <td className="product__image">
@@ -135,22 +147,22 @@ const CheckOut = () => {
     });
   };
 
-  useEffect(()=>{
-    if(
-      cartStore.listProduct?.length > 0 
-    ){
-      handleTinhTong()
+  useEffect(() => {
+    if (cartStore.listProduct?.length > 0) {
+      handleTinhTong();
     }
-  },[cartStore])
+  }, [cartStore]);
 
   const handleTinhTong = () => {
-    let price = 0
-      let quantity = 0 
-      for (let index = 0; index < cartStore.listProduct.length; index++) {
-        price += cartStore.listProduct[index].discountedPrice * cartStore.listProduct[index].quantity   
-        quantity += cartStore.listProduct[index].quantity    
-      }
-      setInfoCart({price:price,quantity:quantity})
+    let price = 0;
+    let quantity = 0;
+    for (let index = 0; index < cartStore.listProduct.length; index++) {
+      price +=
+        cartStore.listProduct[index].discountedPrice *
+        cartStore.listProduct[index].quantity;
+      quantity += cartStore.listProduct[index].quantity;
+    }
+    setInfoCart({ price: price, quantity: quantity });
   };
 
   return (
@@ -187,14 +199,14 @@ const CheckOut = () => {
                               id="customer-address"
                               data-bind="customerAddress"
                               value={selectAddress}
-                              onChange={(e)=>setSelectAddress(e.target.value as "current" | "other")}
+                              onChange={(e) =>
+                                setSelectAddress(
+                                  e.target.value as "current" | "other"
+                                )
+                              }
                             >
                               <option value={"other"}>Địa chỉ khác...</option>
-                              <option
-                                value={"current"}
-                              >
-                                {address}
-                              </option>
+                              <option value={"current"}>{address}</option>
                             </select>
                             <div className="field__caret">
                               <i className="fa fa-caret-down" />
@@ -212,7 +224,7 @@ const CheckOut = () => {
                               className="field__input"
                               disabled={true}
                               value={email}
-                              onChange={(e)=>setEmail(e.target.value)}
+                              onChange={(e) => setEmail(e.target.value)}
                             />
                           </div>
                         </div>
@@ -233,7 +245,7 @@ const CheckOut = () => {
                               type="text"
                               className="field__input"
                               value={name}
-                              onChange={(e)=>setName(e.target.value)}
+                              onChange={(e) => setName(e.target.value)}
                             />
                           </div>
                         </div>
@@ -258,116 +270,115 @@ const CheckOut = () => {
                             />
                           </div>
                         </div>
-                        {selectAddress === "other" && 
-                        <>
-                        <div className="field field--show-floating-label ">
-                          <div className="field__input-wrapper field__input-wrapper--select2">
-                            <label
-                              htmlFor="billingProvince"
-                              className="field__label"
-                            >
-                              Tỉnh thành(tùy chọn)
-                            </label>
-                            <select
-                              name="billingProvince"
-                              id="billingProvince"
-                              size={1}
-                              className="field__input field__input--select select2-hidden-accessible"
-                              data-bind="billing.province"
-                              data-address-type="province"
-                              data-address-zone="billing"
-                              data-select2-id="select2-data-billingProvince"
-                              tabIndex={-1}
-                              aria-hidden="true"
-                              onChange={handleProvinceChange}
-                              value={selectedProvince}
-                            >
-                              <option value="" hidden="">
-                                ---
-                              </option>
-                              {provinces.map((province) => (
-                                <option
-                                  key={province.code}
-                                  value={province.code}
+                        {selectAddress === "other" && (
+                          <>
+                            <div className="field field--show-floating-label ">
+                              <div className="field__input-wrapper field__input-wrapper--select2">
+                                <label
+                                  htmlFor="billingProvince"
+                                  className="field__label"
                                 >
-                                  {province.name}
-                                </option>
-                              ))}
-                            </select>
-                          </div>
-                        </div>
-                        <div className="field field--show-floating-label ">
-                          <div className="field__input-wrapper field__input-wrapper--select2">
-                            <label
-                              htmlFor="billingDistrict"
-                              className="field__label"
-                            >
-                              Quận huyện (tùy chọn)
-                            </label>
-                            <select
-                              name="billingDistrict"
-                              id="billingDistrict"
-                              size={1}
-                              className="field__input field__input--select select2-hidden-accessible"
-                              data-bind="billing.district"
-                              data-address-type="district"
-                              data-address-zone="billing"
-                              data-select2-id="select2-data-billingDistrict"
-                              tabIndex={-1}
-                              aria-hidden="true"
-                              onChange={handleDistrictChange}
-                              value={selectedDistrict}
-                            >
-                              <option value="" hidden="">
-                                ---
-                              </option>
-                              {districts.map((district) => (
-                                <option
-                                  key={district.code}
-                                  value={district.code}
+                                  Tỉnh thành(tùy chọn)
+                                </label>
+                                <select
+                                  name="billingProvince"
+                                  id="billingProvince"
+                                  size={1}
+                                  className="field__input field__input--select select2-hidden-accessible"
+                                  data-bind="billing.province"
+                                  data-address-type="province"
+                                  data-address-zone="billing"
+                                  data-select2-id="select2-data-billingProvince"
+                                  tabIndex={-1}
+                                  aria-hidden="true"
+                                  onChange={handleProvinceChange}
+                                  value={selectedProvince}
                                 >
-                                  {district.name}
-                                </option>
-                              ))}
-                            </select>
-                          </div>
-                        </div>
-                        <div className="field field--show-floating-label ">
-                          <div className="field__input-wrapper field__input-wrapper--select2">
-                            <label
-                              htmlFor="billingWard"
-                              className="field__label"
-                            >
-                              Phường xã (tùy chọn)
-                            </label>
-                            <select
-                              name="billingWard"
-                              id="billingWard"
-                              size={1}
-                              className="field__input field__input--select select2-hidden-accessible"
-                              data-bind="billing.ward"
-                              data-address-type="ward"
-                              data-address-zone="billing"
-                              data-select2-id="select2-data-billingWard"
-                              tabIndex={-1}
-                              aria-hidden="true"
-                              value={selectedWard}
-                              onChange={handleWardChange}
-                            >
-                              <option value="" hidden="">
-                                ---
-                              </option>
-                              {wards.map((ward) => (
-                                <option key={ward.code} value={ward.code}>
-                                  {ward.name}
-                                </option>
-                              ))}
-                            </select>
-                          </div>
-                        </div>
-                        </>
-                        }
-                        
+                                  <option value="" hidden="">
+                                    ---
+                                  </option>
+                                  {provinces.map((province) => (
+                                    <option
+                                      key={province.code}
+                                      value={province.code}
+                                    >
+                                      {province.name}
+                                    </option>
+                                  ))}
+                                </select>
+                              </div>
+                            </div>
+                            <div className="field field--show-floating-label ">
+                              <div className="field__input-wrapper field__input-wrapper--select2">
+                                <label
+                                  htmlFor="billingDistrict"
+                                  className="field__label"
+                                >
+                                  Quận huyện (tùy chọn)
+                                </label>
+                                <select
+                                  name="billingDistrict"
+                                  id="billingDistrict"
+                                  size={1}
+                                  className="field__input field__input--select select2-hidden-accessible"
+                                  data-bind="billing.district"
+                                  data-address-type="district"
+                                  data-address-zone="billing"
+                                  data-select2-id="select2-data-billingDistrict"
+                                  tabIndex={-1}
+                                  aria-hidden="true"
+                                  onChange={handleDistrictChange}
+                                  value={selectedDistrict}
+                                >
+                                  <option value="" hidden="">
+                                    ---
+                                  </option>
+                                  {districts.map((district) => (
+                                    <option
+                                      key={district.code}
+                                      value={district.code}
+                                    >
+                                      {district.name}
+                                    </option>
+                                  ))}
+                                </select>
+                              </div>
+                            </div>
+                            <div className="field field--show-floating-label ">
+                              <div className="field__input-wrapper field__input-wrapper--select2">
+                                <label
+                                  htmlFor="billingWard"
+                                  className="field__label"
+                                >
+                                  Phường xã (tùy chọn)
+                                </label>
+                                <select
+                                  name="billingWard"
+                                  id="billingWard"
+                                  size={1}
+                                  className="field__input field__input--select select2-hidden-accessible"
+                                  data-bind="billing.ward"
+                                  data-address-type="ward"
+                                  data-address-zone="billing"
+                                  data-select2-id="select2-data-billingWard"
+                                  tabIndex={-1}
+                                  aria-hidden="true"
+                                  value={selectedWard}
+                                  onChange={handleWardChange}
+                                >
+                                  <option value="" hidden="">
+                                    ---
+                                  </option>
+                                  {wards.map((ward) => (
+                                    <option key={ward.code} value={ward.code}>
+                                      {ward.name}
+                                    </option>
+                                  ))}
+                                </select>
+                              </div>
+                            </div>
+                          </>
+                        )}
                       </div>
                     </div>
                   </section>
@@ -384,7 +395,7 @@ const CheckOut = () => {
                         <textarea
                           className="field__input"
                           value={notes}
-                          onChange={(e)=>setNotes(e.target.value)}
+                          onChange={(e) => setNotes(e.target.value)}
                         />
                       </div>
                     </div>
@@ -493,7 +504,9 @@ const CheckOut = () => {
                                 type="radio"
                                 className="input-radio"
                                 defaultChecked={true}
-                                onChange={(e)=>e.target.checked ? setPayments("cod") : null}
+                                onChange={(e) =>
+                                  e.target.checked ? setPayments("cod") : null
+                                }
                               />
                             </div>
                             <label
@@ -539,7 +552,9 @@ const CheckOut = () => {
                                 data-bind="paymentMethod"
                                 data-provider-id={5}
                                 value={"banking"}
-                                onChange={(e)=>e.target.checked ? setPayments("bank") : null}
+                                onChange={(e) =>
+                                  e.target.checked ? setPayments("bank") : null
+                                }
                               />
                             </div>
                             <label
@@ -609,7 +624,9 @@ const CheckOut = () => {
           </main>
           <aside className="sidebar">
             <div className="sidebar__header">
-              <h2 className="sidebar__title">Đơn hàng ({infoCart.quantity} sản phẩm)</h2>
+              <h2 className="sidebar__title">
+                Đơn hàng ({infoCart.quantity} sản phẩm)
+              </h2>
             </div>
             <div className="sidebar__content">
               <div
