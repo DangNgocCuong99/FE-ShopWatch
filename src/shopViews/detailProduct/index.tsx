@@ -1,32 +1,48 @@
-import { useParams } from 'react-router-dom';
-import './index.scss'
-import { useEffect, useState } from 'react';
-import { useProductApi } from '/@/apis';
-import { IProduct } from '/@/apis/productApi/types';
-import { formattedNumber } from '/@/utils/stringUtil';
+import { useParams } from "react-router-dom";
+import "./index.scss";
+import { useEffect, useState } from "react";
+import { useCartApi, useProductApi } from "/@/apis";
+import { IProduct } from "/@/apis/productApi/types";
+import { formattedNumber } from "/@/utils/stringUtil";
+import { setProductPopup } from "/@/stores/popupItem/popupReduce";
+import { setListProduct } from "/@/stores/cart/cartReduce";
+import { useDispatch } from "react-redux";
 
 const DetailProduct = () => {
-  const {productApi} = useProductApi()
+  const { productApi } = useProductApi();
+  const [inputNumber, setInputNumber] = useState(1);
 
-  const { id } = useParams() as { id: string }
-  const [product, setProduct] =  useState<IProduct>()
-  const handleGetDetailProduct = async()=>{
+  const { id } = useParams() as { id: string };
+  const [product, setProduct] = useState<IProduct>();
+  const {cartApi} = useCartApi()
+  const dispatch = useDispatch();
+  const handleGetDetailProduct = async () => {
     try {
-      console.log(id);   
-      const res =await productApi.getDetailByShop(id)
-      setProduct(res.data)
-      console.log("🚀 ~ handleGetDetailProduct ~ res:", res)
-    } catch (error) {
-      
-    }
-  }
+      const res = await productApi.getDetailByShop(id);
+      setProduct(res.data);
+    } catch (error) {}
+  };
 
-useEffect(()=>{
-  handleGetDetailProduct()
-},[id])  
+  useEffect(() => {
+    handleGetDetailProduct();
+  }, [id]);
+
+  const handleGetDataCart = async () => {
+    const res = await cartApi.getAll();
+    dispatch(setListProduct(res.data as unknown as any[]));
+  };
+
+  const handleAddToCart = async () => {
+    try {
+      await cartApi.create({ productId: product?._id ,quantity:inputNumber});
+      handleGetDataCart();
+      dispatch(setProductPopup(product));
+    } catch (error) {}
+  };
+
 
   return (
-    <div id='detail-product'>
+    <div id="detail-product">
       <section
         className="product layout-product"
         itemType="https://schema.org/Product"
@@ -77,21 +93,16 @@ useEffect(()=>{
           id="https://dola-watch.mysapo.net"
           itemProp="seller"
           itemType="http://schema.org/Organization"
-        >
-    
-        </div>
+        ></div>
         <div className="container">
           <div className="row">
             <div className="col-12 col-xl-12">
               <div className="details-product">
                 <div className="row">
-
-
-
                   <div className="product-detail-left product-images col-12 col-md-12 col-lg-4">
                     <div className="product-image-block relative ">
                       <div className="swiper-container gallery-top block-background swiper-container-initialized swiper-container-horizontal swiper-container-pointer-events">
-                        <div className="swiper-wrapper" id="lightgallery" >
+                        <div className="swiper-wrapper" id="lightgallery">
                           <a
                             className="swiper-slide"
                             data-hash={8}
@@ -102,137 +113,84 @@ useEffect(()=>{
                             <img
                               height={400}
                               width={400}
-                              src="//bizweb.dktcdn.net/thumb/large/100/487/743/products/t063-617-36-037-00-10-699x699.png?v=1687058755027"
-                              alt="TISSOT TRADITION T063.617.36.037.00 – NAM – QUARTZ (PIN) – MẶT SỐ 42 MM, CHRONOGRAPH, KÍNH SAPPHIRE"
-                              data-image="https://bizweb.dktcdn.net/100/487/743/products/t063-617-36-037-00-10-699x699.png?v=1687058755027"
+                              src={product?.images[0]}
                               className="img-responsive mx-auto d-block swiper-lazy"
                             />
                           </a>
                         </div>
                         <div className="tag-km">
-                          <span>
-                            <img src="//bizweb.dktcdn.net/100/487/743/themes/912230/assets/title_image_1_tag.png?1696125396195" />{" "}
-                            Mới
-                          </span>
-                          <span>
-                            <img src="//bizweb.dktcdn.net/100/487/743/themes/912230/assets/title_image_3_tag.png?1696125396195" />{" "}
-                            Bán chạy
-                          </span>
+                        {product?.isNewProject && (
+                  <span>
+                    <img
+                      alt="Mới"
+                      width={60}
+                      height={60}
+                      className="lazyload loaded"
+                      src="//bizweb.dktcdn.net/100/487/743/themes/912230/assets/title_image_1_tag.png?1696125396195"
+                      data-src="//bizweb.dktcdn.net/100/487/743/themes/912230/assets/title_image_1_tag.png?1696125396195"
+                      data-was-processed="true"
+                    />{" "}
+                    Mới
+                  </span>
+                )}
+                {product?.isBestSale && (
+                  <span>
+                    <img
+                      alt="Bán chạy"
+                      width={60}
+                      height={60}
+                      className="lazyload loaded"
+                      src="//bizweb.dktcdn.net/100/487/743/themes/912230/assets/title_image_3_allpro1.png?1696125396195"
+                    />{" "}
+                    Bán chạy
+                  </span>
+                )}
+
+                {product?.isHot && (
+                  <span>
+                    <img
+                      alt="Hot"
+                      width={60}
+                      height={60}
+                      className="lazyload loaded"
+                      src="//bizweb.dktcdn.net/100/487/743/themes/912230/assets/title_image_3_tag.png?1696125396195"
+                    />{" "}
+                    Hot
+                  </span>
+                )}
                         </div>
                       </div>
                       <div className="swiper-container gallery-thumbs block-background swiper-container-initialized swiper-container-horizontal swiper-container-pointer-events swiper-container-free-mode swiper-container-thumbs">
-                        <div className="swiper-wrapper" >
-                          <div
+                        <div className="swiper-wrapper">
+                          {product && product.images.map((image,key) =>(
+                            <div
                             className="swiper-slide swiper-slide-visible swiper-slide-active swiper-slide-thumb-active"
                             data-hash={0}
                             style={{ width: "81.5px", marginRight: 10 }}
+                            key={key}
                           >
                             <div className="p-100">
                               <img
                                 height={80}
                                 width={80}
-                                src="//bizweb.dktcdn.net/thumb/medium/100/487/743/products/t063-617-36-037-00-699x699.png?v=1687058742513"
-                                alt="TISSOT TRADITION T063.617.36.037.00 – NAM – QUARTZ (PIN) – MẶT SỐ 42 MM, CHRONOGRAPH, KÍNH SAPPHIRE"
-                                data-image="//bizweb.dktcdn.net/thumb/medium/100/487/743/products/t063-617-36-037-00-699x699.png?v=1687058742513"
+                                src={image}
                                 className="swiper-lazy swiper-lazy-loaded"
                               />
                             </div>
                           </div>
-                          <div
-                            className="swiper-slide swiper-slide-visible swiper-slide-next"
-                            data-hash={1}
-                            style={{ width: "81.5px", marginRight: 10 }}
-                          >
-                            <div className="p-100">
-                              <img
-                                height={80}
-                                width={80}
-                                src="//bizweb.dktcdn.net/thumb/medium/100/487/743/products/t063-617-36-037-00-9-699x699.png?v=1687058745247"
-                                alt="TISSOT TRADITION T063.617.36.037.00 – NAM – QUARTZ (PIN) – MẶT SỐ 42 MM, CHRONOGRAPH, KÍNH SAPPHIRE"
-                                data-image="//bizweb.dktcdn.net/thumb/medium/100/487/743/products/t063-617-36-037-00-9-699x699.png?v=1687058745247"
-                                className="swiper-lazy swiper-lazy-loaded"
-                              />
-                            </div>
-                          </div>
-                          <div
-                            className="swiper-slide swiper-slide-visible"
-                            data-hash={2}
-                            style={{ width: "81.5px", marginRight: 10 }}
-                          >
-                            <div className="p-100">
-                              <img
-                                height={80}
-                                width={80}
-                                src="//bizweb.dktcdn.net/thumb/medium/100/487/743/products/t063-617-36-037-00-6-699x699.png?v=1687058746713"
-                                alt="TISSOT TRADITION T063.617.36.037.00 – NAM – QUARTZ (PIN) – MẶT SỐ 42 MM, CHRONOGRAPH, KÍNH SAPPHIRE"
-                                data-image="//bizweb.dktcdn.net/thumb/medium/100/487/743/products/t063-617-36-037-00-6-699x699.png?v=1687058746713"
-                                className="swiper-lazy swiper-lazy-loaded"
-                              />
-                            </div>
-                          </div>
-                          <div
-                            className="swiper-slide swiper-slide-visible"
-                            data-hash={3}
-                            style={{ width: "81.5px", marginRight: 10 }}
-                          >
-                            <div className="p-100">
-                              <img
-                                height={80}
-                                width={80}
-                                src="//bizweb.dktcdn.net/thumb/medium/100/487/743/products/t063-617-36-037-00-5-699x699.png?v=1687058748347"
-                                alt="TISSOT TRADITION T063.617.36.037.00 – NAM – QUARTZ (PIN) – MẶT SỐ 42 MM, CHRONOGRAPH, KÍNH SAPPHIRE"
-                                data-image="//bizweb.dktcdn.net/thumb/medium/100/487/743/products/t063-617-36-037-00-5-699x699.png?v=1687058748347"
-                                className="swiper-lazy swiper-lazy-loaded"
-                              />
-                            </div>
-                          </div>
-                          <div
-                            className="swiper-slide swiper-slide-visible"
-                            data-hash={3}
-                            style={{ width: "81.5px", marginRight: 10 }}
-                          >
-                            <div className="p-100">
-                              <img
-                                height={80}
-                                width={80}
-                                src="//bizweb.dktcdn.net/thumb/medium/100/487/743/products/t063-617-36-037-00-5-699x699.png?v=1687058748347"
-                                alt="TISSOT TRADITION T063.617.36.037.00 – NAM – QUARTZ (PIN) – MẶT SỐ 42 MM, CHRONOGRAPH, KÍNH SAPPHIRE"
-                                data-image="//bizweb.dktcdn.net/thumb/medium/100/487/743/products/t063-617-36-037-00-5-699x699.png?v=1687058748347"
-                                className="swiper-lazy swiper-lazy-loaded"
-                              />
-                            </div>
-                          </div>
-                          <div
-                            className="swiper-slide swiper-slide-visible"
-                            data-hash={3}
-                            style={{ width: "81.5px", marginRight: 10 }}
-                          >
-                            <div className="p-100">
-                              <img
-                                height={80}
-                                width={80}
-                                src="//bizweb.dktcdn.net/thumb/medium/100/487/743/products/t063-617-36-037-00-5-699x699.png?v=1687058748347"
-                                alt="TISSOT TRADITION T063.617.36.037.00 – NAM – QUARTZ (PIN) – MẶT SỐ 42 MM, CHRONOGRAPH, KÍNH SAPPHIRE"
-                                data-image="//bizweb.dktcdn.net/thumb/medium/100/487/743/products/t063-617-36-037-00-5-699x699.png?v=1687058748347"
-                                className="swiper-lazy swiper-lazy-loaded"
-                              />
-                            </div>
-                          </div>
+                          ))}
                         </div>
                         <div className="swiper-button-next"></div>
                         <div className="swiper-button-prev swiper-button-disabled"></div>
                       </div>
                     </div>
                   </div>
-
-
-
-                  
                   <div className=" col-12 col-md-7 col-lg-5">
                     <div className="details-pro block-background">
                       <h1 className="title-product">
-                        {product?.name} – {product?.gioiTinh} – {product?.may} 
-                        – MẶT SỐ {product?.duongKinhMatSo} MM, KÍNH {product?.kinh}
+                        {product?.name} – {product?.gioiTinh} – {product?.may}–
+                        MẶT SỐ {product?.duongKinhMatSo} MM, KÍNH{" "}
+                        {product?.kinh}
                       </h1>
                       <div className="inventory_quantity">
                         <div className="thump-break">
@@ -240,7 +198,11 @@ useEffect(()=>{
                             <span className="stock-brand-title">
                               Tình trạng:
                             </span>
-                            <span className="a-stock">{product?.quantity ? `${product?.quantity} sản phẩm`: "Hết hàng"}</span>
+                            <span className="a-stock">
+                              {product?.quantity
+                                ? `${product?.quantity} sản phẩm`
+                                : "Hết hàng"}
+                            </span>
                           </span>
                           <div className="sku-product clearfix">
                             <span className="stock-brand-title">
@@ -263,114 +225,72 @@ useEffect(()=>{
                           data-id={31449180}
                         />
                       </div>
-                      <form
-                        encType="multipart/form-data"
-                        data-cart-form=""
+                      <div
                         id="add-to-cart-form"
-                        action="/cart/add"
-                        method="post"
                         className="form-inline"
                       >
                         <div className="price-box clearfix">
                           <span className="special-price">
                             <span className="price product-price">
-                             {product && formattedNumber(product?.discountedPrice)}₫
+                              {product &&
+                                formattedNumber(product?.discountedPrice)}
+                              ₫
                             </span>
                             <meta itemProp="price" content={"14700000"} />
                             <meta itemProp="priceCurrency" content="VND" />
                           </span>{" "}
-                          {/* Giá Khuyến mại */}
                           <span
                             className="old-price"
                             itemProp="priceSpecification"
-                            // itemScope=""
                             itemType="http://schema.org/priceSpecification"
                           >
                             <span className="price product-price-old">
-                            {product && formattedNumber(product?.originalPrice)}₫
+                              {product &&
+                                formattedNumber(product?.originalPrice)}
+                              ₫
                             </span>
                             <meta itemProp="price" content={"18300000"} />
                             <meta itemProp="priceCurrency" content="VND" />
                           </span>{" "}
-                          {/* Giás gốc */}
                           <span className="save-price">
                             Tiết kiệm:
                             <span className="price product-price-save">
-                            {product && formattedNumber(product?.originalPrice - ( product.discountedPrice || 0))}₫
+                              {product &&
+                                formattedNumber(
+                                  product?.originalPrice -
+                                    (product.discountedPrice || 0)
+                                )}
+                              ₫
                             </span>
                           </span>{" "}
-                          {/* Tiết kiệm */}
                         </div>
-                        {/* <div className="flashsale_product">
-                          <div
-                            className="count-down"
-                            style={{
-                              background:
-                                "linear-gradient(90deg, #bd110f 0%, #d1a02f 89%)",
-                            }}
-                          >
-                            <span className="title-count-down">
-                              Kết thúc còn:
-                            </span>
-                            <div
-                              className="timer-view"
-                              data-countdown="countdown"
-                              data-date="2023-12-30-00-00-00"
-                            >
-                              <div className="block-timer">
-                                <p>
-                                  <b>54</b>Ngày
-                                </p>
-                              </div>
-                              <span>:</span>
-                              <div className="block-timer">
-                                <p>
-                                  <b>15</b>Giờ
-                                </p>
-                              </div>
-                              <span className="mobile">:</span>
-                              <div className="block-timer">
-                                <p>
-                                  <b>23</b>Phút
-                                </p>
-                              </div>
-                              <span>:</span>
-                              <div className="block-timer">
-                                <p>
-                                  <b>05</b>Giây
-                                </p>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="elio-productcount">
-                            <div className="countdown sold-out">
-                              <div className="line">
-                                <span style={{ width: "100%" }}> </span>
-                              </div>
-                              <span className="title">Hết hàng</span>
-                            </div>
-                          </div>
-                        </div> */}
                         <div className="pro-promo">
                           Miễn phí thay pin trọn đời cho tất cả khách hàng
                         </div>
-                        {/* <div className="form-product">
+                        <div className="form-product">
                           <div className="box-variant clearfix  d-none ">
                             <input
                               type="hidden"
                               id="one_variant"
                               name="variantId"
-                              defaultValue={91048217}
+                              defaultValue={91048358}
                             />
                           </div>
                           <div className="clearfix form-group ">
                             <div className="flex-quantity">
-                              <div className="custom custom-btn-number ">
+                              <div className="custom custom-btn-number show">
                                 <label className="sl section">Số lượng:</label>
-                                <div className="input_number_product form-control">
+                                <div
+                                  className="input_number_product "
+                                  style={{ display: "flex" }}
+                                >
                                   <button
                                     className="btn_num num_1 button button_qty"
-                                    // onclick="var result = document.getElementById('qtym'); var qtypro = result.value; if( !isNaN( qtypro ) && qtypro > 1 ) result.value--;return false;"
+                                    onClick={() =>
+                                      setInputNumber((val) =>
+                                        val > 1 ? val - 1 : 1
+                                      )
+                                    }
                                     type="button"
                                   >
                                     -
@@ -381,13 +301,21 @@ useEffect(()=>{
                                     name="quantity"
                                     defaultValue={1}
                                     maxLength={3}
-                                    className="form-control prd_quantity"
-                                    // onkeypress="if ( isNaN(this.value + String.fromCharCode(event.keyCode) )) return false;"
-                                    // onchange="if(this.value == 0)this.value=1;"
+                                    className=" prd_quantity"
+                                    value={inputNumber}
+                                    onChange={(e) =>
+                                      setInputNumber(
+                                        Number(e.target.value) <= 0
+                                          ? 1
+                                          : Number(e.target.value)
+                                      )
+                                    }
                                   />
                                   <button
                                     className="btn_num num_2 button button_qty"
-                                    // onclick="var result = document.getElementById('qtym'); var qtypro = result.value; if( !isNaN( qtypro )) result.value++;return false;"
+                                    onClick={() =>
+                                      setInputNumber((val) => val + 1)
+                                    }
                                     type="button"
                                   >
                                     +
@@ -396,116 +324,54 @@ useEffect(()=>{
                               </div>
                               <div className="btn-mua button_actions clearfix">
                                 <button
-                                  className="btn btn-lg btn-style btn-style-active btn-cart btn-soldout btn_base btn_dis"
-                                  // disabled="disabled"
+                                  type="submit"
+                                  className="btn btn_base normal_button btn_add_cart add_to_cart btn-cart"
+                                  onClick={()=>handleAddToCart()}
                                 >
-                                  <span className="txt-main">Hết hàng</span>
+                                  <span className="icon">
+                                    <svg
+                                      xmlns="http://www.w3.org/2000/svg"
+                                      id="Layer_1"
+                                      data-name="Layer 1"
+                                      viewBox="0 0 40 40"
+                                    >
+                                      <defs />
+                                      <g>
+                                        <path
+                                          className="cls-1"
+                                          d="M35.91,36.17,33.24,10.75a1,1,0,0,0-1-.94h-5V8.67a6.47,6.47,0,1,0-12.93,0V9.81h-5a1.05,1.05,0,0,0-1,.94L5.52,36.17a1,1,0,0,0,.93,1.15H34.87a1,1,0,0,0,1.05-1A.41.41,0,0,0,35.91,36.17ZM16.35,8.67a4.38,4.38,0,1,1,8.75,0V9.81H16.35ZM7.73,35.24l2.45-23.33h4.07v2.3a1,1,0,0,0,1,1.09,1,1,0,0,0,1.09-1V11.91H25.1v2.3a1,1,0,0,0,1,1.09,1,1,0,0,0,1.09-1V11.91h4.07l2.45,23.33Z"
+                                        />
+                                      </g>
+                                    </svg>
+                                  </span>
+                                  <span className="text">
+                                    <span className="txt-main text_1">
+                                      Thêm vào giỏ
+                                    </span>
+                                    <span className="text_2">
+                                      Giao hàng tận nơi miễn phí
+                                    </span>
+                                  </span>
                                 </button>
                                 <a
                                   href="javascript:void(0)"
-                                  className="setWishlist btn-wishlist active"
-                                  data-wish="tissot-tradition-t063-617-36-037-00-nam-quartz-pin-mat-so-42-mm-chronograph-kinh-sapphire"
+                                  className="setWishlist btn-wishlist"
+                                  data-wish="g-shock-ga-2000-1a2dr-nam-kinh-cung-quartz-pin-mat-so-51-2mm-bo-bam-gio-chong-nuoc-20atm"
                                   tabIndex={0}
-                                  title="Bỏ yêu thích"
+                                  title="Thêm vào yêu thích"
                                 >
-                                  <svg className="icon">
-                                    {" "}
-                                    <use
-                                      xmlnsXlink="http://www.w3.org/1999/xlink"
-                                      xlinkHref="#icon-wishlist-active"
-                                    />{" "}
+                                  <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 512 512"
+                                  >
+                                    <path d="M244 84L255.1 96L267.1 84.02C300.6 51.37 347 36.51 392.6 44.1C461.5 55.58 512 115.2 512 185.1V190.9C512 232.4 494.8 272.1 464.4 300.4L283.7 469.1C276.2 476.1 266.3 480 256 480C245.7 480 235.8 476.1 228.3 469.1L47.59 300.4C17.23 272.1 0 232.4 0 190.9V185.1C0 115.2 50.52 55.58 119.4 44.1C164.1 36.51 211.4 51.37 244 84C243.1 84 244 84.01 244 84L244 84zM255.1 163.9L210.1 117.1C188.4 96.28 157.6 86.4 127.3 91.44C81.55 99.07 48 138.7 48 185.1V190.9C48 219.1 59.71 246.1 80.34 265.3L256 429.3L431.7 265.3C452.3 246.1 464 219.1 464 190.9V185.1C464 138.7 430.4 99.07 384.7 91.44C354.4 86.4 323.6 96.28 301.9 117.1L255.1 163.9z" />
                                   </svg>
                                 </a>
                               </div>
                             </div>
                           </div>
-                        </div> */}
-
-                        <div className="form-product">
-  <div className="box-variant clearfix  d-none ">
-    <input
-      type="hidden"
-      id="one_variant"
-      name="variantId"
-      defaultValue={91048358}
-    />
-  </div>
-  <div className="clearfix form-group ">
-    <div className="flex-quantity">
-      <div className="custom custom-btn-number show">
-        <label className="sl section">Số lượng:</label>
-        <div className="input_number_product form-control" style={{display:"flex"}}>
-          <button
-            className="btn_num num_1 button button_qty"
-            onclick="var result = document.getElementById('qtym'); var qtypro = result.value; if( !isNaN( qtypro ) && qtypro > 1 ) result.value--;return false;"
-            type="button"
-          >
-            -
-          </button>
-          <input
-            type="text"
-            id="qtym"
-            name="quantity"
-            defaultValue={1}
-            maxLength={3}
-            className="form-control prd_quantity"
-            onkeypress="if ( isNaN(this.value + String.fromCharCode(event.keyCode) )) return false;"
-            onchange="if(this.value == 0)this.value=1;"
-          />
-          <button
-            className="btn_num num_2 button button_qty"
-            onclick="var result = document.getElementById('qtym'); var qtypro = result.value; if( !isNaN( qtypro )) result.value++;return false;"
-            type="button"
-          >
-            +
-          </button>
-        </div>
-      </div>
-      <div className="btn-mua button_actions clearfix">
-        <button
-          type="submit"
-          className="btn btn_base normal_button btn_add_cart add_to_cart btn-cart"
-        >
-          <span className="icon">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              id="Layer_1"
-              data-name="Layer 1"
-              viewBox="0 0 40 40"
-            >
-              <defs />
-              <g>
-                <path
-                  className="cls-1"
-                  d="M35.91,36.17,33.24,10.75a1,1,0,0,0-1-.94h-5V8.67a6.47,6.47,0,1,0-12.93,0V9.81h-5a1.05,1.05,0,0,0-1,.94L5.52,36.17a1,1,0,0,0,.93,1.15H34.87a1,1,0,0,0,1.05-1A.41.41,0,0,0,35.91,36.17ZM16.35,8.67a4.38,4.38,0,1,1,8.75,0V9.81H16.35ZM7.73,35.24l2.45-23.33h4.07v2.3a1,1,0,0,0,1,1.09,1,1,0,0,0,1.09-1V11.91H25.1v2.3a1,1,0,0,0,1,1.09,1,1,0,0,0,1.09-1V11.91h4.07l2.45,23.33Z"
-                />
-              </g>
-            </svg>
-          </span>
-          <span className="text">
-            <span className="txt-main text_1">Thêm vào giỏ</span>
-            <span className="text_2">Giao hàng tận nơi miễn phí</span>
-          </span>
-        </button>
-        <a
-          href="javascript:void(0)"
-          className="setWishlist btn-wishlist"
-          data-wish="g-shock-ga-2000-1a2dr-nam-kinh-cung-quartz-pin-mat-so-51-2mm-bo-bam-gio-chong-nuoc-20atm"
-          tabIndex={0}
-          title="Thêm vào yêu thích"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-            <path d="M244 84L255.1 96L267.1 84.02C300.6 51.37 347 36.51 392.6 44.1C461.5 55.58 512 115.2 512 185.1V190.9C512 232.4 494.8 272.1 464.4 300.4L283.7 469.1C276.2 476.1 266.3 480 256 480C245.7 480 235.8 476.1 228.3 469.1L47.59 300.4C17.23 272.1 0 232.4 0 190.9V185.1C0 115.2 50.52 55.58 119.4 44.1C164.1 36.51 211.4 51.37 244 84C243.1 84 244 84.01 244 84L244 84zM255.1 163.9L210.1 117.1C188.4 96.28 157.6 86.4 127.3 91.44C81.55 99.07 48 138.7 48 185.1V190.9C48 219.1 59.71 246.1 80.34 265.3L256 429.3L431.7 265.3C452.3 246.1 464 219.1 464 190.9V185.1C464 138.7 430.4 99.07 384.7 91.44C354.4 86.4 323.6 96.28 301.9 117.1L255.1 163.9z" />
-          </svg>
-        </a>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-                      </form>
+                        </div>
+                      </div>
                       <div className="khuyen-mai">
                         <div className="title">
                           <img
@@ -3093,4 +2959,4 @@ useEffect(()=>{
   );
 };
 
-export default DetailProduct
+export default DetailProduct;
