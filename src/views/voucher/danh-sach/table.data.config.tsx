@@ -5,7 +5,7 @@ import { IVoucher } from "/@/apis/voucherApi/types";
 
 export const columns: BasicColumnModel<IVoucher>[] = [
   {
-    title: "Tên",
+    title: "Mã giảm giá",
     dataIndex: "code",
     key: "title",
   },
