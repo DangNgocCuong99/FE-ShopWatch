@@ -2,7 +2,7 @@ import PhoneInput from "react-phone-input-2";
 import "./index.css";
 import { useEffect, useState } from "react";
 import "react-phone-input-2/lib/style.css";
-import { useInvoiceApi, usePaymentApi, useUserApi } from "/@/apis";
+import { useInvoiceApi, usePaymentApi, useUserApi, useVoucherApi } from "/@/apis";
 import { statusInvoice, statusPayment } from "/@/utils";
 import { useSelector } from "react-redux";
 import { selectCart } from "/@/stores/cart/cartReduce";
@@ -31,12 +31,29 @@ const CheckOut = () => {
   const [codeVoucher, setCodeVoucher] = useState();
   const [notes, setNotes] = useState();
   const navigation = useNavigate();
+  const [statusVoucher, setStatusVoucher] = useState(true);
+
+  const { voucherApi } = useVoucherApi()
 
   const [name, setName] = useState<string>();
   const [email, setEmail] = useState<string>();
   const [address, setAddress] = useState<string>();
   const { userApi } = useUserApi();
   const [discount, setDiscount] = useState<number>();
+
+  const handleGetVoucher = async()=>{
+    try {
+      if(!codeVoucher) return
+      const res = await voucherApi.getById(codeVoucher)
+      if (res.status) {
+        setStatusVoucher(true)
+      }else{
+        setStatusVoucher(false)
+      }
+    } catch (error) {
+      
+    }
+  }
 
   const HandleGetUser = async () => {
     try {

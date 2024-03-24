@@ -13,7 +13,7 @@ const Order = ()=>{
   const { userApi } = useUserApi();
   const handleGetOrder = async ()=>{
     try {
-      const order = await invoiceApi.getAll() 
+      const order = await invoiceApi.getCurrentInvoice() 
       setListOrder(order.data.items as IInvoice[])
     } catch (error) {
       

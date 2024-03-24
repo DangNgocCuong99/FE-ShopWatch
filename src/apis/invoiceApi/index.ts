@@ -58,4 +58,15 @@ export class InvoiceApi extends BaseApi<IInvoice> {
     return apiCommon({ url: `${this.configUrl}/chart`, method: HTTP_METHOD.GET});
   }
 
+  async getCurrentInvoice(): Promise<{
+    status:boolean,
+    message:string ,
+    data:{
+      items: IInvoice[],
+      total: number,
+    },
+  }> {
+    return apiCommon({ url: `${this.configUrl}/current`, method: HTTP_METHOD.GET});
+  }
+
 }
