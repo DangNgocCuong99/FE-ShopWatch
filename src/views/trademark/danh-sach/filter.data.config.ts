@@ -6,9 +6,5 @@ export const dataConfig = (): FormSchemaModel<ITrademark>[] => [
             field: "name",
             label: "Tên thương hiệu",
         },
-        {
-            field:"moTa",
-            label:"Mô tả"
-        },
 
     ];

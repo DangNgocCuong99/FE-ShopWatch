@@ -9,11 +9,6 @@ export const dataConfig = (mode: MODE): FormSchemaModel<IUserInfo>[] => [
         disabled:mode !== MODE.ADD
     },
     {
-        field: 'img',
-        label: 'img',
-        disabled:mode !== MODE.ADD
-    },
-    {
         field: 'email',
         label: 'email',
         disabled:mode !== MODE.ADD
