@@ -174,7 +174,7 @@ const Cart = () => {
               ></path>
             </g>
           </svg>
-          <span className="count count_item_pr">{infoCart.quantity}</span>
+          <span style={{ whiteSpace: "nowrap"}} className="count count_item_pr">{infoCart.quantity> 99 ? "99+" : infoCart.quantity}</span>
         </a>
         <div className="top-cart-content">
           <div className="CartHeaderContainer">

@@ -15,6 +15,7 @@ const CheckOut = () => {
   const { invoiceApi } = useInvoiceApi();
   const cartStore = useSelector(selectCart);
   const { paymentApi } = usePaymentApi();
+  const [infoCart , setInfoCart] = useState({price:0,quantity:0})
 
   const [provinces] = useState(Object.values(data)); // Lấy danh sách tỉnh/thành phố từ file JSON
 
@@ -23,7 +24,7 @@ const CheckOut = () => {
   const [selectedProvince, setSelectedProvince] = useState("");
   const [selectedDistrict, setSelectedDistrict] = useState("");
   const [selectedWard, setSelectedWard] = useState("");
-  const [payments, setPayments] = useState("");
+  const [payments, setPayments] = useState("cod");
   const [selectAddress, setSelectAddress] = useState<"other"|"current">("current");
   const [codeVoucher, setCodeVoucher] = useState()
   const [notes, setNotes] = useState()
@@ -83,10 +84,15 @@ const CheckOut = () => {
   };
 
   const handleCheckout = async () => {
+    console.log(wards);
+    return
+    
     try {
       const res = await invoiceApi.createInvoice<any, any>({
         statusPayment: payments === "bank" ? statusPayment.unpaid : statusPayment.cash,
         statusInvoice: statusInvoice.todo,
+        phoneNumber,
+        address: selectAddress === "current" ? address : "a"
       });
 
       if (payments === "bank" ){
@@ -101,9 +107,9 @@ const CheckOut = () => {
   };
 
   const handleRenderItem = () => {
-    return cartStore.listProduct.map((product) => {
+    return cartStore.listProduct.map((product,key) => {
       return (
-        <tr className="product">
+        <tr className="product" key={key}>
           <td className="product__image">
             <div className="product-thumbnail-check-out">
               <div className="product-thumbnail__wrapper" data-tg-static="">
@@ -129,14 +135,22 @@ const CheckOut = () => {
     });
   };
 
-  const handleTinhTong = () => {
-    let price = 0;
-    for (let index = 0; index < cartStore.listProduct?.length; index++) {
-      price +=
-        cartStore.listProduct[index].discountedPrice *
-        cartStore.listProduct[index].quantity;
+  useEffect(()=>{
+    if(
+      cartStore.listProduct?.length > 0 
+    ){
+      handleTinhTong()
     }
-    return price;
+  },[cartStore])
+
+  const handleTinhTong = () => {
+    let price = 0
+      let quantity = 0 
+      for (let index = 0; index < cartStore.listProduct.length; index++) {
+        price += cartStore.listProduct[index].discountedPrice * cartStore.listProduct[index].quantity   
+        quantity += cartStore.listProduct[index].quantity    
+      }
+      setInfoCart({price:price,quantity:quantity})
   };
 
   return (
@@ -478,8 +492,7 @@ const CheckOut = () => {
                                 id="paymentMethod-618857"
                                 type="radio"
                                 className="input-radio"
-                                data-bind="paymentMethod"
-                                data-provider-id={4}
+                                defaultChecked={true}
                                 onChange={(e)=>e.target.checked ? setPayments("cod") : null}
                               />
                             </div>
@@ -596,7 +609,7 @@ const CheckOut = () => {
           </main>
           <aside className="sidebar">
             <div className="sidebar__header">
-              <h2 className="sidebar__title">Đơn hàng (4 sản phẩm)</h2>
+              <h2 className="sidebar__title">Đơn hàng ({infoCart.quantity} sản phẩm)</h2>
             </div>
             <div className="sidebar__content">
               <div
@@ -714,7 +727,7 @@ const CheckOut = () => {
                         <tr className="total-line total-line--subtotal">
                           <th className="total-line__name">Tạm tính</th>
                           <td className="total-line__price">
-                            {formattedNumber(handleTinhTong())}₫
+                            {formattedNumber(infoCart.price)}₫
                           </td>
                         </tr>
                         <tr className="total-line total-line--shipping-fee">
@@ -739,7 +752,7 @@ const CheckOut = () => {
                               className="payment-due__price"
                               data-bind="getTextTotalPrice()"
                             >
-                              {formattedNumber(handleTinhTong() + 40000)}₫
+                              {formattedNumber(infoCart.price + 40000)}₫
                             </span>
                           </td>
                         </tr>
