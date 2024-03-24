@@ -1,23 +1,33 @@
 import { useParams } from "react-router-dom";
-import { useInvoiceApi } from "/@/apis";
+import { useInvoiceApi, useUserApi } from "/@/apis";
 import { useEffect, useState } from "react";
 import { IInvoice } from "/@/apis/invoiceApi/types";
 import { formattedNumber } from "/@/utils/stringUtil";
 import { statusPayment } from "/@/utils";
 import dayjs from "dayjs";
+const { userApi } = useUserApi();
 const DetailOrder = () => {
   const { id } = useParams() as { id: string };
   const { invoiceApi } = useInvoiceApi();
-  const [order, setOrder] = useState<IInvoice>()
+  const [order, setOrder] = useState<IInvoice>();
+  const { userApi } = useUserApi();
+  const [name, setName] = useState<string>();
   const handleDetailOrder = async () => {
     try {
       const res = await invoiceApi.getById(id);
       setOrder(res.data);
     } catch (error) {}
   };
-
+  const HandleGetUser = async () => {
+    try {
+      const res = await userApi.getCurrentUser();
+      setName(res.data.username);
+      
+    } catch (error) {}
+  };
   useEffect(() => {
     handleDetailOrder();
+    HandleGetUser();
   }, []);
   const handleReturn = ()=>{
     switch (order?.statusPayment) {
@@ -43,7 +53,7 @@ const DetailOrder = () => {
                 <p>
                   Xin chào,{" "}
                   <a href="javascript:;" style={{ color: "#000000" }}>
-                    Nguyen Van Nam
+                    {name}
                   </a>
                   &nbsp;!
                 </p>

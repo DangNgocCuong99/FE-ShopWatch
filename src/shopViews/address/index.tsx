@@ -1,7 +1,8 @@
 import PhoneInput from "react-phone-input-2";
 import "./index.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import data from "/tree.json";
+import { useUserApi } from "/@/apis";
 
 const Address = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -16,8 +17,9 @@ const Address = () => {
   const [isDefault, setIsDefault] = useState(false);
   const [otherAddress, setOtherAddress] = useState("");
   const [userName, setUserName] = useState("");
-
   const [isPopup, setIsPopup] = useState(false);
+  const [name, setName] = useState<string>();
+  const { userApi } = useUserApi();
 
   const handleAddAndEditAddress = () => {
     try {
@@ -142,6 +144,17 @@ const Address = () => {
     });
   };
 
+  const HandleGetUser = async () => {
+    try {
+      const res = await userApi.getCurrentUser();
+      setName(res.data.username);
+      
+    } catch (error) {}
+  };
+  useEffect(() => {
+    HandleGetUser();
+  }, []);
+
   return (
     <>
       <section className="address">
@@ -152,7 +165,7 @@ const Address = () => {
                 <h5 className="title-account">Trang tài khoản</h5>
                 <p>
                   Xin chào,{" "}
-                  <span style={{ color: "#ef4339" }}>Nguyen Van Nam</span>
+                  <span style={{ color: "#ef4339" }}>{name}</span>
                   &nbsp;!
                 </p>
                 <ul>
