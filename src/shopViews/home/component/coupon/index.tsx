@@ -55,13 +55,6 @@ const Coupon = () => {
                 </div>
                 <div className="content-bottom">
                   <span>HSD: Không thời hạn</span>
-                  <div
-                    className="coupon-code js-copy"
-                    data-copy={voucher.code}
-                    title="Sao chép"
-                  >
-                    Sao chép
-                  </div>
                 </div>
               </div>
             </div>
