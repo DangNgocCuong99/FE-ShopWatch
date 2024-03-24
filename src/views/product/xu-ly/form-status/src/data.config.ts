@@ -1,4 +1,3 @@
-import { IProductInfo } from "../../../danh-sach/types";
 import { IProduct } from "/@/apis/productApi/types";
 import { FormSchemaModel } from "/@/components/Form/src/types/form";
 import { MODE } from "/@/utils";
