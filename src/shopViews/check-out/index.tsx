@@ -100,7 +100,7 @@ const CheckOut = () => {
         statusInvoice: statusInvoice.todo,
         phone:phoneNumber,
         address: finalAddress,
-        useName: name,
+        userName: name,
         transportFee:40000,
         discount:discount,
         email:email,
