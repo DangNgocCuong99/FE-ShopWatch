@@ -1,5 +1,6 @@
 import {
   BarChartOutlined,
+  DollarOutlined,
   FileDoneOutlined,
   ProductOutlined,
   TrademarkCircleOutlined,
@@ -120,7 +121,7 @@ const appRoutes: RouteType[] = [
     state: "voucher",
     element: <ManageVoucher/>,
     displayText:"Quản lý mã giảm giá",
-    icon: <TrademarkCircleOutlined />,
+    icon: <DollarOutlined />,
     child:[
       {
         path:"add",

@@ -57,7 +57,7 @@ const Footer = ()=>{
 						<li><img width="57" height="35" alt="Payment 3" data-src="//bizweb.dktcdn.net/100/487/743/themes/912230/assets/payment_3.png?1696125396195" className="lazyload loaded" src="//bizweb.dktcdn.net/100/487/743/themes/912230/assets/payment_3.png?1696125396195" data-was-processed="true"/></li>
 
 					</ul>
-				</div>/
+				</div>
 				<div className="col-12 col-md-6 col-lg-2 link-list col-footer footer-click">
 					<h4 className="title-menu title-menu2">
 						Chính sách
